@@ -21,8 +21,7 @@ const Application = () => {
   };
 
   return (
-    <div style={{height:"100vh", "background-color":"#e5e5e5"
-    }}>
+    <div className="fullHeight">
       <Routes />
     </div>
   );
