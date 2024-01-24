@@ -95,8 +95,8 @@ const Barchart = ()=>{
         label: 'rainfall (mm)',
       },
     ],
-    width: 500,
-    height: 300,
+    width: 600,
+    height: 400,
     sx: {
       [`.${axisClasses.left} .${axisClasses.label}`]: {
         transform: 'translate(-20px, 0)',

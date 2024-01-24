@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Route } from "react-router-dom";
-
+import "../../index.css"
 import Reduxifier from "Utilities/reduxifier";
 import Registry from "Utilities/registry";
 import { fetchRoutes } from "Config/routes";
