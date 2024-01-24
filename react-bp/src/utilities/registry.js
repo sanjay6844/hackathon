@@ -2,11 +2,12 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-named-as-default */
 // Controllers
-// eslint-disable-next-line import/no-named-as-default-member
 import Home from 'Pages/Home';
 import Chart from 'Pages/Chart/chart';
 import Table from 'Pages/Table/table';
+import SignIn from 'Pages/SignIn';
 import Piechart from '../components/piechart/piechart';
+import Barchart from '../components/barchart/barchart';
 
 function Injector(component, name) {
   const hoc = component;
@@ -20,5 +21,7 @@ export default {
   Piechart: Injector(Piechart, 'Piechart'),
   Chart: Injector(Chart, 'Chart'),
   Table: Injector(Table, 'Table'),
+  SignIn: Injector(SignIn, 'SignIn'),
+  Barchart: Injector(Barchart, 'Barchart'),
 
 };

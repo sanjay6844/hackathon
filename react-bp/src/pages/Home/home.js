@@ -7,11 +7,11 @@ const Homepage = () => {
   const { getAllRequetUser } = actions;
   const { testData } = store;
   useEffect(() => {
-    getAllRequetUser();
+    // getAllRequetUser();
   }, []);
-  useEffect(() => {
-    console.log(testData, "items");
-  }, [testData]);
+  // useEffect(() => {
+  //   console.log(testData, "items");
+  // }, [testData]);
   // console.log(ctx, "ctx");
 
   return <h1>Home Page</h1>;
