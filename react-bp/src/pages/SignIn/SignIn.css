@@ -1,0 +1,76 @@
+
+.container{
+
+  width:100%;
+    background-color:#e5e5e5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    gap:20px;
+}
+.MuiTextField-root{
+  width:100% important;
+}
+
+.card{
+  margin-top:20px;
+  width:30%;
+  padding:20px;
+  background-color:white;
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  gap:20px;
+  border-radius: 20px;
+  align-items: center;
+}
+
+  .css-z3c6am-MuiFormControl-root-MuiTextField-root{
+    width:100%;
+  }
+
+.heading{
+  font-size:40px;
+  padding:12px;
+}
+
+.submit-btn{
+
+  background-color:#615d6e;
+    color:white;
+    padding:20px;
+    border-radius:100vw;
+    font-size:17px;
+    border:none;
+    &:hover{
+      cursor:pointer;
+    }
+}
+.link{
+ margin-bottom: 10px;
+}
+
+.form{
+
+  display:flex;
+    flex-direction:column;
+    gap:20px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .card{
+    width:60%;
+  }
+}
+@media only screen and ((min-width:768px) and (max-width: 1024px)) {
+  .card{
+    width:50%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .card{
+    width:80%;
+  }
+}
