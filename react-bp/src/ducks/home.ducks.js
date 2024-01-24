@@ -1,6 +1,7 @@
 import cloneDeep from "lodash/cloneDeep";
 import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
+import axios from "axios";
 
 const namespace = "dashboard";
 const createAction = setNamespace(namespace);
@@ -10,6 +11,7 @@ const nw = new Network();
 const initialState = {
   apiError: null,
   testData: null,
+  excelData:null
 };
 
 // ACTIONS
@@ -47,6 +49,25 @@ const getAllRequetUser = () => (dispatch) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 };
+
+const getAllData = (data) => (dispatch) => {
+   axios.post("https://excel-8dyl.onrender.com/upload", data,{
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    })
+      .then(response => {
+        console.log(response.data.data,"responese data");
+        dispatch(assignToDashboardStore("excelData", response?.data.data));
+
+      })
+      .catch(error => {
+        console.error('Error uploading file: ', error);
+      });
+};
+
+
+
 
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
@@ -86,5 +107,6 @@ export default {
     assignToDashboardStore,
     resetDashboardStore,
     getAllRequetUser,
+    getAllData
   },
 };

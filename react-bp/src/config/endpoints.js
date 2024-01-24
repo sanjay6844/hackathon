@@ -3,6 +3,7 @@ const development = {
   testFetch: "date-remainder",
   get_Posts: "/posts",
   get_users: "/users",
+  get_excelData:"/upload"
 };
 
 export function getAllEndpoints() {
@@ -13,6 +14,7 @@ export function getAllEndpoints() {
 }
 
 export function getBaseURL() {
-  return "https://63849a654ce192ac605d1206.mockapi.io/api/calendar/";
-  // return "http://localhost:3001";
+ // return "https://63849a654ce192ac605d1206.mockapi.io/api/calendar/";
+   return "http://localhost:8000";
+  //return "https://excel-8dyl.onrender.com"
 }
