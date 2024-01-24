@@ -59,6 +59,17 @@ const getAllRequetUser = () => (dispatch) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 };
+const getReloadData = () => (dispatch) => {
+  axios.get("http://localhost:3000/excelData")
+    .then(response => {
+      console.log(response.data,"responese data get api");
+      dispatch(assignToDashboardStore("excelData", response?.data));
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
 
 const getAllData = (data) => (dispatch) => {
   axios.post("https://excel-8dyl.onrender.com/upload", data,{
@@ -175,6 +186,7 @@ export default {
     fetchLoginData,
     postData,
     postExcelData,
+    getReloadData
     
   },
 };
