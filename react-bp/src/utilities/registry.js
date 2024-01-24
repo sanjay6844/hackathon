@@ -4,7 +4,7 @@
 // Controllers
 import Home from "Pages/Home";
 import Chart from "Pages/Chart/chart";
-import Table from "Pages/Table/table";
+import TablePage from "../components/table/table";
 import SignIn from "Pages/SignIn";
 import Piechart from "../components/piechart/piechart";
 import Barchart from "../components/barchart/barchart";
@@ -22,7 +22,7 @@ export default {
   Home: Injector(Home, "Home"),
   Piechart: Injector(Piechart, "Piechart"),
   Chart: Injector(Chart, "Chart"),
-  Table: Injector(Table, "Table"),
+  TablePage: Injector(TablePage, "TablePage"),
   SignIn: Injector(SignIn, "SignIn"),
   Barchart: Injector(Barchart, "Barchart"),
   SignUp:Injector(SignUp,"SignUP")

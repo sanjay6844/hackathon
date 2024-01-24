@@ -1,7 +1,11 @@
-import React, { useContext, useEffect ,useState} from "react";
+import React from "react";
+import "./table.css"
+import  { useContext, useEffect ,useState} from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, InputAdornment, IconButton, FormControlLabel, Checkbox } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { useDemoData } from "@mui/x-data-grid-generator";
 const data = [
   { productId: 1, productName: "Product A", salesAmount: 100, cost: 80 },
   { productId: 2, productName: "Product B", salesAmount: 150, cost: 120 },
@@ -15,8 +19,6 @@ const columns = [
   { id: "cost", label: "Cost" },
   { id: "profitLoss", label: "Profit/Loss" },
 ];
-
-
 
 
 
@@ -34,27 +36,11 @@ const TablePage =()=>{
     setSearchText(event.target.value);
   };
 
-  const handleColumnToggle = (columnId) => {
-    setShowColumns((prevColumns) => ({
-      ...prevColumns,
-      [columnId]: !prevColumns[columnId],
-    }));
-  };
-
   const filteredData = data.filter((item) =>
     Object.keys(item)
       .filter((key) => showColumns[key])
       .some((key) => String(item[key]).toLowerCase().includes(searchText.toLowerCase()))
   );
-
-
-    
-
-
-
-
-
-
 
 
   return(<div>
@@ -78,32 +64,8 @@ const TablePage =()=>{
         <FilterListIcon />
       </IconButton>
     </div>
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            {columns.map((column) => (
-              showColumns[column.id] && (
-                <TableCell key={column.id}>{column.label}</TableCell>
-              )
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {filteredData.map((row) => (
-            <TableRow key={row.productId}>
-              {columns.map((column) => (
-                showColumns[column.id] && (
-                  <TableCell key={column.id}>{row[column.id]}</TableCell>
-                )
-              ))}
-              {/* Add Profit/Loss calculation logic here */}
-              <TableCell>{row.salesAmount - row.cost}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+
   </div>)
 }
+
 export default TablePage;
