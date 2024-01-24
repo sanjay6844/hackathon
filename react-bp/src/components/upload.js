@@ -2,11 +2,14 @@ import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
+import {Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./upload.css"
 
 
 const Upload = () => {
+  const navigate= useNavigate();
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
   const { getAllRequetUser ,getAllData} = actions;
@@ -34,9 +37,11 @@ const Upload = () => {
     console.log(selectedFile,"sf")
     const formData = new FormData();
     const file=selectedFile;
+
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
+    navigate("/chart")
 
 
     // await axios.post("https://excel-8dyl.onrender.com/upload", formData,{
