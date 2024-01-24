@@ -3,8 +3,6 @@
 /* eslint-disable import/no-named-as-default */
 // Controllers
 import Home from "Pages/Home";
-<<<<<<< HEAD
-=======
 import Chart from "Pages/Chart/chart";
 import Table from "Pages/Table/table";
 import SignIn from "Pages/SignIn";
@@ -12,7 +10,6 @@ import Piechart from "../components/piechart/piechart";
 import Barchart from "../components/barchart/barchart";
 import SignUp from "Pages/SignUp"
 
->>>>>>> 52b0acb88030cf9c59fa2e73421a3a85a36dea51
 
 function Injector(component, name) {
   const hoc = component;

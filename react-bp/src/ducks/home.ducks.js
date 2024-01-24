@@ -11,11 +11,8 @@ const nw = new Network();
 const initialState = {
   apiError: null,
   testData: null,
-<<<<<<< HEAD
-  excelData:null
-=======
+  excelData:null,
   users:null,
->>>>>>> 52b0acb88030cf9c59fa2e73421a3a85a36dea51
 };
 
 // ACTIONS
@@ -64,19 +61,36 @@ const getAllRequetUser = () => (dispatch) => {
 };
 
 const getAllData = (data) => (dispatch) => {
-   axios.post("https://excel-8dyl.onrender.com/upload", data,{
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    })
-      .then(response => {
-        console.log(response.data.data,"responese data");
-        dispatch(assignToDashboardStore("excelData", response?.data.data));
+  axios.post("https://excel-8dyl.onrender.com/upload", data,{
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  })
+    .then(response => {
+      console.log(response.data.data,"responese data");
+      dispatch(assignToDashboardStore("excelData", response?.data.data));
 
-      })
-      .catch(error => {
-        console.error('Error uploading file: ', error);
-      });
+      axios.post("http://localhost:3000/excelData", response.data.data)
+      // .then(response => {
+      //   console.log(response.data.data,"responese data");
+      //   dispatch(assignToDashboardStore("excelData", response?.data.data));
+      //   console.log("after ")
+
+      // })
+      // .catch(error => {
+      //   console.error("Error uploading file: ", error);
+      // });
+
+
+
+
+
+      console.log("after ")
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
 };
 
 
@@ -98,6 +112,18 @@ const postData = (data)=> (dispatch)=>{
     .post(data)
     .then((response) => {
       dispatch(postToDashboardStore("users", response?.data));
+    })
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+}
+
+const postExcelData = (data)=> (dispatch)=>{
+  return nw
+    .api("get_excelData")
+    .post(data)
+    .then((response) => {
+      //dispatch(postToDashboardStore("users", response?.data));
     })
     .catch((error) => {
       setApiError(dispatch, assignToDashboardStore, error);
@@ -129,9 +155,9 @@ const dashboardReducer = (state = initialState, action) => {
     return { ...localState };
   case RESET_DASHBOARD_STORE:
     return initialState;
-    case POST_TO_DASHBOARD_STORE:
-      localState[action.meta.type].push(action.meta.payload)
-      return{...localState}
+  case POST_TO_DASHBOARD_STORE:
+    localState[action.meta.type].push(action.meta.payload)
+    return{...localState}
   default:
     return localState;
   }
@@ -145,11 +171,9 @@ export default {
     assignToDashboardStore,
     resetDashboardStore,
     getAllRequetUser,
-<<<<<<< HEAD
-    getAllData
-=======
+    getAllData,
     fetchLoginData,
-    postData
->>>>>>> 52b0acb88030cf9c59fa2e73421a3a85a36dea51
+    postData,
+    postExcelData
   },
 };
