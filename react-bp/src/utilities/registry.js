@@ -1,7 +1,7 @@
 // Controllers
 import Home from "Pages/Home";
 import SignIn from "Pages/SignIn"
-import Barchart from "../components/barchart/barchart";
+import SignUp from "Pages/SignUp"
 function Injector(component, name) {
   const hoc = component;
   hoc.displayName = name;
@@ -12,5 +12,5 @@ function Injector(component, name) {
 export default {
   Home: Injector(Home, "Home"),
   SignIn:Injector(SignIn,"SignIn"),
-  Barchart:Injector(Barchart,"Barchart")
+  SignUp:Injector(SignUp,"SignUP")
 };

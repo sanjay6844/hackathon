@@ -10,12 +10,14 @@ const nw = new Network();
 const initialState = {
   apiError: null,
   testData: null,
+  users:null,
 };
 
 // ACTIONS
 
 const ASSIGN_TO_DASHBOARD_STORE = createAction("ASSIGN_TO_DASHBOARD_STORE");
 const RESET_DASHBOARD_STORE = createAction("RESET_DASHBOARD_STORE");
+const POST_TO_DASHBOARD_STORE = createAction("POST_TO_DASHBOARD_STORE")
 
 const assignToDashboardStore = (type, payload) => ({
   type: ASSIGN_TO_DASHBOARD_STORE,
@@ -34,6 +36,14 @@ const resetDashboardStore = () => (dispatch) => {
   });
 };
 
+const postToDashboardStore = (type, payload) => ({
+  type: POST_TO_DASHBOARD_STORE,
+  meta: {
+    type,
+    payload,
+  },
+});
+
 // METHODS
 const getAllRequetUser = () => (dispatch) => {
   dispatch(assignToDashboardStore("testData", null));
@@ -47,6 +57,29 @@ const getAllRequetUser = () => (dispatch) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 };
+
+const fetchLoginData = ()=> (dispatch)=>{
+  return nw
+    .api("get_users")
+    .get()
+    .then((response) => {
+      dispatch(assignToDashboardStore("users", response?.data));
+    })
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+}
+const postData = (data)=> (dispatch)=>{
+  return nw
+    .api("get_users")
+    .post(data)
+    .then((response) => {
+      dispatch(postToDashboardStore("users", response?.data));
+    })
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+}
 
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
@@ -73,6 +106,9 @@ const dashboardReducer = (state = initialState, action) => {
     return { ...localState };
   case RESET_DASHBOARD_STORE:
     return initialState;
+    case POST_TO_DASHBOARD_STORE:
+      localState[action.meta.type].push(action.meta.payload)
+      return{...localState}
   default:
     return localState;
   }
@@ -86,5 +122,7 @@ export default {
     assignToDashboardStore,
     resetDashboardStore,
     getAllRequetUser,
+    fetchLoginData,
+    postData
   },
 };
