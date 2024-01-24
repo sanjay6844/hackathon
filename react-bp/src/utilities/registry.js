@@ -1,5 +1,5 @@
 // Controllers
-import Home from "Pages/home";
+import Home from "Pages/Home";
 
 function Injector(component, name) {
   const hoc = component;
