@@ -24,6 +24,7 @@ const Homepage = () => {
 
   return (<div className="home">
     <Upload/>
+    <TablePage />
   </div>
    
   );
