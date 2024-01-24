@@ -2,7 +2,7 @@ import React from "react";
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts';
 
-const BarChart = ()=>{
+const Barchart = ()=>{
   const dataset = [
     {
       london: 59,
@@ -103,6 +103,7 @@ const BarChart = ()=>{
       },
     },
   };
+  const valueFormatter = (value) => `${value}mm`;
   return(
     <div>
        <BarChart
@@ -120,4 +121,4 @@ const BarChart = ()=>{
   )
 }
 
-export default BarChart
+export default Barchart
