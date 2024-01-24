@@ -1,8 +1,11 @@
-import React from "react";
+import React ,{useContext} from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts";
 
 const Barchart = ()=>{
+
+  
+
   const dataset = [
     {
       london: 59,

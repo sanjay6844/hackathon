@@ -7,10 +7,11 @@ import axios from "axios";
 const Upload = () => {
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllRequetUser ,getAllData} = actions;
+  const { getAllRequetUser ,getAllData,getReloadData} = actions;
   const { testData } = store;
   useEffect(() => {
-    //getAllRequetUser();
+    getReloadData();
+    
   }, []);
   useEffect(() => {
     //console.log(testData, "items");
@@ -22,8 +23,8 @@ const Upload = () => {
     console.log(store, "store values");
   }, [store]);
 
-    const [selectedFile, setSelectedFile] = useState(null);
-    const handleFileChange = (event) => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
     console.log(event.target.files[0],"file");
   };
@@ -34,7 +35,7 @@ const Upload = () => {
     const file=selectedFile;
     formData.append("file", file);
     console.log(formData,"excel data");
-     getAllData(formData);
+    getAllData(formData);
 
 
     // await axios.post("https://excel-8dyl.onrender.com/upload", formData,{
@@ -56,9 +57,9 @@ const Upload = () => {
 
 
   return (<div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload Excel</button>
-    </div>);
+    <input type="file" onChange={handleFileChange} />
+    <button onClick={handleUpload}>Upload Excel</button>
+  </div>);
   //enable this if need to use DB json
   // <div>
   //     {testData && testData.map((dataValue, index) => {
