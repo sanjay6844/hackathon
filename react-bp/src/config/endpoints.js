@@ -3,6 +3,7 @@ const development = {
   testFetch: "date-remainder",
   get_Posts: "/posts",
   get_users: "/users",
+  get_excelData:"/upload"
 };
 
 export function getAllEndpoints() {

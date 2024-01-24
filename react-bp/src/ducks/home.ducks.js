@@ -1,6 +1,7 @@
 import cloneDeep from "lodash/cloneDeep";
 import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
+import axios from "axios";
 
 const namespace = "dashboard";
 const createAction = setNamespace(namespace);
@@ -10,6 +11,7 @@ const nw = new Network();
 const initialState = {
   apiError: null,
   testData: null,
+  excelData:null,
   users:null,
 };
 
@@ -57,6 +59,24 @@ const getAllRequetUser = () => (dispatch) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 };
+
+const getAllData = (data) => (dispatch) => {
+  axios.post("https://excel-8dyl.onrender.com/upload", data,{
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  })
+    .then(response => {
+      console.log(response.data.data,"responese data");
+      dispatch(assignToDashboardStore("excelData", response?.data.data));
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
+
+
 
 const fetchLoginData = ()=> (dispatch)=>{
   return nw
@@ -106,9 +126,9 @@ const dashboardReducer = (state = initialState, action) => {
     return { ...localState };
   case RESET_DASHBOARD_STORE:
     return initialState;
-    case POST_TO_DASHBOARD_STORE:
-      localState[action.meta.type].push(action.meta.payload)
-      return{...localState}
+  case POST_TO_DASHBOARD_STORE:
+    localState[action.meta.type].push(action.meta.payload)
+    return{...localState}
   default:
     return localState;
   }
@@ -122,6 +142,7 @@ export default {
     assignToDashboardStore,
     resetDashboardStore,
     getAllRequetUser,
+    getAllData,
     fetchLoginData,
     postData
   },
