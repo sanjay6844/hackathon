@@ -173,7 +173,11 @@ export default {
     getAllRequetUser,
     getAllData,
     fetchLoginData,
+<<<<<<< HEAD
     postData,
     postExcelData
+=======
+    postData
+>>>>>>> e774891e5da8c630d5eb135aeb4069c09ec2f2f9
   },
 };
