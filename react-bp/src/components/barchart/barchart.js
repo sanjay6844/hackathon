@@ -105,7 +105,7 @@ const Barchart = ()=>{
   };
   const valueFormatter = (value) => `${value}mm`;
   return(
-    <div>
+
        <BarChart
       dataset={dataset}
       xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
@@ -117,7 +117,7 @@ const Barchart = ()=>{
       ]}
       {...chartSetting}
     />
-    </div>
+   
   )
 }
 
