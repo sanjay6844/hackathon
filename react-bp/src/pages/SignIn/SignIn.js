@@ -62,27 +62,13 @@ const SignInPage = ()=>{
     return false
   }
 
-  const checkAdmin = ()=>{
-    let value = false
-    const {email,password} = getValues()
-    admins.map(admin=>{
-      if(admin.email==email&&admin.password===password){
-        value = true
-      }
-    })
-    return value
-  }
+
   
   const onSubmit = (data)=>{
     setCookies("user",data.email)
     setOpen(true)
     setTimeout(()=>{
-      if(checkAdmin()){
-        navigateTo("/jobcreation")
-      }
-      else{
-        navigateTo("/jobapplication")
-      }
+      navigateTo("/home")
     },1000)
   }
 
@@ -151,7 +137,7 @@ const SignInPage = ()=>{
           <input className="submit-btn" type="submit" value="SignIn" onClick={handleSubmit} />
         </form>
       </div>
-      <div>Already hava an account? <a href="/signup">Signup</a></div>
+      <div className="link">Don&apos;t hava an account? <a href="/">Signup</a></div>
       <Snackbar
         open={open}
         autoHideDuration={5000}

@@ -1,18 +1,13 @@
 {
-	"posts": [
-		{
-			"title": "CopyRight Automatico",
-			"tags": "[JS]"
-		},
-		{
-			"title": "HtmlWebpackPlugin Multiples HTML files",
-			"tags": "[JS, webpack]"
-		}
-	],
-	"users": [
-		{
-			"username": "karthick",
-			"password": "dummy"
-		}
-	]
+  "users": [
+    {
+      "name": "sanjay",
+      "email": "sanjayram.a@sudoboat.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "confirmPassword": "as12AS!@",
+      "dob": "2020-01-29T18:30:00.000Z",
+      "id": 1
+    }
+  ]
 }

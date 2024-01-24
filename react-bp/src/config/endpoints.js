@@ -14,5 +14,5 @@ export function getAllEndpoints() {
 
 export function getBaseURL() {
   // return "https://63849a654ce192ac605d1206.mockapi.io/api/calendar/";
-  return "http://localhost:8000";
+  return "http://localhost:3000";
 }

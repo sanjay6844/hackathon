@@ -13,7 +13,7 @@ module.exports = (env) => {
     },
     devServer: {
       // inline: true,
-      port: 3000,
+      port: 8000,
       historyApiFallback: true,
     },
     module: {
