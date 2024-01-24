@@ -234,7 +234,9 @@ const SignUpPage = ()=>{
           }
 
           />
-          <input className="submit-btn" type="submit" value="SignUp" onClick={handleSubmit} />
+          <div className="btn-container">
+            <input className="submit-btn" type="submit" value="SignUp" onClick={handleSubmit} />
+          </div>
         </form>
       </div>
       <div>Already hava an account? <a href="/signin">Signin</a></div>

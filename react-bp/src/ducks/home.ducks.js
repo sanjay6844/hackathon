@@ -11,11 +11,8 @@ const nw = new Network();
 const initialState = {
   apiError: null,
   testData: null,
-<<<<<<< HEAD
-  excelData:null
-=======
+  excelData:null,
   users:null,
->>>>>>> 52b0acb88030cf9c59fa2e73421a3a85a36dea51
 };
 
 // ACTIONS
@@ -64,19 +61,19 @@ const getAllRequetUser = () => (dispatch) => {
 };
 
 const getAllData = (data) => (dispatch) => {
-   axios.post("https://excel-8dyl.onrender.com/upload", data,{
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    })
-      .then(response => {
-        console.log(response.data.data,"responese data");
-        dispatch(assignToDashboardStore("excelData", response?.data.data));
+  axios.post("https://excel-8dyl.onrender.com/upload", data,{
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  })
+    .then(response => {
+      console.log(response.data.data,"responese data");
+      dispatch(assignToDashboardStore("excelData", response?.data.data));
 
-      })
-      .catch(error => {
-        console.error('Error uploading file: ', error);
-      });
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
 };
 
 
@@ -129,9 +126,9 @@ const dashboardReducer = (state = initialState, action) => {
     return { ...localState };
   case RESET_DASHBOARD_STORE:
     return initialState;
-    case POST_TO_DASHBOARD_STORE:
-      localState[action.meta.type].push(action.meta.payload)
-      return{...localState}
+  case POST_TO_DASHBOARD_STORE:
+    localState[action.meta.type].push(action.meta.payload)
+    return{...localState}
   default:
     return localState;
   }
@@ -145,11 +142,8 @@ export default {
     assignToDashboardStore,
     resetDashboardStore,
     getAllRequetUser,
-<<<<<<< HEAD
-    getAllData
-=======
+    getAllData,
     fetchLoginData,
     postData
->>>>>>> 52b0acb88030cf9c59fa2e73421a3a85a36dea51
   },
 };
