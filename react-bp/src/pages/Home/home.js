@@ -5,9 +5,10 @@ import Upload from "../../components/upload";
 const Homepage = () => {
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllRequetUser } = actions;
+  const { getAllRequetUser ,} = actions;
   const { testData } = store;
   useEffect(() => {
+    //getAllRequetUser();
     //getAllRequetUser();
   }, []);
 
