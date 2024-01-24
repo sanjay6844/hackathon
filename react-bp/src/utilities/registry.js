@@ -1,7 +1,14 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-named-as-default */
 // Controllers
-import Home from "Pages/Home";
-import SignIn from "Pages/SignIn"
-import Barchart from "../components/barchart/barchart";
+import Home from 'Pages/Home';
+import Chart from 'Pages/Chart/chart';
+import Table from 'Pages/Table/table';
+import SignIn from 'Pages/SignIn';
+import Piechart from '../components/piechart/piechart';
+import Barchart from '../components/barchart/barchart';
+
 function Injector(component, name) {
   const hoc = component;
   hoc.displayName = name;
@@ -10,7 +17,11 @@ function Injector(component, name) {
 }
 
 export default {
-  Home: Injector(Home, "Home"),
-  SignIn:Injector(SignIn,"SignIn"),
-  Barchart:Injector(Barchart,"Barchart")
+  Home: Injector(Home, 'Home'),
+  Piechart: Injector(Piechart, 'Piechart'),
+  Chart: Injector(Chart, 'Chart'),
+  Table: Injector(Table, 'Table'),
+  SignIn: Injector(SignIn, 'SignIn'),
+  Barchart: Injector(Barchart, 'Barchart'),
+
 };
