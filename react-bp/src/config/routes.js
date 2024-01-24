@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider ,Outlet} from "react-router-dom";
 
 const fetchRoutes = (containers) => {
-  const { Home } = containers;
+  const { Home,Piechart,Chart,Table } = containers;
 
   return function Routes() {
     const Layout = () => (
@@ -25,7 +25,20 @@ const fetchRoutes = (containers) => {
           path: "/home",
           element: <Home />,
           
+        },
+        {
+          path:"/piechart",
+          element: <Piechart />
+        },
+        {
+          path:"/chart",
+          element: <Chart />
+        },
+        {
+          path:"/table",
+          element:<Table />
         }
+
       ],
       },
         
