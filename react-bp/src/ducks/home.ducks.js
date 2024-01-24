@@ -70,6 +70,23 @@ const getAllData = (data) => (dispatch) => {
       console.log(response.data.data,"responese data");
       dispatch(assignToDashboardStore("excelData", response?.data.data));
 
+      axios.post("http://localhost:3000/excelData", response.data.data)
+      // .then(response => {
+      //   console.log(response.data.data,"responese data");
+      //   dispatch(assignToDashboardStore("excelData", response?.data.data));
+      //   console.log("after ")
+
+      // })
+      // .catch(error => {
+      //   console.error("Error uploading file: ", error);
+      // });
+
+
+
+
+
+      console.log("after ")
+
     })
     .catch(error => {
       console.error("Error uploading file: ", error);
@@ -95,6 +112,18 @@ const postData = (data)=> (dispatch)=>{
     .post(data)
     .then((response) => {
       dispatch(postToDashboardStore("users", response?.data));
+    })
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+}
+
+const postExcelData = (data)=> (dispatch)=>{
+  return nw
+    .api("get_excelData")
+    .post(data)
+    .then((response) => {
+      //dispatch(postToDashboardStore("users", response?.data));
     })
     .catch((error) => {
       setApiError(dispatch, assignToDashboardStore, error);
@@ -144,6 +173,8 @@ export default {
     getAllRequetUser,
     getAllData,
     fetchLoginData,
-    postData
+    postData,
+    postExcelData,
+    
   },
 };

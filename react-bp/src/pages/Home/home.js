@@ -6,14 +6,14 @@ import TablePage from "../../components/table";
 const Homepage = () => {
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllRequetUser } = actions;
+  const { getAllRequetUser ,} = actions;
   const { testData } = store;
   useEffect(() => {
-    // getAllRequetUser();
+    //getAllRequetUser();
   }, []);
-  // useEffect(() => {
-  //   console.log(testData, "items");
-  // }, [testData]);
+  useEffect(() => {
+    //console.log(testData, "items");
+  }, [testData]);
   // console.log(ctx, "ctx");
 
     
