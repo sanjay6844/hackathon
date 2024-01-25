@@ -1,7 +1,10 @@
 import React, { useContext, useEffect ,useState} from "react";
+import "./table.css"
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, InputAdornment, IconButton, FormControlLabel, Checkbox } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import RefContext from "Utilities/refContext";
+
 const data = [
   { productId: 1, productName: "Product A", salesAmount: 100, cost: 80 },
   { productId: 2, productName: "Product B", salesAmount: 150, cost: 120 },
@@ -57,7 +60,7 @@ const TablePage =()=>{
 
 
 
-  return(<div>
+  return(<div className="table">
     <div>
       <TextField
         label="Search"
