@@ -32,18 +32,15 @@ const Piechart=({excelData})=>{
     },
   ];
 
-  const [pieData,setPieData] = useState(data)
-  const [example, setExample] = useState();
-
-  useEffect(()=> {
-    console.log(pieData.length,"pieData");
-    setExample(data);
-  },[])
+  const [pieData,setPieData] = useState(null)
   useEffect(()=>{
-    console.log(excelData[0])
+    if(pieData!==null){
+      return
+    }
+    // console.log(excelData[0])
     // setDataset(excelData)
-    console.log(excelData[0].Asset_allocation,"inside data")
-    console.log("format",excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
+    // console.log(excelData[0].Asset_allocation,"inside data")
+    // console.log("format",excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
     setPieData(excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
     ,[store]})
 

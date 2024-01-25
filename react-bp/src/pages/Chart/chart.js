@@ -13,10 +13,8 @@ const ChartPage=()=>{
   const [barData,setBarData] = useState(null)
   useEffect(()=>{
     getReloadData()
-    console.log("datain chart",store)
   },[])
   useEffect(()=>{
-    console.log("another useEffect",store)
   },[store])
 
   return(
