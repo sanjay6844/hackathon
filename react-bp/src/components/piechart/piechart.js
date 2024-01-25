@@ -13,19 +13,19 @@ const Piechart=({excelData})=>{
   },[])
   useEffect(()=>{
     console.log(excelData,"heidjhdeu")
-    setShow(excelData.Asset_allocation.map((data,key)=>{return({id:key,value:11,label:data.compaies})}))
+    setShow(excelData.Asset_allocation.map((data,key)=>{return({id:key,value:11,label:data.Companies})}))
     console.log("hei")
   },[store])
 
-  const data = [
-    show
-  ];
+  // const data = [
+  //   show
+  // ];
 
   return(
     <PieChart
       series={[
         {
-          data,
+          data:[...show],
           highlightScope: { faded: "global", highlighted: "item" },
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
           innerRadius: 0,
