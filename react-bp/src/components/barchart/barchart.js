@@ -14,7 +14,7 @@ const Barchart = ({excelData})=>{
     console.log(excelData[0])
     // setDataset(excelData)
     console.log(excelData[0].Asset_allocation,"inside data")
-    setBarData(excelData[0].Asset_allocation)
+    setBarData(excelData[0])
     ,[store]})
 
   const dataset = [
