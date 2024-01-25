@@ -1,4 +1,5 @@
 import React, { useContext, useEffect ,useState} from "react";
+import "./table.css"
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, InputAdornment, IconButton, FormControlLabel, Checkbox } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -57,7 +58,7 @@ const TablePage =()=>{
 
 
 
-  return(<div>
+  return(<div className="table">
     <div>
       <TextField
         label="Search"

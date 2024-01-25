@@ -18,6 +18,7 @@
 .logout{
     display: flex;
     gap: 28px;
+    align-items: center;
 }
 @media only screen and ((min-width: 2000px)){
 
