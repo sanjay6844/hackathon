@@ -11,12 +11,19 @@ const Header=()=>{
     removeCookie("user", ["user"], { path: "/" })
     navigate("/signin")
   }
+  const next =()=>{
+    navigate("/chart")
+  }
   return(
     <div className="header">
       <div className="excel">
         Excel Visualiser
       </div>
       <div className="logout">
+        {
+          window.location.pathname==="/table" && 
+        <Button variant="contained"  sx={{color:"#615d6e",backgroundColor:"white"}} onClick={next} >NEXT</Button>
+        }
         <Button variant="contained"  sx={{color:"#615d6e",backgroundColor:"white"}} onClick={logout} >Logout</Button>
       </div>
     </div>

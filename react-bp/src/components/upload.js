@@ -15,13 +15,12 @@ const Upload = () => {
   const { getAllRequetUser ,getAllData} = actions;
   const { testData } = store;
   useEffect(() => {
-    //getAllRequetUser();
+    // getAllRequetUser();
   }, []);
   useEffect(() => {
-    //console.log(testData, "items");
+  
   }, [testData]);
-  // console.log(ctx, "ctx");
-
+ 
 
   useEffect(() => {
     console.log(store, "store values");
@@ -41,7 +40,7 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
-    navigate("/chart")
+    navigate("/table")
 
 
     // await axios.post("https://excel-8dyl.onrender.com/upload", formData,{
