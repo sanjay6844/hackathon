@@ -24,10 +24,9 @@ const Homepage = () => {
   
 
 
-  return (<div className="home">
-    <Upload/>
-  </div>
-   
+  return (<><div><Upload/></div>
+  </>
+  
   );
 
 };
