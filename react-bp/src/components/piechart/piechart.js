@@ -1,27 +1,64 @@
-import React, { useEffect,useContext } from "react";
+import React, { useEffect,useContext,useState } from "react";
 import "./piechart.css"
 import RefContext from "Utilities/refContext";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 
-const Piechart=()=>{
+const Piechart=({excelData})=>{
+  // const { excelData } = store;
   const ctx = useContext(RefContext);
-  const { store} = ctx;
-  const { excelData } = store;
-  useEffect(()=>console.log(excelData),[])
+  const { store } = ctx;
+  // const { excelData } = store;
   const data = [
-    { id: 0, value: 10, label: "series A" },
-    { id: 1, value: 15, label: "series B" },
-    { id: 2, value: 20, label: "series C" },  
-    { id: 3, value: 10, label: "series D" },
-    { id: 4, value: 15, label: "series E" },
-    { id: 5, value: 20, label: "series F" },
-    { id: 6, value: 10, label: "series G" },
-    { id: 7, value: 15, label: "series H" },
-    { id: 8, value: 2, label: "series I" },
+    {"id":0,  
+      "label": "Britannia Industries Ltd",
+      "value": 4
+    },
+    {"id":1,  
+      "label": "Cipla Ltd",
+      "value": 68
+    },
+    {"id":2,  
+      "lable": "Eicher Motors Ltd",
+      "value": 90
+    },
+    {"id":3,  
+      "label": "Nestle India Ltd",
+      "value": 73
+    },
+    {"id":4,  
+      "label": "Grasim Industries Ltd",
+      "value": 90
+    },
   ];
+
+  const [pieData,setPieData] = useState(data)
+  const [example, setExample] = useState();
+
+  useEffect(()=> {
+    console.log(pieData.length,"pieData");
+    setExample(data);
+  },[])
+  useEffect(()=>{
+    console.log(excelData[0])
+    // setDataset(excelData)
+    console.log(excelData[0].Asset_allocation,"inside data")
+    console.log("format",excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
+    setPieData(excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
+    ,[store]})
+
+  // useEffect(()=>{Shares ( % )
+  //   if(dataset===null){
+  //     return
+  //   }
+  //   console.log("dataset",dataset[0].Asset_allocation)
+  //   setPieData(dataset[0].Asset_allocation)
+  // })
+
+  
+  // if(pieData===null)
   return(
-    
+    pieData!==null&&pieData!==undefined&&
     <PieChart
       series={[
         {
@@ -37,6 +74,7 @@ const Piechart=()=>{
       height={400}
       width={600}
     />
+
   )
 }
 export default Piechart;

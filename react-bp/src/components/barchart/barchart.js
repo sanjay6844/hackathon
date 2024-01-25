@@ -1,10 +1,21 @@
-import React ,{useContext} from "react";
+import React ,{useContext,useState,useEffect} from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts";
+import RefContext from "Utilities/refContext";
 
-const Barchart = ()=>{
+const Barchart = ({excelData})=>{
 
-  
+  const ctx = useContext(RefContext);
+  const { store } = ctx;
+  // const { excelData } = store;
+
+  const [barData,setBarData] = useState(null)
+  useEffect(()=>{
+    console.log(excelData[0])
+    // setDataset(excelData)
+    console.log(excelData[0].Asset_allocation,"inside data")
+    setBarData(excelData[0].Asset_allocation)
+    ,[store]})
 
   const dataset = [
     {
@@ -109,14 +120,16 @@ const Barchart = ()=>{
   const valueFormatter = (value) => `${value}mm`;
   return(
 
-    <BarChart
-      dataset={dataset}
+    barData!=null&&undefined&&<BarChart
+      dataset={barData}
       xAxis={[{ scaleType: "band", dataKey: "month" }]}
       series={[
-        { dataKey: "london", label: "London", valueFormatter },
-        { dataKey: "paris", label: "Paris", valueFormatter },
-        { dataKey: "newYork", label: "New York", valueFormatter },
-        { dataKey: "seoul", label: "Seoul", valueFormatter },
+        { dataKey: "Product Id", label: "Product Id", valueFormatter },
+        { dataKey: "Product Name", label: "Product Name", valueFormatter },
+        { dataKey: "Sales Amount", label: "Sales Amount", valueFormatter },
+        { dataKey: "Cost", label: "Cost", valueFormatter },
+        { dataKey: "P/L", label: "P/L", valueFormatter },
+
       ]}
       {...chartSetting}
     />
