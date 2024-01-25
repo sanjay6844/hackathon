@@ -4,14 +4,14 @@ import Piechart from "../../components/piechart/piechart";
 import Barchart from "../../components/barchart/barchart";
 import RefContext from "Utilities/refContext";
 
-const Chart=()=>{
+const ChartPage=()=>{
   const ctx = useContext(RefContext);
   const { store,actions } = ctx;
   const { excelData } = store;
   const { getReloadData} = actions;
   useEffect(()=>{
-    console.log(store,excelData,"data")
     getReloadData()
+    console.log("datain chart",store)
   },[])
   return(
     <div className="charts">
@@ -26,4 +26,4 @@ const Chart=()=>{
     </div>
   )
 }
-export default Chart;
+export default ChartPage;

@@ -3,7 +3,7 @@
 /* eslint-disable import/no-named-as-default */
 // Controllers
 import Home from "Pages/Home";
-import ChartPage from "Pages/Chart";
+import Chart from "Pages/Chart";
 import TablePage from "../components/table/table";
 import SignIn from "Pages/SignIn";
 import Header from "../components/piechart/Header/header";
@@ -22,7 +22,7 @@ function Injector(component, name) {
 export default {
   Home: Injector(Home, "Home"),
   Piechart: Injector(Piechart, "Piechart"),
-  ChartPage: Injector(ChartPage, "ChartPage"),
+  Chart: Injector(Chart, "Chart"),
   TablePage: Injector(TablePage, "TablePage"),
   SignIn: Injector(SignIn, "SignIn"),
   Barchart: Injector(Barchart, "Barchart"),

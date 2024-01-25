@@ -2,7 +2,6 @@ import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
 import Upload from "../../components/upload";
 import "./home.css"
-import TablePage from "../../components/table";
 
 const Homepage = () => {
   const ctx = useContext(RefContext);

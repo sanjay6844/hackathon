@@ -59,13 +59,18 @@ const getAllRequetUser = () => (dispatch) => {
     });
 };
 const getReloadData = () => (dispatch) => {
-  axios.get("http://localhost:3000/excelData")
+  return nw
+    .api("get_excelData")
+    .get()
     .then(response => {
       console.log(response.data,"responese data get api");
       dispatch(assignToDashboardStore("excelData", response?.data));
     })
-    .catch(error => {
-      console.error("Error uploading file: ", error);
+    // .catch(error => {
+    //   console.error("Error uploading file: ", error);
+    // });
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
     });
 };
 
@@ -111,6 +116,7 @@ const fetchLoginData = ()=> (dispatch)=>{
       setApiError(dispatch, assignToDashboardStore, error);
     });
 }
+
 const postData = (data)=> (dispatch)=>{
   return nw
     .api("get_users")
