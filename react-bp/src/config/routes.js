@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider ,Outlet} from "react-router-dom";
 // import BarChart from "../components/barchart/barchart";
 
 const fetchRoutes = (containers) => {
-  const { Home,SignIn,SignUp,Chart,TablePage } = containers;
+  const { Home,SignIn,SignUp,ChartPage,TablePage } = containers;
 
   return function Routes() {
     const Layout = () => (
@@ -27,7 +27,7 @@ const fetchRoutes = (containers) => {
       
             {
               path:"/chart",
-              element: <Chart />
+              element: <ChartPage />
             },
             {
               path:"/table",

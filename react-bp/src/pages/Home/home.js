@@ -10,19 +10,15 @@ const Homepage = () => {
   useEffect(() => {
     //getAllRequetUser();
     //getAllRequetUser();
+    
   }, []);
 
   // useEffect(() => {
   //   console.log(testData, "items");
   // }, [testData]);
   // console.log(ctx, "ctx");
-
-    
-
-  
-
-
-  return (<><div><Upload/></div>
+  return (<>
+    <div><Upload/></div>
     {/* <div><TablePage/></div> */}</>
   );
   //enable this if need to use DB json

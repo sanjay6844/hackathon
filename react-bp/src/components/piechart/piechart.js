@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect,useContext } from "react";
 import "./piechart.css"
+import RefContext from "Utilities/refContext";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 
 const Piechart=()=>{
+  const ctx = useContext(RefContext);
+  const { store} = ctx;
+  const { excelData } = store;
+  useEffect(()=>console.log(excelData),[])
   const data = [
     { id: 0, value: 10, label: "series A" },
     { id: 1, value: 15, label: "series B" },
@@ -16,6 +21,7 @@ const Piechart=()=>{
     { id: 8, value: 2, label: "series I" },
   ];
   return(
+    
     <PieChart
       series={[
         {

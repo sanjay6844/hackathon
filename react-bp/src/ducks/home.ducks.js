@@ -16,7 +16,6 @@ const initialState = {
 };
 
 // ACTIONS
-
 const ASSIGN_TO_DASHBOARD_STORE = createAction("ASSIGN_TO_DASHBOARD_STORE");
 const RESET_DASHBOARD_STORE = createAction("RESET_DASHBOARD_STORE");
 const POST_TO_DASHBOARD_STORE = createAction("POST_TO_DASHBOARD_STORE")
@@ -64,7 +63,6 @@ const getReloadData = () => (dispatch) => {
     .then(response => {
       console.log(response.data,"responese data get api");
       dispatch(assignToDashboardStore("excelData", response?.data));
-
     })
     .catch(error => {
       console.error("Error uploading file: ", error);
@@ -91,10 +89,6 @@ const getAllData = (data) => (dispatch) => {
       // .catch(error => {
       //   console.error("Error uploading file: ", error);
       // });
-
-
-
-
 
       console.log("after ")
 
@@ -129,17 +123,8 @@ const postData = (data)=> (dispatch)=>{
     });
 }
 
-const postExcelData = (data)=> (dispatch)=>{
-  return nw
-    .api("get_excelData")
-    .post(data)
-    .then((response) => {
-      //dispatch(postToDashboardStore("users", response?.data));
-    })
-    .catch((error) => {
-      setApiError(dispatch, assignToDashboardStore, error);
-    });
-}
+
+
 
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
@@ -185,8 +170,7 @@ export default {
     getAllData,
     fetchLoginData,
     postData,
-    postExcelData,
-    getReloadData
+    getReloadData,
     
   },
 };
