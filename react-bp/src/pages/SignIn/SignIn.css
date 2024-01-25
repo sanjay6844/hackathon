@@ -1,13 +1,13 @@
 
 .container{
-
-  width:100%;
+    width:100%;
     background-color:#e5e5e5;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
     gap:20px;
+    height: 100%;
 }
 .MuiTextField-root{
   width:100% important;
@@ -36,13 +36,13 @@
 }
 
 .submit-btn{
-
   background-color:#615d6e;
     color:white;
-    padding:20px;
+    padding:15px;
     border-radius:100vw;
     font-size:17px;
     border:none;
+    width:100px;
     &:hover{
       cursor:pointer;
     }
@@ -57,6 +57,11 @@
     flex-direction:column;
     gap:20px;
     width: 100%;
+}
+.btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 768px) {

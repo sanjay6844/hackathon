@@ -4,7 +4,6 @@ const development = {
   get_Posts: "/posts",
   get_users: "/users",
   get_excelData:"/excelData"
-  
 };
 
 export function getAllEndpoints() {

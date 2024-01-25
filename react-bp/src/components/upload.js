@@ -25,6 +25,7 @@ import "./upload.css"
 
 
 const Upload = () => {
+  const navigate= useNavigate();
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");

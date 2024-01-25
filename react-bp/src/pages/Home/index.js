@@ -12,7 +12,7 @@ const Home = (props) => {
     <>
       <RefProvider data={propShape}>
         <RefErrorBoundary {...props}>
-          <Homepage />
+          <Homepage/>
         </RefErrorBoundary>
       </RefProvider>
     </>

@@ -1,3 +1,5 @@
+/* eslint-disable import/default */
+/* eslint-disable import/namespace */
 import React from "react";
 
 import RefProvider from "Utilities/refProvider";

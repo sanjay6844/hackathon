@@ -133,8 +133,9 @@ const SignInPage = ()=>{
           }
           />
           {console.log(errors)}
-
-          <input className="submit-btn" type="submit" value="SignIn" onClick={handleSubmit} />
+          <div className="btn-container">
+            <input className="submit-btn" type="submit" value="SignIn" onClick={handleSubmit} />
+          </div>
         </form>
       </div>
       <div className="link">Don&apos;t hava an account? <a href="/">Signup</a></div>

@@ -1,31 +1,70 @@
-import React,{useContext,useEffect, useState} from "react";
+import React, { useEffect,useContext,useState } from "react";
 import "./piechart.css"
-import { PieChart } from "@mui/x-charts/PieChart";
 import RefContext from "Utilities/refContext";
+import { PieChart } from "@mui/x-charts/PieChart";
+
 
 
 const Piechart=({excelData})=>{
-  const [show,setShow]=useState([]);
+  // const { excelData } = store;
+  const share="Shares ( % )"
   const ctx = useContext(RefContext);
-  const { store} = ctx;
-  useEffect(()=>{
-    console.log("sjdfljk")
+  const { store } = ctx;
+  // const { excelData } = store;
+  const data = [
+    {"id":0,  
+      "label": "Britannia Industries Ltd",
+      "value": 4
+    },
+    {"id":1,  
+      "label": "Cipla Ltd",
+      "value": 68
+    },
+    {"id":2,  
+      "lable": "Eicher Motors Ltd",
+      "value": 90
+    },
+    {"id":3,  
+      "label": "Nestle India Ltd",
+      "value": 73
+    },
+    {"id":4,  
+      "label": "Grasim Industries Ltd",
+      "value": 90
+    },
+  ];
+
+  const [pieData,setPieData] = useState(data)
+  const [example, setExample] = useState();
+
+  useEffect(()=> {
+    console.log(pieData.length,"pieData");
+    setExample(data);
   },[])
   useEffect(()=>{
-    console.log(excelData,"heidjhdeu")
-    setShow(excelData.Asset_allocation.map((data,key)=>{return({id:key,value:11,label:data.Companies})}))
-    console.log("hei")
-  },[store])
+    console.log(excelData[0])
+    // setDataset(excelData)
+    console.log(excelData[0].Asset_allocation,"inside data")
+    console.log("format",excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
+    setPieData(excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
+    ,[store]})
 
-  // const data = [
-  //   show
-  // ];
+  // useEffect(()=>{Shares ( % )
+  //   if(dataset===null){
+  //     return
+  //   }
+  //   console.log("dataset",dataset[0].Asset_allocation)
+  //   setPieData(dataset[0].Asset_allocation)
+  // })
 
+  
+  // if(pieData===null)
   return(
+    pieData!==null&&pieData!==undefined&&
     <PieChart
       series={[
         {
-          data:[...show],
+          data:pieData,
           highlightScope: { faded: "global", highlighted: "item" },
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
           innerRadius: 0,
@@ -37,6 +76,7 @@ const Piechart=({excelData})=>{
       height={400}
       width={600}
     />
+
   )
 }
 export default Piechart;
