@@ -1,26 +1,21 @@
-import React,{useContext,useEffect, useState} from "react";
+import React from "react";
 import "./piechart.css"
 import { PieChart } from "@mui/x-charts/PieChart";
-import RefContext from "Utilities/refContext";
 
 
-const Piechart=({excelData})=>{
-  const [show,setShow]=useState([]);
-  const ctx = useContext(RefContext);
-  const { store} = ctx;
-  useEffect(()=>{
-    console.log("sjdfljk")
-  },[])
-  useEffect(()=>{
-    console.log(excelData,"heidjhdeu")
-    setShow(excelData.Asset_allocation.map((data,key)=>{return({id:key,value:11,label:data.compaies})}))
-    console.log("hei")
-  },[store])
+const Piechart=()=>{
 
   const data = [
-    show
+    { id: 0, value: 10, label: "series A" },
+    { id: 1, value: 15, label: "series B" },
+    { id: 2, value: 20, label: "series C" },  
+    { id: 3, value: 10, label: "series D" },
+    { id: 4, value: 15, label: "series E" },
+    { id: 5, value: 20, label: "series F" },
+    { id: 6, value: 10, label: "series G" },
+    { id: 7, value: 15, label: "series H" },
+    { id: 8, value: 2, label: "series I" },
   ];
-
   return(
     <PieChart
       series={[
