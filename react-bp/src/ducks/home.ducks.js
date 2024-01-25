@@ -21,7 +21,6 @@ const ASSIGN_TO_DASHBOARD_STORE = createAction("ASSIGN_TO_DASHBOARD_STORE");
 const RESET_DASHBOARD_STORE = createAction("RESET_DASHBOARD_STORE");
 const POST_TO_DASHBOARD_STORE = createAction("POST_TO_DASHBOARD_STORE")
 
-
 const assignToDashboardStore = (type, payload) => ({
   type: ASSIGN_TO_DASHBOARD_STORE,
   meta: {
@@ -49,7 +48,7 @@ const postToDashboardStore = (type, payload) => ({
 
 // METHODS
 const getAllRequetUser = () => (dispatch) => {
-  // dispatch(assignToDashboardStore("testData", null));
+  dispatch(assignToDashboardStore("testData", null));
   return nw
     .api("testFetch")
     .get()
@@ -60,7 +59,17 @@ const getAllRequetUser = () => (dispatch) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 };
+const getReloadData = () => (dispatch) => {
+  axios.get("http://localhost:3000/excelData")
+    .then(response => {
+      console.log(response.data,"responese data get api");
+      dispatch(assignToDashboardStore("excelData", response?.data));
 
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
 
 const getAllData = (data) => (dispatch) => {
   axios.post("https://excel-8dyl.onrender.com/upload", data,{
@@ -125,26 +134,13 @@ const postExcelData = (data)=> (dispatch)=>{
     .api("get_excelData")
     .post(data)
     .then((response) => {
-      dispatch(postToDashboardStore("excelData", response?.data));
+      //dispatch(postToDashboardStore("users", response?.data));
     })
     .catch((error) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 }
 
-const getReloadData = () => (dispatch) => {
-  return nw
-    .api("get_excelData")
-    .get()
-    .then(response => {
-      console.log(response.data,"responese data get api");
-      dispatch(assignToDashboardStore("excelData", response?.data));
-
-    })
-    .catch(error => {
-      console.error("Error uploading file: ", error);
-    });
-};
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
 //   dispatch(assignToDashboardStore("get_Posts", null));

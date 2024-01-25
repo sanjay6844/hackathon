@@ -3,6 +3,7 @@ import RefContext from "Utilities/refContext";
 import Upload from "../../components/upload";
 import "./home.css"
 import TablePage from "../../components/table";
+
 const Homepage = () => {
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
@@ -23,7 +24,6 @@ const Homepage = () => {
 
   return (<div className="home">
     <Upload/>
- 
   </div>
    
   );
