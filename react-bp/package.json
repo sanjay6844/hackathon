@@ -48,11 +48,13 @@
 		"start": "npx webpack serve --config ./webpack.config.js",
 		"build": "npx webpack --config ./webpack.config.js --mode development --env development",
 		"build:prod": "npx webpack --config ./webpack.config.js --mode production --env production",
+		"server": "json-server --watch db.json --port 3000",
 		"lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
 		"prepare": "husky install",
 		"lint": "eslint . --fix --max-warnings=0",
 		"format": "prettier . --write",
 		"test": "jest"
+		
 	},
 	"lint-staged": {
 		"*.js": "eslint --fix ",

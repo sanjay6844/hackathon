@@ -22,7 +22,7 @@ const Homepage = () => {
 
 
   return (<><div><Upload/></div>
-    {/* <div><TablePage/></div> */}</>
+  </>
   );
   //enable this if need to use DB json
   // <div>
