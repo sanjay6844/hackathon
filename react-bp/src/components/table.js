@@ -61,21 +61,7 @@ const TablePage =()=>{
 
   return(<div>
     <div>
-      <TextField
-        label="Search"
-        variant="outlined"
-        value={searchText}
-        onChange={handleSearch}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+      
       <IconButton>
         <FilterListIcon />
       </IconButton>
