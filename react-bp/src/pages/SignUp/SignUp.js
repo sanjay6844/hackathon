@@ -64,7 +64,7 @@ const SignUpPage = ()=>{
     setCookies("user",data.email)
     setOpen(true)
     setTimeout(()=>{
-      navigateTo("/jobapplication")
+      navigateTo("/home")
     },1000)
     
   }
