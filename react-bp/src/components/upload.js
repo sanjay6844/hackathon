@@ -3,9 +3,17 @@ import { cloneDeep } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
 import axios from "axios";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, InputAdornment, IconButton, FormControlLabel, Checkbox } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
+
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
 
 const Upload = () => {
   const [salesProfit,setSalesProfit]=useState("");
@@ -15,10 +23,11 @@ const Upload = () => {
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllRequetUser ,getAllData,getReloadData} = actions;
+  const { getAllData,getReloadData} = actions;
   const { testData } = store;
   useEffect(() => {
     getReloadData();
+    
     
   }, []);
   
@@ -39,11 +48,6 @@ const Upload = () => {
 
     
   }, [store]);
-  // let uploadData = store?.excelData?.["0"]
-  // console.log(store.excelData[uploadData])
-  // let asset = uploadData?.["Asset_allocation"]
-  // let sp = uploadData?.["Sales&Profit"]
-  // console.log(asset,sp, "store values in update page");
   
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -59,51 +63,71 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
-
-
-    // await axios.post("https://excel-8dyl.onrender.com/upload", formData,{
-    //     headers: {
-    //         'content-type': 'multipart/form-data'
-    //     }
-    // })
-    //   .then(response => {
-    //     console.log(response.data.data,"responese data");
-    //     dispatch(assignToDashboardStore("excelData", response?.data.data));
-
-    //   })
-    //   .catch(error => {
-    //     console.error('Error uploading file: ', error);
-    //   });
-
-
   };
+  // table
   const columns = [
-    { id: "productId", label: "Product ID" },
-    { id: "productName", label: "Product Name" },
-    { id: "salesAmount", label: "Sales Amount" },
-    { id: "cost", label: "Cost" },
-    { id: "profitLoss", label: "Profit/Loss" },
+    { id: "name", label: "Name", minWidth: 170 },
+    { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
+    {
+      id: "population",
+      label: "Population",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "size",
+      label: "Size\u00a0(km\u00b2)",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "density",
+      label: "Density",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
   ];
-  const [searchText, setSearchText] = useState("");
-  const [showColumns, setShowColumns] = useState({
-    productId: true,
-    productName: true,
-    salesAmount: true,
-    cost: true,
-    profitLoss: true,
-  });
+  function createData(name, code, population, size) {
+    const density = population / size;
+    return { name, code, population, size, density };
+  }
 
-  const handleSearch = (event) => {
-    setSearchText(event.target.value);
+  const rows = [
+    createData("India", "IN", 1324171354, 3287263),
+    createData("China", "CN", 1403500365, 9596961),
+    createData("Italy", "IT", 60483973, 301340),
+    createData("United States", "US", 327167434, 9833520),
+    createData("Canada", "CA", 37602103, 9984670),
+    createData("Australia", "AU", 25475400, 7692024),
+    createData("Germany", "DE", 83019200, 357578),
+    createData("Ireland", "IE", 4857000, 70273),
+    createData("Mexico", "MX", 126577691, 1972550),
+    createData("Japan", "JP", 126317000, 377973),
+    createData("France", "FR", 67022000, 640679),
+    createData("United Kingdom", "GB", 67545757, 242495),
+    createData("Russia", "RU", 146793744, 17098246),
+    createData("Nigeria", "NG", 200962417, 923768),
+    createData("Brazil", "BR", 210147125, 8515767),
+  ];
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   };
 
-  const handleColumnToggle = (columnId) => {
-    setShowColumns((prevColumns) => ({
-      ...prevColumns,
-      [columnId]: !prevColumns[columnId],
-    }));
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
   };
+  
+  
 
+ 
   
 
 
@@ -124,51 +148,56 @@ const Upload = () => {
         <button onClick={handleUpload}>Upload Excel</button>
       </div>
       <div>
-        <div>
-          <TextField
-            label="Search"
-            variant="outlined"
-            value={searchText}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
+        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100,5]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
           />
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </div>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  showColumns[column.id] && (
-                    <TableCell key={column.id}>{column.label}</TableCell>
-                  )
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                {salesProfit.map((item)=>{
-                  <TableCell key={item.id}>{item.Cost}</TableCell>
-
-
-
-                })}
-              </TableRow>
-             
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div></>);
+        </Paper>
+      </div>
+    </>);
   //enable this if need to use DB json
   // <div>
   //     {testData && testData.map((dataValue, index) => {
