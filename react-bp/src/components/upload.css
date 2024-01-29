@@ -9,3 +9,9 @@
 .css-y8ay40-MuiTableCell-root {
     background-color: #615d6e;
 }
+
+.title{
+    text-align: center;
+    font-size: larger;
+    padding: 10px;
+}

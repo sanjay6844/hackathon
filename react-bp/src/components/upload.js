@@ -185,7 +185,7 @@ const Upload = () => {
     )
     setInitialRowsOfAssets(AssetsWithId)
     
-  }, [salesProfit]);
+  }, [salesProfit,assets]);
   
 
   //const initialRows = salesProfit;
@@ -198,7 +198,7 @@ const Upload = () => {
       setRows((oldRows) => [...oldRows, { id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true }]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Product ID" },
       }));
     };
 
@@ -218,7 +218,7 @@ const Upload = () => {
       setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
       setAssetRowModesModel((oldModel) => ({
         ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
       }));
     };
 
@@ -263,21 +263,22 @@ const Upload = () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
   const handleEditClickOfAsset = (id) => () => {
-    setRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
+    
+    setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
   const handleSaveClick = (id) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
   const handleSaveClickOfAsset = (id) => () => {
-    setRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
+    setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
   const handleDeleteClick = (id) => () => {
     setRows(rows.filter((row) => row.id !== id));
   };
   const handleDeleteClickOfAsset = (id) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+    setAssetRows(assetrows.filter((row) => row.id !== id));
   };
   
 
@@ -299,7 +300,7 @@ const Upload = () => {
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
     });
 
-    const editedRow = rows.find((row) => row.id === id);
+    const editedRow = assetrows.find((row) => row.id === id);
     if (editedRow.isNew) {
       setAssetRows(rows.filter((row) => row.id !== id));
     }
@@ -314,7 +315,7 @@ const Upload = () => {
   };
   const processRowUpdateOfAsset = (newRow) => {
     const updatedRow = { ...newRow, isNew: false };
-    setAssetRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    setAssetRows(assetrows.map((row) => (row.id === newRow.id ? updatedRow : row)));
     return updatedRow;
   };
 
@@ -420,7 +421,7 @@ const Upload = () => {
   const columns2 = [
     { field: "Companies",
       headerName: "Companies", 
-      type: "number",width: 180,
+      width: 180,
       align: "left",     
       headerAlign: "left",
       editable: true },
@@ -453,7 +454,7 @@ const Upload = () => {
               sx={{
                 color: "primary.main",
               }}
-              onClick={handleEditClickOfAsset(id)}
+              onClick={handleSaveClickOfAsset(id)}
             />,
             <GridActionsCellItem
               icon={<CancelIcon />}
@@ -508,6 +509,7 @@ const Upload = () => {
         </Button>
       </div>}
       <div>
+        <div className="title">Sales&Profit</div>
         <Box
           sx={{
             height: 500,
@@ -538,6 +540,7 @@ const Upload = () => {
         </Box>
       </div>
       <div>
+      <div className="title">Asset Allocation</div>
         <Box
           sx={{
             height: 500,
