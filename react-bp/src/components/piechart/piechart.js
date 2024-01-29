@@ -3,34 +3,11 @@ import "./piechart.css"
 import RefContext from "Utilities/refContext";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-
 const Piechart=({excelData})=>{
   // const { excelData } = store;
   const ctx = useContext(RefContext);
   const { store } = ctx;
   // const { excelData } = store;
-  const data = [
-    {"id":0,  
-      "label": "Britannia Industries Ltd",
-      "value": 4
-    },
-    {"id":1,  
-      "label": "Cipla Ltd",
-      "value": 68
-    },
-    {"id":2,  
-      "lable": "Eicher Motors Ltd",
-      "value": 90
-    },
-    {"id":3,  
-      "label": "Nestle India Ltd",
-      "value": 73
-    },
-    {"id":4,  
-      "label": "Grasim Industries Ltd",
-      "value": 90
-    },
-  ];
 
   const [pieData,setPieData] = useState(null)
   useEffect(()=>{

@@ -3,17 +3,23 @@ import "./chart.css"
 import Piechart from "../../components/piechart/piechart";
 import Barchart from "../../components/barchart/barchart";
 import RefContext from "Utilities/refContext";
+import { Cookies, useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const ChartPage=()=>{
   const ctx = useContext(RefContext);
   const { store,actions } = ctx;
   const { excelData } = store;
   const { getReloadData} = actions;
-  const [pieData,setPieData] = useState(null)
-  const [barData,setBarData] = useState(null)
+  const [cookies,setCookies] = useCookies(["user"])
+  const navigateTo = useNavigate()
   useEffect(()=>{
+    if(!cookies.user){
+      navigateTo("/signin")
+    }
     getReloadData()
   },[])
+
   useEffect(()=>{
   },[store])
 

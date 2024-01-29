@@ -129,9 +129,6 @@ const postData = (data)=> (dispatch)=>{
     });
 }
 
-
-
-
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
 //   dispatch(assignToDashboardStore("get_Posts", null));

@@ -49,10 +49,7 @@ const Upload = () => {
       setSalesProfit(sp);
       setAssets(asset);
       console.log(sp, "store values in update page");
-    }
-    
-
-    
+    }    
   }, [store]);
   
 
