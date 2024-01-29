@@ -13,8 +13,6 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import "./upload.css"
-import { common } from "@mui/material/colors";
-
 
 
 
@@ -54,7 +52,6 @@ const Upload = () => {
     
   }, [store]);
   
-  const [show,setShow]=useState("")
   const [selectedFile, setSelectedFile] = useState(null);
 
 
@@ -71,7 +68,6 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
-    setShow("none")
   };
   // table
   const assetColumn=[
@@ -135,9 +131,9 @@ const Upload = () => {
 
   return (
     <>
-      <div style={{display:`${show}`}}>
+      <div>
         
-        <input type="file"  onChange={handleFileChange} />
+        <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
