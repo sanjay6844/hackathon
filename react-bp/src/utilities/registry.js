@@ -3,10 +3,9 @@
 /* eslint-disable import/no-named-as-default */
 // Controllers
 import Home from "Pages/Home";
-import Chart from "Pages/Chart/chart";
-import Table from "Pages/Table/table";
+import Charts from "Pages/Chart";
 import SignIn from "Pages/SignIn";
-import Piechart from "../components/piechart/piechart";
+import Header from "../components/piechart/Header/header";
 import Barchart from "../components/barchart/barchart";
 import SignUp from "Pages/SignUp"
 
@@ -20,12 +19,9 @@ function Injector(component, name) {
 
 export default {
   Home: Injector(Home, "Home"),
-  Piechart: Injector(Piechart, "Piechart"),
-  Chart: Injector(Chart, "Chart"),
-  Table: Injector(Table, "Table"),
+  Chart: Injector(Charts, "Chart"),
   SignIn: Injector(SignIn, "SignIn"),
   Barchart: Injector(Barchart, "Barchart"),
-  SignUp:Injector(SignUp,"SignUP")
-
-
+  SignUp:Injector(SignUp,"SignUP"),
+  Header:Injector(Header,"Header")
 };

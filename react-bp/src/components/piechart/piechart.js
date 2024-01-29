@@ -1,36 +1,66 @@
-import React from "react";
+import React, { useEffect,useContext,useState } from "react";
 import "./piechart.css"
+import RefContext from "Utilities/refContext";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 
-const Piechart=()=>{
-  const data = [
-    { id: 0, value: 10, label: "series A" },
-    { id: 1, value: 15, label: "series B" },
-    { id: 2, value: 20, label: "series C" },  
-    { id: 3, value: 10, label: "series D" },
-    { id: 4, value: 15, label: "series E" },
-    { id: 5, value: 20, label: "series F" },
-    { id: 6, value: 10, label: "series G" },
-    { id: 7, value: 15, label: "series H" },
-    { id: 8, value: 2, label: "series I" },
-  ];
+
+const Piechart=({excelData})=>{
+  
+  const ctx = useContext(RefContext);
+  const { store } = ctx;
+
+
+
+  const [pieData,setPieData] = useState(null)
+
+ 
+  useEffect(()=>{
+    if(excelData[0]===undefined){
+      console.log("exceldata is undefined ")
+      return 
+    }
+    setPieData(excelData[0].Asset_allocation)
+    ,[store]})
+  // useEffect(()=>{
+  //   if(pieData.Object.keys==="Shares ( % )")
+  //     setSample("Share")
+  // })
+  // useEffect(()=>{
+  //   setExiting(pieData.map((data,key)=>{return({id:key,value:data[sample],label:data.Companies})}))
+  // },[pieData])
+ 
+
+  // useEffect(()=>{Shares ( % )
+  //   if(dataset===null){
+  //     return
+  //   }
+  //   console.log("dataset",dataset[0].Asset_allocation)
+  //   setPieData(dataset[0].Asset_allocation)
+  // })
+
+  
+  // if(pieData===null)
   return(
+    pieData!==null&&pieData!==undefined&&
     <PieChart
       series={[
         {
-          data,
+          data:pieData.map(item=>({value:item?.["Shares ( % )"],label:item?.Companies})),
           highlightScope: { faded: "global", highlighted: "item" },
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
           innerRadius: 0,
           outerRadius: 200,
           paddingAngle: 0,
           cornerRadius: 0,
+          cx: 300,
+          cy: 195,
         },
       ]}
       height={400}
       width={600}
     />
+
   )
 }
 export default Piechart;

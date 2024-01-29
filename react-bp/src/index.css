@@ -61,7 +61,7 @@ code {
 	.plots {
 		width: 50%;
 		background-color: white;
-		cursor: pointer;
+		/* cursor: pointer; */
 		border-radius: 20px;
 		height: fit-content;
 		display: flex;

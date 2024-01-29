@@ -1,0 +1,17 @@
+.diff{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.css-y8ay40-MuiTableCell-root {
+    background-color: #615d6e;
+}
+
+.title{
+    text-align: center;
+    font-size: larger;
+    padding: 10px;
+}

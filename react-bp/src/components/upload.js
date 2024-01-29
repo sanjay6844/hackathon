@@ -3,26 +3,17 @@ import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
-import axios from "axios";
-import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { styled } from "@mui/material/styles";
-import InputAdornment from "@mui/material/InputAdornment"
-import { TextField,IconButton } from "@mui/material";
-
-
-
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
-
+// import Paper from "@mui/material/Paper";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TablePagination from "@mui/material/TablePagination";
+// import TableRow from "@mui/material/TableRow";
+import "./upload.css"
 // GRID
 import Box from "@mui/material/Box";
 //import Button from '@mui/material/Button';
@@ -49,29 +40,22 @@ const randomRole = () => {
   return randomArrayItem(roles);
 };
 
-
-
-
-
-
-
-
-
-
 const Upload = () => {
   const [excelData,setExcelData]=useState([]);
+ 
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
   console.log(assets,"assets in use sate")
+  
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
   const { getAllData,getReloadData,updateToStore} = actions;
   const { testData } = store;
   useEffect(() => {
-    getReloadData();
-    
+    // getAllRequetUser();
+    getReloadData()
   }, []);
   
   
@@ -79,7 +63,7 @@ const Upload = () => {
 
   useEffect(() => {
     if(store?.excelData){
-      console.log()
+      console.log(store,"store")
       var uploadData = store?.excelData?.["0"]
       console.log(store.excelData[uploadData])
       var asset = uploadData?.["Asset_allocation"]
@@ -95,8 +79,9 @@ const Upload = () => {
     
   }, [store]);
   
-
   const [selectedFile, setSelectedFile] = useState(null);
+  const [show, setShow] = useState(true);
+
 
 
   const handleFileChange = async (event) => {
@@ -108,9 +93,11 @@ const Upload = () => {
     console.log(selectedFile,"sf")
     const formData = new FormData();
     const file=selectedFile;
+
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
+    setShow(false)
   };
   // table
   const assetColumn=[
@@ -196,7 +183,7 @@ const Upload = () => {
     )
     setInitialRowsOfAssets(AssetsWithId)
     
-  }, [salesProfit,assets]);
+  }, [salesProfit,assets,show]);
   
 
   //const initialRows = salesProfit;
@@ -257,7 +244,7 @@ const Upload = () => {
     setRows(initialRows);
     setAssetRows(initialRowsOfAssets)
 
-  }, [initialRows,initialRowsOfAssets]);
+  }, [initialRows,initialRowsOfAssets,show]);
 
  
   const handleRowEditStop = (params, event) => {
@@ -528,15 +515,17 @@ const Upload = () => {
 
   return (
     <>
+      {show&&
       <div>
-        
-        <input type="file"  style={{}} onChange={handleFileChange} />
+        <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
         </Button>
-      </div>
+      </div>}
+      
       <div>
+        <div className="title">Sales&Profit</div>
         <Box
           sx={{
             height: 500,
@@ -567,6 +556,7 @@ const Upload = () => {
         </Box>
       </div>
       <div>
+        <div className="title">Asset Allocation</div>
         <Box
           sx={{
             height: 500,
@@ -596,6 +586,8 @@ const Upload = () => {
           />
         </Box>
       </div>
+        
+      
       
     </>);
   //enable this if need to use DB json

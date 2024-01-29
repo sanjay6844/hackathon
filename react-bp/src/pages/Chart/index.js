@@ -1,22 +1,25 @@
+/* eslint-disable import/default */
+/* eslint-disable import/namespace */
 import React from "react";
 
 import RefProvider from "Utilities/refProvider";
 import RefErrorBoundary from "Utilities/refErrorBoundary";
 import { formStoreData } from "Utilities/helpers";
-import Homepage from "./home";
+// import Homepage from "./home";
+import Chart from "./chart";
 import {} from "react-router-dom";
 
-const Home = (props) => {
+const Charts = (props) => {
   const propShape = formStoreData(props, ["dashboard"]);
   return (
     <>
       <RefProvider data={propShape}>
         <RefErrorBoundary {...props}>
-          <Homepage/>
+          <Chart />
         </RefErrorBoundary>
       </RefProvider>
     </>
   );
 };
 
-export default Home;
+export default Charts;

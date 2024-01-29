@@ -4,18 +4,22 @@
     /* height: 100%; */
     gap: 100px;
     display: flex;
-    padding: 0 100px;
+    scrollbar-width: 0px;
+    padding: 20px 100px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
     align-content: center;
 }
+
 .piechart{
     width: 100%;
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: center;
+    justify-content: space-around;
     gap: 90px;
     align-items: center;
 }
@@ -25,7 +29,7 @@
     flex-direction: row-reverse;
     align-content: center;
     gap: 90px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 .names{
@@ -47,16 +51,20 @@
 .plots{
     width: 50%;
     background-color: white;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-radius: 20px;
     display: flex;
     padding: 36px 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
+
+.plots > div > svg > g {
+    cursor: pointer;
+}
+
 .hover {
     --b: 0.1em;   /* the thickness of the line */
     --c: #615d6e; /* the color */
@@ -82,7 +90,7 @@
 		/* height: 100%; */
 		gap: 100px;
 		display: flex;
-		padding: 0 80px;
+		padding: 20px 80px;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
@@ -116,13 +124,13 @@
 	.plots {
 		width: 50%;
 		background-color: white;
-		cursor: pointer;
+		/* cursor: pointer; */
 		border-radius: 20px;
 		height: fit-content;
 		display: flex;
 		padding: 0px 0px;
 		box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-		flex-direction: row;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
@@ -139,15 +147,19 @@
 
 @media only screen and ((min-width: 320px)and (max-width:768px)){
     .css-1jkcq86-MuiResponsiveChart-container {
-        width: 300px;
-         height: 200px;
+        width: 265px;
+        height: 163px;
+    }
+    .css-1jkcq86-MuiResponsiveChart-container {
+        width: 400px;
+         height: 400px;
     }
 	.charts {
 		width: calc(100% - 100px);
     /* height: 100%; */
     gap: 100px;
     display: flex;
-    padding: 0 50px;
+    padding: 10px 50px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -181,12 +193,12 @@
 	.plots {
         width: 100%;
         background-color: white;
-        cursor: pointer;
+        /* cursor: pointer; */
         border-radius: 20px;
         /* display: flex; */
         padding: 15px 0px;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
 	}
@@ -202,12 +214,16 @@
 }
 
 @media only screen and ((min-width: 2000px)){
+    .css-1jkcq86-MuiResponsiveChart-container {
+        width: 600px;
+         height: 400px;
+    }
     .charts{
         width: calc(100% - 300px);
         height: 100%;
         gap: 100px;
         display: flex;
-        padding: 0 150px;
+        padding: 40px 150px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -219,7 +235,7 @@
         display: flex;
         flex-direction: row;
         align-content: center;
-        justify-content: center;
+        justify-content: space-around;
         gap: 90px;
         align-items: center;
     }
@@ -230,7 +246,7 @@
         flex-direction: row-reverse;
         align-content: center;
         gap: 90px;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
     }
     .names{
@@ -252,13 +268,13 @@
     .plots{
         width: 50%;
         background-color: white;
-        cursor: pointer;
+        /* cursor: pointer; */
         height: 100%;
         border-radius: 20px;
         display: flex;
         padding: 0px 0px;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     
@@ -280,4 +296,8 @@
         --_p: 100%;
         --_s: .3s;
       }
+    }
+
+    .plots > div > svg > g {
+        cursor: pointer;
     }
