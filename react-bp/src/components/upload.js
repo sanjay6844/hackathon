@@ -1,17 +1,9 @@
-import { upload } from "@testing-library/user-event/dist/upload";
-import { cloneDeep } from "lodash";
+
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
-import {Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { styled } from "@mui/material/styles";
-
-
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -20,8 +12,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-
 import "./upload.css"
+import { common } from "@mui/material/colors";
+
+
+
+
+
 
 
 const Upload = () => {
@@ -57,7 +54,7 @@ const Upload = () => {
     
   }, [store]);
   
-
+  const [show,setShow]=useState("")
   const [selectedFile, setSelectedFile] = useState(null);
 
 
@@ -74,6 +71,7 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
+    setShow("none")
   };
   // table
   const assetColumn=[
@@ -131,28 +129,22 @@ const Upload = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  //grid
   
-  
-
- 
-  
-
-
-  
-
 
 
   return (
     <>
-      <div>
+      <div style={{display:`${show}`}}>
         
-        <input type="file"  style={{}} onChange={handleFileChange} />
+        <input type="file"  onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
         </Button>
       </div>
       <div>
+        <div></div>
         <Paper sx={{ width: "100%", overflow: "hidden" }}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">

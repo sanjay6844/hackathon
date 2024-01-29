@@ -18,7 +18,25 @@ const Piechart=({excelData})=>{
   useEffect(()=>{
     setPieData(excelData[0].Asset_allocation)
     ,[store]})
+  // useEffect(()=>{
+  //   if(pieData.Object.keys==="Shares ( % )")
+  //     setSample("Share")
+  // })
+  // useEffect(()=>{
+  //   setExiting(pieData.map((data,key)=>{return({id:key,value:data[sample],label:data.Companies})}))
+  // },[pieData])
+ 
 
+  // useEffect(()=>{Shares ( % )
+  //   if(dataset===null){
+  //     return
+  //   }
+  //   console.log("dataset",dataset[0].Asset_allocation)
+  //   setPieData(dataset[0].Asset_allocation)
+  // })
+
+  
+  // if(pieData===null)
   return(
     pieData!==null&&pieData!==undefined&&
     <PieChart

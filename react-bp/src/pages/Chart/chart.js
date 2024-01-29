@@ -26,13 +26,13 @@ const ChartPage=()=>{
 
     <div className="charts">
       <div className="piechart">
-        <div className="hover">Piechart</div>
+        <div className="hover">Pie chart</div>
         <div className="plots">
           {excelData!==null&&<Piechart  excelData={excelData} />}
         </div>
       </div>
       <div className="barchart">
-        <div className="hover">Barchart</div>
+        <div className="hover">Bar chart</div>
         <div className="plots">
           {excelData!==null&&<Barchart  excelData={excelData} />}
         </div>
