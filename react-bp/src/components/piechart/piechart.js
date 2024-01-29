@@ -16,8 +16,12 @@ const Piechart=({excelData})=>{
 
  
   useEffect(()=>{
+    if(excelData[0]===undefined){
+      console.log("exceldata is undefined ")
+      return
+    }
     setPieData(excelData[0].Asset_allocation)
-    ,[store]})
+    ,[]})
   // useEffect(()=>{
   //   if(pieData.Object.keys==="Shares ( % )")
   //     setSample("Share")

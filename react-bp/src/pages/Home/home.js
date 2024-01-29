@@ -2,16 +2,21 @@ import React, { useContext, useEffect } from "react";
 import RefContext from "Utilities/refContext";
 import Upload from "../../components/upload";
 import "./home.css"
-// import TablePage from "../../components/table";
+import { Cookies, useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+
 const Homepage = () => {
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  // const { getAllRequetUser ,} = actions;
-  // const { testData } = store;
+  const { getAllRequetUser ,} = actions;
+  const { testData } = store;
+  const [cookies,setCookies] = useCookies()
+  const navigateTo = useNavigate()
   useEffect(() => {
     //getAllRequetUser();
-    //getAllRequetUser();
-    
+    if(!cookies.user){
+      navigateTo("/signin")
+    }
   }, []);
 
   // useEffect(() => {

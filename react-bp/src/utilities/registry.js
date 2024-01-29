@@ -24,6 +24,4 @@ export default {
   Barchart: Injector(Barchart, "Barchart"),
   SignUp:Injector(SignUp,"SignUP"),
   Header:Injector(Header,"Header")
-
-
 };

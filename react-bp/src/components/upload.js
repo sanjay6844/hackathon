@@ -30,6 +30,7 @@ const Upload = () => {
   const { store, actions } = ctx;
   const { getAllData,getReloadData} = actions;
   const { testData } = store;
+  const navigateTo = useNavigate()
   useEffect(() => {
     // getAllRequetUser();
   }, []);
@@ -46,10 +47,7 @@ const Upload = () => {
       setSalesProfit(sp);
       setAssets(asset);
       console.log(sp, "store values in update page");
-    }
-    
-
-    
+    }    
   }, [store]);
   
   const [selectedFile, setSelectedFile] = useState(null);

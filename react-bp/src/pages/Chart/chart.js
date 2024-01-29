@@ -3,22 +3,22 @@ import "./chart.css"
 import RefContext from "Utilities/refContext";
 import Piechart from "../../components/piechart/piechart";
 import Barchart from "../../components/barchart/barchart";
-
+import { Cookies, useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const ChartPage=()=>{
   const ctx = useContext(RefContext);
   const { store,actions } = ctx;
   const { excelData } = store;
   const { getReloadData} = actions;
-  const [pieData,setPieData] = useState(null)
-  const [barData,setBarData] = useState(null)
+  const [cookies,setCookies] = useCookies(["user"])
+  const navigateTo = useNavigate()
   useEffect(()=>{
+    if(!cookies.user){
+      navigateTo("/signin")
+    }
     getReloadData()
-    console.log("datain chart",store)
   },[])
-  useEffect(()=>{
-    console.log("another useEffect",store)
-  },[store])
 
   
 
@@ -28,13 +28,13 @@ const ChartPage=()=>{
       <div className="piechart">
         <div className="hover">Pie chart</div>
         <div className="plots">
-          {excelData!==null&&<Piechart  excelData={excelData} />}
+          {(excelData!==null&&excelData!==undefined)&&<Piechart  excelData={excelData} />}
         </div>
       </div>
       <div className="barchart">
         <div className="hover">Bar chart</div>
         <div className="plots">
-          {excelData!==null&&<Barchart  excelData={excelData} />}
+          {(excelData!==null&&excelData!==undefined)&&<Barchart  excelData={excelData} />}
         </div>
       </div>
     </div>
