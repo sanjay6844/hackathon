@@ -20,6 +20,8 @@ const ChartPage=()=>{
     console.log("another useEffect",store)
   },[store])
 
+  
+
   return(
 
     <div className="charts">
