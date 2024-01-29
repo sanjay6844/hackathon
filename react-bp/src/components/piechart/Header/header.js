@@ -22,7 +22,7 @@ const Header=()=>{
     setAnchorEl(null);
   }
   const back = ()=>{
-    navigate("/table")
+    navigate("/home")
     setAnchorEl(null);
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -72,7 +72,7 @@ const Header=()=>{
           onClose={handleClose}
           TransitionComponent={Fade}
         >
-          <MenuItem onClick={back}>Table</MenuItem>
+          <MenuItem onClick={back}>Home</MenuItem>
           <MenuItem onClick={next}>Chart</MenuItem>
         </Menu>
         <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white"}}>Logout</Button>

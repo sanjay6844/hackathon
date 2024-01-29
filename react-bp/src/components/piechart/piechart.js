@@ -6,26 +6,30 @@ import { PieChart } from "@mui/x-charts/PieChart";
 
 
 const Piechart=({excelData})=>{
-  // const { excelData } = store;
-  const share="Shares ( % )"
+  
   const ctx = useContext(RefContext);
   const { store } = ctx;
-  // const { excelData } = store;
 
-  const [pieData,setPieData] = useState(null)
+
+
+  const [pieData,setPieData] = useState([])
+
+ 
   useEffect(()=>{
-    if(pieData!==null){
+    if(excelData[0]===undefined){
+      console.log("exceldata is undefined ")
       return
     }
-    if(excelData===undefined){
-      console.log("exceldata is undefined")
-    }
-    // console.log(excelData[0])
-    // setDataset(excelData)
-    // console.log(excelData[0].Asset_allocation,"inside data")
-    // console.log("format",excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
-    setPieData(excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:data["Shares ( % )"],label:data.Companies})}))
+    setPieData(excelData[0].Asset_allocation)
     ,[]})
+  // useEffect(()=>{
+  //   if(pieData.Object.keys==="Shares ( % )")
+  //     setSample("Share")
+  // })
+  // useEffect(()=>{
+  //   setExiting(pieData.map((data,key)=>{return({id:key,value:data[sample],label:data.Companies})}))
+  // },[pieData])
+ 
 
   // useEffect(()=>{Shares ( % )
   //   if(dataset===null){
@@ -42,7 +46,7 @@ const Piechart=({excelData})=>{
     <PieChart
       series={[
         {
-          data:pieData,
+          data:pieData.map(item=>({value:item?.["Shares ( % )"],label:item?.Companies})),
           highlightScope: { faded: "global", highlighted: "item" },
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
           innerRadius: 0,

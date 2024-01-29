@@ -13,9 +13,12 @@ const Barchart = ({excelData})=>{
   useEffect(()=>{
     console.log(excelData[0])
     // setDataset(excelData)
+    if(excelData[0]===undefined){
+      return
+    }
     console.log(excelData[0]["Sales&Profit"],"inside data")
     setBarData(excelData[0]["Sales&Profit"])
-    ,[store]})
+    ,[]})
 
   const chartSetting = {
     yAxis: [

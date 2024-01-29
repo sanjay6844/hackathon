@@ -57,7 +57,6 @@
 		"lint": "eslint . --fix --max-warnings=0",
 		"format": "prettier . --write",
 		"test": "jest"
-		
 	},
 	"lint-staged": {
 		"*.js": "eslint --fix ",
