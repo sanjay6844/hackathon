@@ -12,13 +12,13 @@ const Piechart=({excelData})=>{
 
 
 
-  const [pieData,setPieData] = useState([])
+  const [pieData,setPieData] = useState(null)
 
  
   useEffect(()=>{
     if(excelData[0]===undefined){
       console.log("exceldata is undefined ")
-      return
+      return 
     }
     setPieData(excelData[0].Asset_allocation)
     ,[store]})

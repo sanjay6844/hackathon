@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
-
+import { upload } from "@testing-library/user-event/dist/upload";
+import { cloneDeep } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
 import Button from "@mui/material/Button";
@@ -13,7 +14,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 // import TableHead from "@mui/material/TableHead";
 // import TablePagination from "@mui/material/TablePagination";
 // import TableRow from "@mui/material/TableRow";
-
+import "./upload.css"
 // GRID
 import Box from "@mui/material/Box";
 //import Button from '@mui/material/Button';
@@ -40,35 +41,29 @@ const randomRole = () => {
   return randomArrayItem(roles);
 };
 
-
-
-
-
-
-
-
-
-
 const Upload = () => {
  
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
   console.log(assets,"assets in use sate")
+  
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllData} = actions;
+  const { getAllData,getReloadData} = actions;
+  const [show,setShow] = useState(true)
 
   useEffect(() => {
     // getAllRequetUser();
+    getReloadData()
   }, []);
   
 
 
   useEffect(() => {
     if(store?.excelData){
-      console.log()
+      console.log(store,"store")
       var uploadData = store?.excelData?.["0"]
       console.log(store.excelData[uploadData])
       var asset = uploadData?.["Asset_allocation"]
@@ -95,6 +90,7 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
+    setShow(false)
   };
   // table
   const assetColumn=[
@@ -180,7 +176,7 @@ const Upload = () => {
     )
     setInitialRowsOfAssets(AssetsWithId)
     
-  }, [salesProfit]);
+  }, [salesProfit,assets]);
   
 
   //const initialRows = salesProfit;
@@ -241,7 +237,7 @@ const Upload = () => {
     setRows(initialRows);
     setAssetRows(initialRowsOfAssets)
 
-  }, [initialRows,initialRowsOfAssets]);
+  }, [initialRows,initialRowsOfAssets,show]);
 
  
   const handleRowEditStop = (params, event) => {
@@ -495,15 +491,16 @@ const Upload = () => {
 
   return (
     <>
+      {show&&
       <div>
-        
         <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
         </Button>
-      </div>
+      </div>}
       <div>
+        <div className="title">Sales&Profit</div>
         <Box
           sx={{
             height: 500,
@@ -534,6 +531,7 @@ const Upload = () => {
         </Box>
       </div>
       <div>
+      <div className="title">Asset Allocation</div>
         <Box
           sx={{
             height: 500,

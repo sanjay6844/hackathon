@@ -130,6 +130,19 @@ const postData = (data)=> (dispatch)=>{
     });
 }
 
+const postExcelData = (data)=>(dispatch)=>{
+  return nw
+    .api("get_excelData")
+    .put(data)
+    .then((response)=>{
+      dispatch(postToDashboardStore("excelData",response?.data));
+    })
+    .catch((error) => {
+      setApiError(dispatch, postToDashboardStore, error);
+    });
+}
+
+
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
 //   dispatch(assignToDashboardStore("get_Posts", null));
@@ -175,6 +188,7 @@ export default {
     fetchLoginData,
     postData,
     getReloadData,
+    postExcelData
     
   },
 };
