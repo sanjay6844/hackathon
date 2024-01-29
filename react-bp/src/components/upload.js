@@ -14,7 +14,6 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 // import TablePagination from "@mui/material/TablePagination";
 // import TableRow from "@mui/material/TableRow";
 import "./upload.css"
-
 // GRID
 import Box from "@mui/material/Box";
 //import Button from '@mui/material/Button';
@@ -40,15 +39,6 @@ const roles = ["Market", "Finance", "Development"];
 const randomRole = () => {
   return randomArrayItem(roles);
 };
-
-
-
-
-
-
-
-
-
 
 const Upload = () => {
  
@@ -185,7 +175,7 @@ const Upload = () => {
     )
     setInitialRowsOfAssets(AssetsWithId)
     
-  }, [salesProfit,assets]);
+  }, [salesProfit,assets,show]);
   
 
   //const initialRows = salesProfit;
@@ -246,7 +236,7 @@ const Upload = () => {
     setRows(initialRows);
     setAssetRows(initialRowsOfAssets)
 
-  }, [initialRows,initialRowsOfAssets]);
+  }, [initialRows,initialRowsOfAssets,show]);
 
  
   const handleRowEditStop = (params, event) => {

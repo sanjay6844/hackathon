@@ -34,12 +34,14 @@ const ChartPage=()=>{
       <div className="piechart">
         <div className="hover">Pie chart</div>
         <div className="plots">
+          <div>Asset Allocation</div>
           {(excelData!==null&&excelData!==undefined)&&<Piechart  excelData={excelData} />}
         </div>
       </div>
       <div className="barchart">
         <div className="hover">Bar chart</div>
         <div className="plots">
+          <div>Profit&Sales</div>
           {(excelData!==null&&excelData!==undefined)&&<Barchart  excelData={excelData} />}
         </div>
       </div>
