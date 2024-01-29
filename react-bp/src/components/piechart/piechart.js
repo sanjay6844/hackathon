@@ -3,8 +3,11 @@ import "./piechart.css"
 import RefContext from "Utilities/refContext";
 import { PieChart } from "@mui/x-charts/PieChart";
 
+
+
 const Piechart=({excelData})=>{
   // const { excelData } = store;
+  const share="Shares ( % )"
   const ctx = useContext(RefContext);
   const { store } = ctx;
   // const { excelData } = store;

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect ,useState} from "react";
+import React, { useContext, useEffect } from "react";
 import RefContext from "Utilities/refContext";
 import Upload from "../../components/upload";
 import "./home.css"
@@ -29,9 +29,11 @@ const Homepage = () => {
   
 
 
-  return (<><div><Upload/></div>
-  </>
-  
+  return (<div className="home">
+    <Upload/>
+ 
+  </div>
+   
   );
 
 };

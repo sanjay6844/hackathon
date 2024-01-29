@@ -1,5 +1,6 @@
 import React,{useContext, useEffect,useState} from "react";
 import "./chart.css"
+import RefContext from "Utilities/refContext";
 import Piechart from "../../components/piechart/piechart";
 import Barchart from "../../components/barchart/barchart";
 import RefContext from "Utilities/refContext";
@@ -21,6 +22,7 @@ const ChartPage=()=>{
   },[])
 
   return(
+
     <div className="charts">
       <div className="piechart">
         <div className="hover">Piechart</div>

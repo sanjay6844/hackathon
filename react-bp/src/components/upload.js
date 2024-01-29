@@ -21,6 +21,8 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
+import "./upload.css"
+
 
 const Upload = () => {
   const navigate= useNavigate();
@@ -35,7 +37,7 @@ const Upload = () => {
   const { testData } = store;
   const navigateTo = useNavigate()
   useEffect(() => {
-    //getAllRequetUser();
+    // getAllRequetUser();
   }, []);
   
 

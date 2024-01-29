@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "name": "sanjay",
-      "email": "sanjayram.a@sudoboat.com",
-      "contactNumber": "1234567890",
-      "password": "as12AS!@",
-      "confirmPassword": "as12AS!@",
-      "dob": "2020-01-29T18:30:00.000Z",
+      "name": "ranjani",
+      "email": "ranjani@gmail.com",
+      "contactNumber": "0987654321",
+      "password": "AS!@as12",
+      "confirmPassword": "AS!@as12",
+      "dob": "2000-12-01T18:30:00.000Z",
       "id": 1
     },
     {
@@ -21,7 +21,6 @@
   ],
   "excelData": [
     {
-      "id": "9d76",
       "Sales&Profit": [
         {
           "Product ID": 101,
@@ -674,6 +673,7 @@
           "Companies": "Adani Ports & Special Economic Zone Ltd",
           "Shares ( % )": 55
         }
+<<<<<<< HEAD
       ]
     },
     {
@@ -1331,6 +1331,10 @@
         }
       ],
       "id": "jP-qFrK"
+=======
+      ],
+      "id": 1
+>>>>>>> 0fbc0550b694b31d981e4995a6f2ca7ef3f636a8
     },
     {
       "Sales&Profit": [
@@ -1986,7 +1990,11 @@
           "Shares ( % )": 55
         }
       ],
+<<<<<<< HEAD
       "id": "741KI0S"
+=======
+      "id": 2
+>>>>>>> 0fbc0550b694b31d981e4995a6f2ca7ef3f636a8
     }
   ]
 }

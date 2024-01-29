@@ -20,6 +20,7 @@ const ASSIGN_TO_DASHBOARD_STORE = createAction("ASSIGN_TO_DASHBOARD_STORE");
 const RESET_DASHBOARD_STORE = createAction("RESET_DASHBOARD_STORE");
 const POST_TO_DASHBOARD_STORE = createAction("POST_TO_DASHBOARD_STORE")
 
+
 const assignToDashboardStore = (type, payload) => ({
   type: ASSIGN_TO_DASHBOARD_STORE,
   meta: {
@@ -47,7 +48,7 @@ const postToDashboardStore = (type, payload) => ({
 
 // METHODS
 const getAllRequetUser = () => (dispatch) => {
-  dispatch(assignToDashboardStore("testData", null));
+  // dispatch(assignToDashboardStore("testData", null));
   return nw
     .api("testFetch")
     .get()

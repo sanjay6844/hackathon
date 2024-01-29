@@ -1,25 +1,23 @@
-/* eslint-disable import/default */
-/* eslint-disable import/namespace */
 import React from "react";
 
 import RefProvider from "Utilities/refProvider";
 import RefErrorBoundary from "Utilities/refErrorBoundary";
 import { formStoreData } from "Utilities/helpers";
 // import Homepage from "./home";
-import Chart from "./chart";
 import {} from "react-router-dom";
+import Piechart from "./piechart";
 
-const Charts = (props) => {
+const PieChart = (props) => {
   const propShape = formStoreData(props, ["dashboard"]);
   return (
     <>
       <RefProvider data={propShape}>
         <RefErrorBoundary {...props}>
-          <Chart />
+          <Piechart />
         </RefErrorBoundary>
       </RefProvider>
     </>
   );
 };
 
-export default Charts;
+export default PieChart;
