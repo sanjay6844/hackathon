@@ -59,6 +59,7 @@ const randomRole = () => {
 
 
 const Upload = () => {
+  const [excelData,setExcelData]=useState([]);
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
@@ -66,12 +67,13 @@ const Upload = () => {
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllData,getReloadData} = actions;
+  const { getAllData,getReloadData,updateToStore} = actions;
   const { testData } = store;
   useEffect(() => {
     getReloadData();
     
   }, []);
+  
   
 
 
@@ -86,6 +88,8 @@ const Upload = () => {
       setAssets(asset);
       console.log(sp, "store values in update page");
     }
+
+    console.log(store,"store values todayyyyyyyy")
     
 
     
@@ -491,6 +495,23 @@ const Upload = () => {
       },
     },
   ];
+
+
+  useEffect(() => {
+    if(rows.length>0 && assetrows.length>0)
+    {
+      const tempdata=[
+        {
+          "Sales&Profit":rows,
+          "Asset_allocation":assetrows
+        }
+      ]
+      setExcelData(tempdata);
+      //updateToStore(excelData)
+    }
+    
+
+  }, [rows,assetrows]);
 
 
   
