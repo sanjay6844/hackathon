@@ -1,12 +1,13 @@
-import React ,{useContext,useState,useEffect} from "react";
+import React ,{useState,useEffect} from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts";
-import RefContext from "Utilities/refContext";
+import "./barchart.css"
+// import RefContext from "Utilities/refContext";
 
 const Barchart = ({excelData})=>{
 
-  const ctx = useContext(RefContext);
-  const { store } = ctx;
+  // const ctx = useContext(RefContext);
+  // const { store } = ctx;
   // const { excelData } = store;
 
   const [barData,setBarData] = useState(null)

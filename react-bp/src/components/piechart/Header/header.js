@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
+import React from "react";
 import {  useNavigate } from "react-router-dom"
 import Button from "@mui/material/Button";
 import { useCookies } from "react-cookie"
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
@@ -36,7 +36,7 @@ const Header=()=>{
 
   return(
     <div className="header">
-      <div className="excel">
+      <div className="excel" onClick={back} style={{cursor:"pointer"}}>
         Excel Visualiser
       </div>
       <div className="logout">

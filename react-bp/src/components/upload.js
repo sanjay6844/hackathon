@@ -3,17 +3,17 @@ import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
-import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+// import Paper from "@mui/material/Paper";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TablePagination from "@mui/material/TablePagination";
+// import TableRow from "@mui/material/TableRow";
+import "./upload.css"
 
 // GRID
 import Box from "@mui/material/Box";
@@ -51,7 +51,7 @@ const randomRole = () => {
 
 
 const Upload = () => {
-  const navigate= useNavigate();
+ 
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
@@ -60,9 +60,8 @@ const Upload = () => {
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllData,getReloadData} = actions;
-  const { testData } = store;
-  const navigateTo = useNavigate()
+  const { getAllData} = actions;
+
   useEffect(() => {
     // getAllRequetUser();
     getReloadData()
@@ -83,7 +82,6 @@ const Upload = () => {
     }    
   }, [store]);
   
-  const [show,setShow]=useState("")
   const [selectedFile, setSelectedFile] = useState(null);
 
 
@@ -100,7 +98,6 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
-    setShow("none")
   };
   // table
   const assetColumn=[
@@ -500,9 +497,9 @@ const Upload = () => {
 
   return (
     <>
-      <div style={{display:`${show}`}}>
+      <div>
         
-        <input type="file"  onChange={handleFileChange} />
+        <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
