@@ -20,6 +20,12 @@ const ChartPage=()=>{
     getReloadData()
   },[])
 
+  useEffect(()=>{
+    if(store?.excelData){
+      console.log(excelData,"excelData in store")
+    }
+  },[store])
+
   
 
   return(

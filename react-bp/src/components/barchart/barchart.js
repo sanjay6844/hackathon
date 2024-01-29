@@ -14,7 +14,7 @@ const Barchart = ({excelData})=>{
     console.log(excelData[0])
     // setDataset(excelData)
     if(excelData[0]===undefined){
-      return
+      return 
     }
     console.log(excelData[0]["Sales&Profit"],"inside data")
     setBarData(excelData[0]["Sales&Profit"])
@@ -23,7 +23,7 @@ const Barchart = ({excelData})=>{
   const chartSetting = {
     yAxis: [
       {
-        label: "rainfall (mm)",
+        label: "",
       },
     ],
     width: 600,
@@ -34,17 +34,16 @@ const Barchart = ({excelData})=>{
       },
     },
   };
-  const valueFormatter = (value) => `${value}mm`;
+  const valueFormatter = (value) => `${value}Rs`;
   return(
 
     barData!==null&&barData!==undefined&&<BarChart
       dataset={barData}
-      xAxis={[{ scaleType: "band", dataKey: "Product Name" }]}
+      xAxis={[{ scaleType: "band", dataKey: "Product Name",label:"Product Name" }]}
       series={[
         { dataKey: "Sales Amount", label: "Sales Amount", valueFormatter },
         { dataKey: "Cost", label: "Cost", valueFormatter },
         { dataKey: "P/L", label: "P/L", valueFormatter },
-
       ]}
       {...chartSetting}
     />

@@ -27,6 +27,7 @@ const Upload = () => {
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
   console.log(assets,"assets in use sate")
+  
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
@@ -35,13 +36,14 @@ const Upload = () => {
   const navigateTo = useNavigate()
   useEffect(() => {
     // getAllRequetUser();
+    getReloadData()
   }, []);
   
 
 
   useEffect(() => {
     if(store?.excelData){
-      console.log()
+      console.log(store,"store")
       var uploadData = store?.excelData?.["0"]
       console.log(store.excelData[uploadData])
       var asset = uploadData?.["Asset_allocation"]
