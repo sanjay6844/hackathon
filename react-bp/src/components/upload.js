@@ -72,7 +72,6 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
-    navigateTo("/chart")
   };
   // table
   const assetColumn=[
