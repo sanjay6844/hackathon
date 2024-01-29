@@ -18,7 +18,7 @@ const Piechart=({excelData})=>{
     // setDataset(excelData)
     // console.log(excelData[0].Asset_allocation,"inside data")
     // console.log("format",excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
-    setPieData(excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:10,label:data.Companies})}))
+    setPieData(excelData[0].Asset_allocation.map((data,key)=>{return({id:key,value:data["Shares ( % )"],label:data.Companies})}))
     ,[store]})
 
   // useEffect(()=>{Shares ( % )

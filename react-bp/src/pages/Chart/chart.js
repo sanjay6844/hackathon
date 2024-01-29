@@ -20,9 +20,6 @@ const ChartPage=()=>{
     getReloadData()
   },[])
 
-  useEffect(()=>{
-  },[store])
-
   return(
     <div className="charts">
       <div className="piechart">
