@@ -1,9 +1,9 @@
-import React,{useContext, useEffect,useState} from "react";
+import React,{useContext, useEffect} from "react";
 import "./chart.css"
 import RefContext from "Utilities/refContext";
 import Piechart from "../../components/piechart/piechart";
 import Barchart from "../../components/barchart/barchart";
-import { Cookies, useCookies } from "react-cookie";
+import {  useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 const ChartPage=()=>{
@@ -11,7 +11,7 @@ const ChartPage=()=>{
   const { store,actions } = ctx;
   const { excelData } = store;
   const { getReloadData} = actions;
-  const [cookies,setCookies] = useCookies(["user"])
+  const [cookies] = useCookies(["user"])
   const navigateTo = useNavigate()
   useEffect(()=>{
     if(!cookies.user){

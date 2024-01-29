@@ -21,7 +21,7 @@ const Piechart=({excelData})=>{
       return
     }
     setPieData(excelData[0].Asset_allocation)
-    ,[]})
+    ,[store]})
   // useEffect(()=>{
   //   if(pieData.Object.keys==="Shares ( % )")
   //     setSample("Share")
@@ -53,6 +53,8 @@ const Piechart=({excelData})=>{
           outerRadius: 200,
           paddingAngle: 0,
           cornerRadius: 0,
+          cx: 300,
+          cy: 195,
         },
       ]}
       height={400}

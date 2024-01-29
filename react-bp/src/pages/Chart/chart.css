@@ -11,7 +11,6 @@
     justify-content: center;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
-    overflow-y: scroll;
     align-content: center;
 }
 
@@ -52,7 +51,7 @@
 .plots{
     width: 50%;
     background-color: white;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-radius: 20px;
     display: flex;
     padding: 36px 10px;
@@ -60,8 +59,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
 }
+
+.plots > div > svg > g {
+    cursor: pointer;
+}
+
 .hover {
     --b: 0.1em;   /* the thickness of the line */
     --c: #615d6e; /* the color */
@@ -121,7 +124,7 @@
 	.plots {
 		width: 50%;
 		background-color: white;
-		cursor: pointer;
+		/* cursor: pointer; */
 		border-radius: 20px;
 		height: fit-content;
 		display: flex;
@@ -190,7 +193,7 @@
 	.plots {
         width: 100%;
         background-color: white;
-        cursor: pointer;
+        /* cursor: pointer; */
         border-radius: 20px;
         /* display: flex; */
         padding: 15px 0px;
@@ -265,7 +268,7 @@
     .plots{
         width: 50%;
         background-color: white;
-        cursor: pointer;
+        /* cursor: pointer; */
         height: 100%;
         border-radius: 20px;
         display: flex;
@@ -293,4 +296,8 @@
         --_p: 100%;
         --_s: .3s;
       }
+    }
+
+    .plots > div > svg > g {
+        cursor: pointer;
     }

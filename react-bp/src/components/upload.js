@@ -1,7 +1,6 @@
 
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
-import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Paper from "@mui/material/Paper";
@@ -20,7 +19,7 @@ import "./upload.css"
 
 
 const Upload = () => {
-  const navigate= useNavigate();
+ 
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
@@ -28,9 +27,8 @@ const Upload = () => {
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllData,getReloadData} = actions;
-  const { testData } = store;
-  const navigateTo = useNavigate()
+  const { getAllData} = actions;
+
   useEffect(() => {
     // getAllRequetUser();
   }, []);
