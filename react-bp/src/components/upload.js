@@ -60,7 +60,8 @@ const Upload = () => {
 
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllData} = actions;
+  const { getAllData,getReloadData} = actions;
+  const [show,setShow] = useState(true)
 
   useEffect(() => {
     // getAllRequetUser();
@@ -98,6 +99,7 @@ const Upload = () => {
     formData.append("file", file);
     console.log(formData,"excel data");
     getAllData(formData);
+    setShow(false)
   };
   // table
   const assetColumn=[
@@ -497,14 +499,14 @@ const Upload = () => {
 
   return (
     <>
+      {show&&
       <div>
-        
         <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
         </Button>
-      </div>
+      </div>}
       <div>
         <Box
           sx={{
