@@ -17,6 +17,15 @@
       "confirmPassword": "as12AS!@",
       "dob": "2023-12-30T18:30:00.000Z",
       "id": 2
+    },
+    {
+      "name": "sam",
+      "email": "sam@gmail.com",
+      "contactNumber": "0987654321",
+      "password": "AS!@as12",
+      "confirmPassword": "AS!@as12",
+      "dob": "2011-12-11T18:30:00.000Z",
+      "id": 3
     }
   ],
   "excelData": [
