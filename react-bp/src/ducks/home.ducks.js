@@ -59,6 +59,18 @@ const getAllRequetUser = () => (dispatch) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
 };
+const updateToStore = (data) => (dispatch) => {
+  axios.put("http://localhost:3000/excelData/1", data)
+    .then(response => {
+      console.log(response.data,"responese data today demo");
+      dispatch(assignToDashboardStore("excelData", response?.data[0]));
+      console.log("after ")
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
 const getReloadData = () => (dispatch) => {
   return nw
     .api("get_excelData")
@@ -187,8 +199,9 @@ export default {
     getAllData,
     fetchLoginData,
     postData,
+    postExcelData,
     getReloadData,
-    postExcelData
+    updateToStore
     
   },
 };
