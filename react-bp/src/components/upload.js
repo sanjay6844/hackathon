@@ -534,7 +534,7 @@ const Upload = () => {
         </Button>
       </div>}
       
-      {true && (
+      {salesProfit && (
         <>
       
           <div>
