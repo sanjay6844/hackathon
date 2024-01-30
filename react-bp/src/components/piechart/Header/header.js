@@ -58,7 +58,7 @@ const Header=()=>{
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
           variant="contained"
-          sx={{color:"#615d6e",backgroundColor:"white"}}
+          sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}
         >
         Dashboard
         </Button>
@@ -75,7 +75,7 @@ const Header=()=>{
           <MenuItem onClick={back}>Home</MenuItem>
           <MenuItem onClick={next}>Chart</MenuItem>
         </Menu>
-        <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white"}}>Logout</Button>
+        <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
       </div>
     </div>
   )
