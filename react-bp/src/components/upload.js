@@ -440,8 +440,6 @@ const Upload = () => {
       editable: true,
     },
     
-    
-
     {
       field: "actions",
       type: "actions",
@@ -519,7 +517,6 @@ const Upload = () => {
       setShow(true)
     }
   },[assets])
-
 
   return (
     <>
