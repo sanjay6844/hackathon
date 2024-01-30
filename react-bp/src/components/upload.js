@@ -72,7 +72,7 @@ const Upload = () => {
   useEffect(() => {
     if(store!==undefined&&store?.excelData){
       console.log(store,"store")
-      var uploadData = store?.excelData?.["0"]
+      // var uploadData = store?.excelData?.["0"]
       // console.log(store.excelData[uploadData])
       // var asset = uploadData?.["Asset_allocation"]
       // var sp = uploadData?.["Sales&Profit"]
