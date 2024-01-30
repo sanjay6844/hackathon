@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep } from "lodash";
@@ -42,22 +43,31 @@ const randomRole = () => {
 
 
 const Upload = () => {
+
+  const [excelData,setExcelData]=useState([]);
  
-  const [salesProfit,setSalesProfit]=useState("");
-  console.log(salesProfit,"sales profit use state value")
+  // console.log(salesProfit,"sales profit use state value")
   const [assets,setAssets]=useState("");
   console.log(assets,"assets in use sate")
   
-
+  
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { getAllData,getReloadData} = actions;
-  const [show,setShow] = useState(true)
+  const { getAllData,getReloadData,updateToStore} = actions;
+  const { testData } = store;
+  const [salesProfit,setSalesProfit]=useState("");
 
   useEffect(() => {
     // getAllRequetUser();
+    console.log("reload")
     getReloadData()
-  }, []);
+    if(salesProfit===""){
+      setShow(true)
+    }
+    else{
+      setShow(false)
+    }
+  },[]);
   
   // useEffect(()=>{
   //   if(store.excelData){
@@ -67,21 +77,34 @@ const Upload = () => {
   //     setShow(true)
   //   }
   // },[])
-
+  
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
+    console.log("inside store effect")
     if(store!==undefined&&store?.excelData){
       console.log(store,"store")
       // var uploadData = store?.excelData?.["0"]
       // console.log(store.excelData[uploadData])
       // var asset = uploadData?.["Asset_allocation"]
       // var sp = uploadData?.["Sales&Profit"]
-      console.log(store.excelData)
-      setSalesProfit(store?.excelData["Sales&Profit"]);
-      setAssets(store?.excelData["Asset_allocation"]);
+      console.log(store.excelData[0])
+      if(store.excelData[0]!==undefined&&Array.isArray(store.excelData)){
+        setSalesProfit(store?.excelData[0]["Sales&Profit"]);
+        setAssets(store?.excelData[0]["Asset_allocation"]);
+      }
+      if(store.excelData!==undefined&&!Array.isArray(store.excelData)){
+        setSalesProfit(store?.excelData["Sales&Profit"]);
+        setAssets(store?.excelData["Asset_allocation"]);
+      }
+      
       // console.log(sp, "store values in update page");
-    }    
-  }, [store]);
+    } 
+  },[store]);
+
+  useEffect(()=>{
+    console.log(store.excelData,"profit")
+  },[])
   
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -100,7 +123,9 @@ const Upload = () => {
     console.log(formData,"excel data");
     getAllData(formData);
     setShow(false)
+    console.log(salesProfit,"inside click")
   };
+
   // table
   const assetColumn=[
     {
@@ -141,10 +166,6 @@ const Upload = () => {
     },
 
   ];
-  
-  
-  
-
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -173,7 +194,6 @@ const Upload = () => {
     )
     setInitialRows(salesProfitWithId)
 
-
     const AssetsWithId= (assets || [])?.map((row)=>{
       return {
         id:randomId(),
@@ -185,7 +205,7 @@ const Upload = () => {
     )
     setInitialRowsOfAssets(AssetsWithId)
     
-  }, [salesProfit,assets,show]);
+  }, [salesProfit,assets]);
   
 
   //const initialRows = salesProfit;
@@ -266,7 +286,6 @@ const Upload = () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
   const handleEditClickOfAsset = (id) => () => {
-    
     setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
@@ -305,7 +324,7 @@ const Upload = () => {
 
     const editedRow = assetrows.find((row) => row.id === id);
     if (editedRow.isNew) {
-      setAssetRows(rows.filter((row) => row.id !== id));
+      setAssetRows(assetrows.filter((row) => row.id !== id));
     }
   };
   
@@ -433,6 +452,7 @@ const Upload = () => {
       headerName: "Shares ( % )",
       width: 280,
       align: "left",
+      
       headerAlign: "left",
       editable: true,
     },
@@ -489,6 +509,23 @@ const Upload = () => {
   ];
 
 
+  useEffect(() => {
+    if(rows.length>0 && assetrows.length>0)
+    {
+      const tempdata=
+        {
+          "Sales&Profit":rows,
+          "Asset_allocation":assetrows
+        }
+      
+      setExcelData(tempdata);
+      updateToStore(tempdata)
+    }
+    
+
+  }, [rows,assetrows]);
+
+
   
   
   
@@ -511,6 +548,7 @@ const Upload = () => {
 
         </Button>
       </div>}
+      
       <div>
         <div className="title">Sales&Profit</div>
         <Box
@@ -573,6 +611,8 @@ const Upload = () => {
           />
         </Box>
       </div>
+        
+      
       
     </>);
   //enable this if need to use DB json
