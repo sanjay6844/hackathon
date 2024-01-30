@@ -42,6 +42,12 @@ const randomRole = () => {
 };
 
 const Upload = () => {
+
+
+
+
+
+
   const [excelData,setExcelData]=useState([]);
  
   const [salesProfit,setSalesProfit]=useState("");
@@ -60,7 +66,19 @@ const Upload = () => {
   }, []);
   
   
-
+  // useEffect(() => {
+  //   if(store!==undefined&&store?.excelData){
+  //     console.log(store,"store")
+  //     // var uploadData = store?.excelData?.["0"]
+  //     // console.log(store.excelData[uploadData])
+  //     // var asset = uploadData?.["Asset_allocation"]
+  //     // var sp = uploadData?.["Sales&Profit"]
+  //     console.log(store.excelData)
+  //     setSalesProfit(store?.excelData["Sales&Profit"]);
+  //     setAssets(store?.excelData["Asset_allocation"]);
+  //     // console.log(sp, "store values in update page");
+  //   }    
+  // }, [store]);
 
   useEffect(() => {
     if(store?.excelData){
@@ -197,7 +215,7 @@ const Upload = () => {
       setRows((oldRows) => [...oldRows, { id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true }]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Product ID" },
       }));
     };
 
@@ -217,7 +235,7 @@ const Upload = () => {
       setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
       setAssetRowModesModel((oldModel) => ({
         ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
       }));
     };
 
@@ -262,21 +280,21 @@ const Upload = () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
   const handleEditClickOfAsset = (id) => () => {
-    setRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
+    setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
   const handleSaveClick = (id) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
   const handleSaveClickOfAsset = (id) => () => {
-    setRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
+    setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
   const handleDeleteClick = (id) => () => {
     setRows(rows.filter((row) => row.id !== id));
   };
   const handleDeleteClickOfAsset = (id) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+    setAssetRows(assetrows.filter((row) => row.id !== id));
   };
   
 
@@ -298,9 +316,9 @@ const Upload = () => {
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
     });
 
-    const editedRow = rows.find((row) => row.id === id);
+    const editedRow = assetrows.find((row) => row.id === id);
     if (editedRow.isNew) {
-      setAssetRows(rows.filter((row) => row.id !== id));
+      setAssetRows(assetrows.filter((row) => row.id !== id));
     }
   };
   
@@ -313,7 +331,7 @@ const Upload = () => {
   };
   const processRowUpdateOfAsset = (newRow) => {
     const updatedRow = { ...newRow, isNew: false };
-    setAssetRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    setAssetRows(assetrows.map((row) => (row.id === newRow.id ? updatedRow : row)));
     return updatedRow;
   };
 
@@ -419,7 +437,7 @@ const Upload = () => {
   const columns2 = [
     { field: "Companies",
       headerName: "Companies", 
-      type: "number",width: 180,
+      width: 180,
       align: "left",     
       headerAlign: "left",
       editable: true },
@@ -453,7 +471,7 @@ const Upload = () => {
               sx={{
                 color: "primary.main",
               }}
-              onClick={handleEditClickOfAsset(id)}
+              onClick={handleSaveClickOfAsset(id)}
             />,
             <GridActionsCellItem
               icon={<CancelIcon />}
@@ -488,14 +506,14 @@ const Upload = () => {
   useEffect(() => {
     if(rows.length>0 && assetrows.length>0)
     {
-      const tempdata=[
+      const tempdata=
         {
           "Sales&Profit":rows,
           "Asset_allocation":assetrows
         }
-      ]
+      
       setExcelData(tempdata);
-      //updateToStore(excelData)
+      updateToStore(tempdata)
     }
     
 
