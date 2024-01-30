@@ -26,8 +26,6 @@ const ChartPage=()=>{
     }
   },[store])
 
-  
-
   return(
 
     <div className="charts">
