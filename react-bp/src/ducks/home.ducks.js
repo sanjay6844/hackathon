@@ -2,6 +2,8 @@ import cloneDeep from "lodash/cloneDeep";
 import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 const namespace = "dashboard";
 const createAction = setNamespace(namespace);
@@ -109,6 +111,7 @@ const getAllData = (data) => (dispatch) => {
       // });
 
       console.log("after ")
+      toast.success("File uploaded successfully");
 
     })
     .catch(error => {

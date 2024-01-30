@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
@@ -68,11 +71,7 @@ const Upload = () => {
   
   // useEffect(() => {
   //   if(store!==undefined&&store?.excelData){
-  //     console.log(store,"store")
-  //     // var uploadData = store?.excelData?.["0"]
-  //     // console.log(store.excelData[uploadData])
-  //     // var asset = uploadData?.["Asset_allocation"]
-  //     // var sp = uploadData?.["Sales&Profit"]
+  //    
   //     console.log(store.excelData)
   //     setSalesProfit(store?.excelData["Sales&Profit"]);
   //     setAssets(store?.excelData["Asset_allocation"]);
@@ -81,15 +80,14 @@ const Upload = () => {
   // }, [store]);
 
   useEffect(() => {
-    if(store?.excelData){
-      console.log(store,"store")
+    console.log(store,"store val today demo")
+    if(store?.excelData?.["0"] ){
+      console.log("inside condition ")
       var uploadData = store?.excelData?.["0"]
-      console.log(store.excelData[uploadData])
       var asset = uploadData?.["Asset_allocation"]
       var sp = uploadData?.["Sales&Profit"]
       setSalesProfit(sp);
       setAssets(asset);
-      console.log(sp, "store values in update page");
     }
 
     console.log(store,"store values todayyyyyyyy")
@@ -533,82 +531,89 @@ const Upload = () => {
 
 
   return (
+    
+    
     <>
-      {show&&
+      <ToastContainer />
+
       <div>
         <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
         <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
         </Button>
-      </div>}
-      
-      <div>
-        <div className="title">Sales&Profit</div>
-        <Box
-          sx={{
-            height: 500,
-            width: "100%",
-            "& .actions": {
-              color: "text.secondary",
-            },
-            "& .textPrimary": {
-              color: "text.primary",
-            },
-          }}
-        >
-          <DataGrid
-            rows={rows}
-            columns={columns1}
-            editMode="row"
-            rowModesModel={rowModesModel}
-            onRowModesModelChange={handleRowModesModelChange}
-            onRowEditStop={handleRowEditStop}
-            processRowUpdate={processRowUpdate}
-            slots={{
-              toolbar: EditToolbar,
-            }}
-            slotProps={{
-              toolbar: { setRows, setRowModesModel },
-            }}
-          />
-        </Box>
       </div>
-      <div>
-        <div className="title">Asset Allocation</div>
-        <Box
-          sx={{
-            height: 500,
-            width: "100%",
-            "& .actions": {
-              color: "text.secondary",
-            },
-            "& .textPrimary": {
-              color: "text.primary",
-            },
-          }}
-        >
-          <DataGrid
-            rows={assetrows}
-            columns={columns2}
-            editMode="row"
-            rowModesModel={assetrowModesModel}
-            onRowModesModelChange={handleRowModesModelChangeOfAsset}
-            onRowEditStop={handleRowEditStopOfAsset}
-            processRowUpdate={processRowUpdateOfAsset}
-            slots={{
-              toolbar: assetEditToolbar,
-            }}
-            slotProps={{
-              toolbar: { setAssetRows, setAssetRowModesModel },
-            }}
-          />
-        </Box>
-      </div>
-        
       
+      {true && (
+        <>
       
-    </>);
+          <div>
+            <div className="title">Sales&Profit</div>
+            <Box
+              sx={{
+                height: 500,
+                width: "100%",
+                "& .actions": {
+                  color: "text.secondary",
+                },
+                "& .textPrimary": {
+                  color: "text.primary",
+                },
+              }}
+            >
+              <DataGrid
+                rows={rows}
+                columns={columns1}
+                editMode="row"
+                rowModesModel={rowModesModel}
+                onRowModesModelChange={handleRowModesModelChange}
+                onRowEditStop={handleRowEditStop}
+                processRowUpdate={processRowUpdate}
+                slots={{
+                  toolbar: EditToolbar,
+                }}
+                slotProps={{
+                  toolbar: { setRows, setRowModesModel },
+                }}
+              />
+            </Box>
+          </div>
+          <div>
+            <div className="title">Asset Allocation</div>
+            <Box
+              sx={{
+                height: 500,
+                width: "100%",
+                "& .actions": {
+                  color: "text.secondary",
+                },
+                "& .textPrimary": {
+                  color: "text.primary",
+                },
+              }}
+            >
+              <DataGrid
+                rows={assetrows}
+                columns={columns2}
+                editMode="row"
+                rowModesModel={assetrowModesModel}
+                onRowModesModelChange={handleRowModesModelChangeOfAsset}
+                onRowEditStop={handleRowEditStopOfAsset}
+                processRowUpdate={processRowUpdateOfAsset}
+                slots={{
+                  toolbar: assetEditToolbar,
+                }}
+                slotProps={{
+                  toolbar: { setAssetRows, setAssetRowModesModel },
+                }}
+              />
+            </Box>
+          </div>
+        </> )
+      }
+    </>
+    
+  );
   //enable this if need to use DB json
   // <div>
   //     {testData && testData.map((dataValue, index) => {
