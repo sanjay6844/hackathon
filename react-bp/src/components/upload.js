@@ -40,6 +40,7 @@ const randomRole = () => {
   return randomArrayItem(roles);
 };
 
+
 const Upload = () => {
  
   const [salesProfit,setSalesProfit]=useState("");
@@ -58,18 +59,27 @@ const Upload = () => {
     getReloadData()
   }, []);
   
+  // useEffect(()=>{
+  //   if(store.excelData){
+  //     setShow(false)
+  //   }
+  //   else{
+  //     setShow(true)
+  //   }
+  // },[])
 
 
   useEffect(() => {
-    if(store?.excelData){
+    if(store!==undefined&&store?.excelData){
       console.log(store,"store")
       var uploadData = store?.excelData?.["0"]
-      console.log(store.excelData[uploadData])
-      var asset = uploadData?.["Asset_allocation"]
-      var sp = uploadData?.["Sales&Profit"]
-      setSalesProfit(sp);
-      setAssets(asset);
-      console.log(sp, "store values in update page");
+      // console.log(store.excelData[uploadData])
+      // var asset = uploadData?.["Asset_allocation"]
+      // var sp = uploadData?.["Sales&Profit"]
+      console.log(store.excelData)
+      setSalesProfit(store?.excelData["Sales&Profit"]);
+      setAssets(store?.excelData["Asset_allocation"]);
+      // console.log(sp, "store values in update page");
     }    
   }, [store]);
   
@@ -182,7 +192,6 @@ const Upload = () => {
 
   function EditToolbar(props) {
     const { setRows, setRowModesModel } = props;
-
     const handleClick = () => {
       const id = randomId();
       setRows((oldRows) => [...oldRows, { id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true }]);
@@ -231,6 +240,10 @@ const Upload = () => {
   const [assetrows, setAssetRows] = React.useState(initialRowsOfAssets);
   const [assetrowModesModel, setAssetRowModesModel] = React.useState({});
 
+
+  useEffect(()=>{
+    console.log("rows",rows)
+  },[])
 
   useEffect(() => {
     setRows(initialRows);
@@ -530,7 +543,7 @@ const Upload = () => {
         </Box>
       </div>
       <div>
-      <div className="title">Asset Allocation</div>
+        <div className="title">Asset Allocation</div>
         <Box
           sx={{
             height: 500,
