@@ -48,7 +48,7 @@ const Upload = () => {
 
 
 
-  const [excelData,setExcelData]=useState([]);
+  // const [excelData,setExcelData]=useState([]);
  
   const [salesProfit,setSalesProfit]=useState("");
   console.log(salesProfit,"sales profit use state value")
@@ -59,48 +59,42 @@ const Upload = () => {
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
   const { getAllData,getReloadData,updateToStore} = actions;
-  const { testData } = store;
+  const { testData ,excelData} = store;
   useEffect(() => {
     // getAllRequetUser();
     getReloadData()
   }, []);
-  
-  
-  // useEffect(() => {
-  //   if(store!==undefined&&store?.excelData){
-  //     console.log(store,"store")
-  //     // var uploadData = store?.excelData?.["0"]
-  //     // console.log(store.excelData[uploadData])
-  //     // var asset = uploadData?.["Asset_allocation"]
-  //     // var sp = uploadData?.["Sales&Profit"]
-  //     console.log(store.excelData)
-  //     setSalesProfit(store?.excelData["Sales&Profit"]);
-  //     setAssets(store?.excelData["Asset_allocation"]);
-  //     // console.log(sp, "store values in update page");
-  //   }    
-  // }, [store]);
 
   useEffect(() => {
-    if(store?.excelData){
-      console.log(store,"store")
-      var uploadData = store?.excelData?.["0"]
-      console.log(store.excelData[uploadData])
-      var asset = uploadData?.["Asset_allocation"]
-      var sp = uploadData?.["Sales&Profit"]
-      setSalesProfit(sp);
-      setAssets(asset);
-      console.log(sp, "store values in update page");
-    }
+    console.log(excelData,"excelData store")
+  },[excelData])
 
-    console.log(store,"store values todayyyyyyyy")
-    
-
-    
-  }, [store]);
   
+
+
+  useEffect(() => {
+    console.log("inside store effect")
+    if(store!==undefined&&store?.excelData){
+      console.log(store,"store")
+      // var uploadData = store?.excelData?.["0"]
+      // console.log(store.excelData[uploadData])
+      // var asset = uploadData?.["Asset_allocation"]
+      // var sp = uploadData?.["Sales&Profit"]
+      console.log(store.excelData[0])
+      if(store.excelData[0]!==undefined&&Array.isArray(store.excelData)){
+        setSalesProfit(store?.excelData[0]["Sales&Profit"]);
+        setAssets(store?.excelData[0]["Asset_allocation"]);
+      }
+      if(store.excelData!==undefined&&!Array.isArray(store.excelData)){
+        setSalesProfit(store?.excelData["Sales&Profit"]);
+        setAssets(store?.excelData["Asset_allocation"]);
+      }
+      
+      // console.log(sp, "store values in update page");
+    } 
+  },[store]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [show, setShow] = useState(true);
-
 
 
   const handleFileChange = async (event) => {
@@ -118,47 +112,6 @@ const Upload = () => {
     getAllData(formData);
     setShow(false)
   };
-  // table
-  const assetColumn=[
-    {
-      id:"Companies",
-      label:"Companies"
-    },
-    {
-      id:"Shares ( % )",
-      label:"Shares ( % )"
-    }
-  ]
-  const columns = [
-    { id: "Product ID", label: "Product ID", minWidth: 170 },
-    {
-      id: "Product Name",
-      label: "Product Name",
-      minWidth: 170,
-      align: "right",
-      format: (value) => value.toLocaleString("en-US"),
-    },
-    {
-      id: "Sales Amount",
-      label: "Sales Amount",
-      minWidth: 170,
-      align: "right",
-      format: (value) => value.toFixed(2),
-
-    },
-    {
-      id: "Cost",
-      label: "Cost",
-      minWidth: 170,
-      align: "right",
-      format: (value) => value.toFixed(2),
-    },
-    { id: "P/L", label: "P/L", minWidth: 100 ,
-      format: (value) => value.toFixed(2),
-    },
-
-  ];
-  
   
   
 
@@ -202,7 +155,7 @@ const Upload = () => {
     )
     setInitialRowsOfAssets(AssetsWithId)
     
-  }, [salesProfit,assets]);
+  }, [salesProfit,assets,show]);
   
 
   //const initialRows = salesProfit;
@@ -512,7 +465,7 @@ const Upload = () => {
           "Asset_allocation":assetrows
         }
       
-      setExcelData(tempdata);
+      // setExcelData(tempdata);
       updateToStore(tempdata)
     }
     
@@ -522,14 +475,14 @@ const Upload = () => {
 
   
   
-  
-
- 
-  
-
-
-  
-
+  useEffect(()=>{
+    if(assets){
+      setShow(false)
+    }
+    else{
+      setShow(true)
+    }
+  },[assets])
 
 
   return (
@@ -537,7 +490,7 @@ const Upload = () => {
       {show&&
       <div>
         <input type="file" style={{cursor: "pointer"}} onChange={handleFileChange} />
-        <Button component="label" variant="contained"  onClick={handleUpload} startIcon={<CloudUploadIcon />}>
+        <Button component="label" variant="contained" disabled={!selectedFile} onClick={handleUpload} startIcon={<CloudUploadIcon />}>
       Upload file
 
         </Button>
