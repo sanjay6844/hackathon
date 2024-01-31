@@ -20,6 +20,9 @@ const ChartPage=()=>{
     getReloadData()
   },[])
 
+  const know=()=>{
+    navigateTo("/piechart")
+  }
   useEffect(()=>{
     if(store?.excelData){
       console.log(excelData,"excelData in store")
@@ -30,16 +33,15 @@ const ChartPage=()=>{
 
     <div className="charts">
       <div className="piechart">
-        <div className="hover">Pie chart</div>
+        <div className="hover">Asset Allocation</div>
         <div className="plots">
-          <div>Asset Allocation</div>
-          {(excelData!==null&&excelData!==undefined)&&<Piechart  excelData={excelData} />}
+          <div>{(excelData!==null&&excelData!==undefined)&&<Piechart  excelData={excelData} />}</div>
+          <div><button onClick={know}>know more</button></div>
         </div>
       </div>
       <div className="barchart">
-        <div className="hover">Bar chart</div>
+        <div className="hover">Profit&Sales</div>
         <div className="plots">
-          <div>Profit&Sales</div>
           {(excelData!==null&&excelData!==undefined)&&<Barchart  excelData={excelData} />}
         </div>
       </div>
