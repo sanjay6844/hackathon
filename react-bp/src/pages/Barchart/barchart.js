@@ -1,12 +1,11 @@
 import React,{useContext, useEffect} from "react";
-import "./chart.css"
 import RefContext from "Utilities/refContext";
-import Piechart from "../../components/piechart/piechart";
 import Barchart from "../../components/barchart/barchart";
 import {  useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import "./barchart.css"
 
-const ChartPage=()=>{
+const BarChartPage=()=>{
   const ctx = useContext(RefContext);
   const { store,actions } = ctx;
   const { excelData } = store;
@@ -20,9 +19,6 @@ const ChartPage=()=>{
     getReloadData()
   },[])
 
-  const know=()=>{
-    navigateTo("/piechart")
-  }
   useEffect(()=>{
     if(store?.excelData){
       console.log(excelData,"excelData in store")
@@ -30,22 +26,15 @@ const ChartPage=()=>{
   },[store])
 
   return(
-
-    <div className="charts">
-      <div className="piechart">
-        <div className="hover">Asset Allocation</div>
-        <div className="plots">
-          <div>{(excelData!==null&&excelData!==undefined)&&<Piechart  excelData={excelData} />}</div>
-          <div><button onClick={know}>know more</button></div>
-        </div>
-      </div>
+    <div className="chart">
       <div className="barchart">
-        <div className="hover">Profit&Sales</div>
-        <div className="plots">
+        {/* <div className="hover">Bar chart</div> */}
+        <div className="bar-plot">
+          <div className="barchart-title">Profit & Sales</div>
           {(excelData!==null&&excelData!==undefined)&&<Barchart  excelData={excelData} />}
         </div>
       </div>
     </div>
   )
 }
-export default ChartPage;
+export default BarChartPage;

@@ -504,8 +504,6 @@ const Upload = () => {
       editable: true,
     },
     
-    
-
     {
       headerClassName: "super-app-theme--header",
 
@@ -656,88 +654,89 @@ const Upload = () => {
         </Button>
       </div>}
       
-      {salesProfit && (
-        <>
+      {salesProfit &&
+       (
+         <>
       
-          <div>
-            <div className="title">Sales&Profit</div>
-            <Box
-              sx={{
-                height: 500,
-                width: "100%",
-                "& .actions": {
-                  color: "text.secondary",
-                },
-                "& .textPrimary": {
-                  color: "text.primary",
-                },
-                backgroundColor:"white",
-                "& .super-app-theme--header": {
-                  //backgroundColor: "#e5e5e5",
-                  fontSize:20
+           <div>
+             <div className="title">Sales&Profit</div>
+             <Box
+               sx={{
+                 height: 500,
+                 width: "100%",
+                 "& .actions": {
+                   color: "text.secondary",
+                 },
+                 "& .textPrimary": {
+                   color: "text.primary",
+                 },
+                 backgroundColor:"white",
+                 "& .super-app-theme--header": {
+                   //backgroundColor: "#e5e5e5",
+                   fontSize:20
 
-                },
+                 },
                 
-              }}
-            >
-              <DataGrid
-                rows={rows}
-                columns={columns1}
-                editMode="row"
-                rowModesModel={rowModesModel}
-                onRowModesModelChange={handleRowModesModelChange}
-                onRowEditStop={handleRowEditStop}
-                processRowUpdate={processRowUpdate}
-                slots={{
-                  toolbar: CustomToolbar,
-                }
-                }
+               }}
+             >
+               <DataGrid
+                 rows={rows}
+                 columns={columns1}
+                 editMode="row"
+                 rowModesModel={rowModesModel}
+                 onRowModesModelChange={handleRowModesModelChange}
+                 onRowEditStop={handleRowEditStop}
+                 processRowUpdate={processRowUpdate}
+                 slots={{
+                   toolbar: CustomToolbar,
+                 }
+                 }
                 
-                slotProps={{
-                  toolbar: { setRows, setRowModesModel },
-                }}
-              />
-            </Box>
-          </div>
-          <div>
-            <div className="title">Asset Allocation</div>
-            <Box
-              sx={{
-                height: 500,
-                width: "100%",
-                "& .actions": {
-                  color: "text.secondary",
-                },
-                "& .textPrimary": {
-                  color: "text.primary",
-                },
+                 slotProps={{
+                   toolbar: { setRows, setRowModesModel },
+                 }}
+               />
+             </Box>
+           </div>
+           <div>
+             <div className="title">Asset Allocation</div>
+             <Box
+               sx={{
+                 height: 500,
+                 width: "100%",
+                 "& .actions": {
+                   color: "text.secondary",
+                 },
+                 "& .textPrimary": {
+                   color: "text.primary",
+                 },
 
-                backgroundColor:"white",
-                "& .super-app-theme--header": {
-                  fontSize:20
+                 backgroundColor:"white",
+                 "& .super-app-theme--header": {
+                   fontSize:20
 
-                },
+                 },
 
-              }}
-            >
-              <DataGrid
-                rows={assetrows}
-                columns={columns2}
-                editMode="row"
-                rowModesModel={assetrowModesModel}
-                onRowModesModelChange={handleRowModesModelChangeOfAsset}
-                onRowEditStop={handleRowEditStopOfAsset}
-                processRowUpdate={processRowUpdateOfAsset}
-                slots={{
-                  toolbar: assetCustomToolbar,
-                }}
-                slotProps={{
-                  toolbar: { setAssetRows, setAssetRowModesModel },
-                }}
-              />
-            </Box>
-          </div>
-        </> )
+               }}
+             >
+               <DataGrid
+                 rows={assetrows}
+                 columns={columns2}
+                 editMode="row"
+                 rowModesModel={assetrowModesModel}
+                 onRowModesModelChange={handleRowModesModelChangeOfAsset}
+                 onRowEditStop={handleRowEditStopOfAsset}
+                 processRowUpdate={processRowUpdateOfAsset}
+                 slots={{
+                   toolbar: assetCustomToolbar,
+                 }}
+                 slotProps={{
+                   toolbar: { setAssetRows, setAssetRowModesModel },
+                 }}
+               />
+             </Box>
+           </div>
+         </> )
       }
     </>
     

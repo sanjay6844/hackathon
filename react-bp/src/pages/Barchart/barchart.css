@@ -1,0 +1,17 @@
+.bar-plot{
+  width: 100%;
+}
+
+.barchart-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center{
+  position: static !important;
+}
+.bar-chart{
+  display: flex;
+  justify-content: center;
+}

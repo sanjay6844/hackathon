@@ -18,12 +18,16 @@ const Header=()=>{
     navigate("/signin")
   }
   const next =()=>{
-    navigate("/chart")
+    navigate("/piechart")
     setAnchorEl(null);
   }
   const back = ()=>{
     navigate("/home")
     setAnchorEl(null);
+  }
+  const profitLoss = ()=>{
+    navigate("/barchart")
+    setAnchorEl(null)
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -51,31 +55,16 @@ const Header=()=>{
             {<div onClick={logout} >Logout</div>}
           </div>
         } */}
-        <Button
-          id="fade-button"
-          aria-controls={open ? "fade-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-          variant="contained"
-          sx={{color:"#615d6e",backgroundColor:"white"}}
-        >
-        Dashboard
-        </Button>
-        <Menu
-          id="fade-menu"
-          MenuListProps={{
-            "aria-labelledby": "fade-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          TransitionComponent={Fade}
-        >
-          <MenuItem onClick={back}>Home</MenuItem>
-          <MenuItem onClick={next}>Chart</MenuItem>
-        </Menu>
-        <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white"}}>Logout</Button>
+        {window.location.pathname==="/home" && 
+          <><Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button>
+            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Profit & Loss</Button></>}
+        {window.location.pathname==="/barchart" && 
+        <><Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
+          <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button></>}
+        {window.location.pathname==="/piechart" && 
+          <><Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
+            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Profit & Loss</Button></>}
+        <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
       </div>
     </div>
   )
