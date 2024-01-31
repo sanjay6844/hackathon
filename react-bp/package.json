@@ -23,7 +23,7 @@
 		"axios": "^1.6.2",
 		"connected-react-router": "^6.9.3",
 		"dayjs": "^1.11.10",
-		"devextreme-react": "21.2",
+		"devextreme-react": "^23.2.3",
 		"dompurify": "^3.0.6",
 		"dotenv-flow-webpack": "^2.0.0",
 		"highcharts-react-official": "^3.2.1",

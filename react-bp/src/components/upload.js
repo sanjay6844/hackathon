@@ -2,6 +2,8 @@
 /* eslint-disable react/jsx-key */
 
 import { ToastContainer, toast } from "react-toastify";
+
+import {  useNavigate } from "react-router-dom"
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep } from "lodash";
@@ -46,6 +48,7 @@ const randomRole = () => {
 
 
 const Upload = () => {
+  const navigate = useNavigate()
   const [show,setShow] = useState(true)
   // useEffect(() => {
   //   console.log("inside store effect")
@@ -507,7 +510,9 @@ const Upload = () => {
 
   }, [rows,assetrows]);
 
-
+  const pies=()=>{
+    navigate("/piechart")
+  }
   
   
   useEffect(()=>{
@@ -599,6 +604,7 @@ const Upload = () => {
               />
             </Box>
           </div>
+          <div><button onClick={pies} className="btn v2">View as</button></div>
         </> )
       }
     </>
