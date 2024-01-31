@@ -531,72 +531,73 @@ const Upload = () => {
         </Button>
       </div>}
       
-      {salesProfit && (
-        <>
+      {salesProfit &&
+       (
+         <>
       
-          <div>
-            <div className="title">Sales&Profit</div>
-            <Box
-              sx={{
-                height: 500,
-                width: "100%",
-                "& .actions": {
-                  color: "text.secondary",
-                },
-                "& .textPrimary": {
-                  color: "text.primary",
-                },
-              }}
-            >
-              <DataGrid
-                rows={rows}
-                columns={columns1}
-                editMode="row"
-                rowModesModel={rowModesModel}
-                onRowModesModelChange={handleRowModesModelChange}
-                onRowEditStop={handleRowEditStop}
-                processRowUpdate={processRowUpdate}
-                slots={{
-                  toolbar: EditToolbar,
-                }}
-                slotProps={{
-                  toolbar: { setRows, setRowModesModel },
-                }}
-              />
-            </Box>
-          </div>
-          <div>
-            <div className="title">Asset Allocation</div>
-            <Box
-              sx={{
-                height: 500,
-                width: "100%",
-                "& .actions": {
-                  color: "text.secondary",
-                },
-                "& .textPrimary": {
-                  color: "text.primary",
-                },
-              }}
-            >
-              <DataGrid
-                rows={assetrows}
-                columns={columns2}
-                editMode="row"
-                rowModesModel={assetrowModesModel}
-                onRowModesModelChange={handleRowModesModelChangeOfAsset}
-                onRowEditStop={handleRowEditStopOfAsset}
-                processRowUpdate={processRowUpdateOfAsset}
-                slots={{
-                  toolbar: assetEditToolbar,
-                }}
-                slotProps={{
-                  toolbar: { setAssetRows, setAssetRowModesModel },
-                }}
-              />
-            </Box>
-          </div>
-        </> )
+           <div>
+             <div className="title">Sales&Profit</div>
+             <Box
+               sx={{
+                 height: 500,
+                 width: "100%",
+                 "& .actions": {
+                   color: "text.secondary",
+                 },
+                 "& .textPrimary": {
+                   color: "text.primary",
+                 },
+               }}
+             >
+               <DataGrid
+                 rows={rows}
+                 columns={columns1}
+                 editMode="row"
+                 rowModesModel={rowModesModel}
+                 onRowModesModelChange={handleRowModesModelChange}
+                 onRowEditStop={handleRowEditStop}
+                 processRowUpdate={processRowUpdate}
+                 slots={{
+                   toolbar: EditToolbar,
+                 }}
+                 slotProps={{
+                   toolbar: { setRows, setRowModesModel },
+                 }}
+               />
+             </Box>
+           </div>
+           <div>
+             <div className="title">Asset Allocation</div>
+             <Box
+               sx={{
+                 height: 500,
+                 width: "100%",
+                 "& .actions": {
+                   color: "text.secondary",
+                 },
+                 "& .textPrimary": {
+                   color: "text.primary",
+                 },
+               }}
+             >
+               <DataGrid
+                 rows={assetrows}
+                 columns={columns2}
+                 editMode="row"
+                 rowModesModel={assetrowModesModel}
+                 onRowModesModelChange={handleRowModesModelChangeOfAsset}
+                 onRowEditStop={handleRowEditStopOfAsset}
+                 processRowUpdate={processRowUpdateOfAsset}
+                 slots={{
+                   toolbar: assetEditToolbar,
+                 }}
+                 slotProps={{
+                   toolbar: { setAssetRows, setAssetRowModesModel },
+                 }}
+               />
+             </Box>
+           </div>
+         </> )
       }
     </>
     
