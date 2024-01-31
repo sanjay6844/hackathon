@@ -32,7 +32,18 @@ import {
   GridToolbarContainer,
   GridActionsCellItem,
   GridRowEditStopReasons,
+  GridToolbarExport,
+  GridToolbar,
+  GridToolbarDensitySelector
 } from "@mui/x-data-grid";
+//modal
+//import Button from '@mui/material/Button';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 import {
   randomCreatedDate,
   randomTraderName,
@@ -203,6 +214,11 @@ const Upload = () => {
       }));
     };
 
+
+    
+
+    
+    
     return (
       <GridToolbarContainer>
         <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
@@ -273,16 +289,44 @@ const Upload = () => {
 
   const handleSaveClick = (id) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+    toast.success("Record saved successfully")
   };
   const handleSaveClickOfAsset = (id) => () => {
     setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
+    toast.success("Record saved successfully")
+
   };
 
-  const handleDeleteClick = (id) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+  const [open, setOpen] = React.useState(false);
+  const [deleteId,setDeleteId]=useState();
+  const [isSalesProfitDelete,setSalesProfitDelete]=useState(true);
+
+
+  const handleClickOpen = (id,value) => () =>{
+    setOpen(true);
+    setDeleteId(id);
+    setSalesProfitDelete(value);
   };
-  const handleDeleteClickOfAsset = (id) => () => {
-    setAssetRows(assetrows.filter((row) => row.id !== id));
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+
+
+
+
+
+  const handleDeleteClick = () => {
+    setRows(rows.filter((row) => row.id !== deleteId));
+    handleClose();
+    toast.success("Record deleted successfully");
+  };
+  const handleDeleteClickOfAsset = () => {
+    setAssetRows(assetrows.filter((row) => row.id !== deleteId));
+    handleClose();
+    toast.success("Record deleted successfully");
   };
   
 
@@ -336,7 +380,10 @@ const Upload = () => {
       type: "number",width: 180,
       align: "left",     
       headerAlign: "left",
-      editable: true },
+      editable: true ,
+      headerClassName: "super-app-theme--header",
+
+    },
     {
       field: "Product Name",
       headerName: "Product Name",
@@ -344,6 +391,8 @@ const Upload = () => {
       align: "left",
       headerAlign: "left",
       editable: true,
+      headerClassName: "super-app-theme--header",
+
     },
     {
       field: "Sales Amount",
@@ -353,6 +402,9 @@ const Upload = () => {
       headerAlign: "left",
       width: 180,
       editable: true,
+      headerClassName: "super-app-theme--header",
+
+
     },
     {
       field: "Cost",
@@ -362,18 +414,27 @@ const Upload = () => {
       type: "number",
       align: "left",
       headerAlign: "left",
+      headerClassName: "super-app-theme--header",
+
     },
     { field: "P/L", 
       headerName: "P/L", 
       type: "number",
       width: 180, 
-      editable: true ,
+      editable: false ,
       align: "left",
       headerAlign: "left",
+      headerClassName: "super-app-theme--header",
+      valueGetter: (params) => {
+        return params?.row?.["Sales Amount"]-params?.row.Cost ;
+      },
+
     },
       
 
     {
+      headerClassName: "super-app-theme--header",
+
       field: "actions",
       type: "actions",
       headerName: "Actions",
@@ -414,7 +475,8 @@ const Upload = () => {
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={handleDeleteClick(id)}
+            onClick={handleClickOpen(id,true)}
+
             color="inherit"
           />,
         ];
@@ -428,13 +490,16 @@ const Upload = () => {
       width: 180,
       align: "left",     
       headerAlign: "left",
-      editable: true },
+      editable: true ,
+      headerClassName: "super-app-theme--header",
+    },
     {
       field: "Shares ( % )",
       headerName: "Shares ( % )",
       width: 280,
       align: "left",
-      
+      headerClassName: "super-app-theme--header",
+
       headerAlign: "left",
       editable: true,
     },
@@ -442,6 +507,8 @@ const Upload = () => {
     
 
     {
+      headerClassName: "super-app-theme--header",
+
       field: "actions",
       type: "actions",
       headerName: "Actions",
@@ -482,7 +549,8 @@ const Upload = () => {
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={handleDeleteClickOfAsset(id)}
+            onClick={handleClickOpen(id,false)}
+
             color="inherit"
           />,
         ];
@@ -520,10 +588,64 @@ const Upload = () => {
   },[assets])
 
 
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+        <EditToolbar setRows={setRows} setRowModesModel={setRowModesModel} />
+
+      </GridToolbarContainer>
+    );
+  }
+
+  const handleClickOfAsset = () => {
+    const id = randomId();
+    setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
+    setAssetRowModesModel((oldModel) => ({
+      ...oldModel,
+      [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
+    }));
+  };
+
+  function assetCustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+        <assetEditToolbar />
+        <Button color="primary" startIcon={<AddIcon />} onClick={handleClickOfAsset}>
+        Add record
+        </Button>
+      </GridToolbarContainer>
+    );
+  }
+
+
   return (
     
     
     <>
+      
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Do you really  want to delete this record?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={isSalesProfitDelete ? handleDeleteClick : handleDeleteClickOfAsset} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
       <ToastContainer />
       {show && 
       <div>
@@ -549,6 +671,13 @@ const Upload = () => {
                 "& .textPrimary": {
                   color: "text.primary",
                 },
+                backgroundColor:"white",
+                "& .super-app-theme--header": {
+                  //backgroundColor: "#e5e5e5",
+                  fontSize:20
+
+                },
+                
               }}
             >
               <DataGrid
@@ -560,8 +689,10 @@ const Upload = () => {
                 onRowEditStop={handleRowEditStop}
                 processRowUpdate={processRowUpdate}
                 slots={{
-                  toolbar: EditToolbar,
-                }}
+                  toolbar: CustomToolbar,
+                }
+                }
+                
                 slotProps={{
                   toolbar: { setRows, setRowModesModel },
                 }}
@@ -580,6 +711,13 @@ const Upload = () => {
                 "& .textPrimary": {
                   color: "text.primary",
                 },
+
+                backgroundColor:"white",
+                "& .super-app-theme--header": {
+                  fontSize:20
+
+                },
+
               }}
             >
               <DataGrid
@@ -591,7 +729,7 @@ const Upload = () => {
                 onRowEditStop={handleRowEditStopOfAsset}
                 processRowUpdate={processRowUpdateOfAsset}
                 slots={{
-                  toolbar: assetEditToolbar,
+                  toolbar: assetCustomToolbar,
                 }}
                 slotProps={{
                   toolbar: { setAssetRows, setAssetRowModesModel },
