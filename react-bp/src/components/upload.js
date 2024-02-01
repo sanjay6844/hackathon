@@ -34,7 +34,10 @@ import {
   GridRowEditStopReasons,
   GridToolbarExport,
   GridToolbar,
-  GridToolbarDensitySelector
+  GridToolbarDensitySelector,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  
 } from "@mui/x-data-grid";
 //modal
 //import Button from '@mui/material/Button';
@@ -591,7 +594,8 @@ const Upload = () => {
       <GridToolbarContainer>
         <GridToolbarExport />
         <EditToolbar setRows={setRows} setRowModesModel={setRowModesModel} />
-
+        
+        <GridToolbarDensitySelector />
       </GridToolbarContainer>
     );
   }
@@ -613,7 +617,10 @@ const Upload = () => {
         <Button color="primary" startIcon={<AddIcon />} onClick={handleClickOfAsset}>
         Add record
         </Button>
+        <GridToolbarDensitySelector />
+
       </GridToolbarContainer>
+      
     );
   }
 

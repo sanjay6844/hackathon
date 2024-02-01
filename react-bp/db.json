@@ -210,8 +210,9 @@
           "Product ID": 125,
           "Product Name": "Reliance Industries Ltd",
           "Sales Amount": 75641,
-          "Cost": 54832,
-          "P/L": 20809
+          "Cost": 7325640,
+          "P/L": 20809,
+          "isNew": false
         },
         {
           "id": "f3cbd542-da78-5b74-94f7-da1eb1585660",
