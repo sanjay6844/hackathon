@@ -469,13 +469,13 @@ const Upload = () => {
         headerName: "P/L", 
         type: "number",
         width: 180, 
-        editable: false ,
+        editable: true ,
         align: "left",
         headerAlign: "left",
         headerClassName: "super-app-theme--header",
-        valueGetter: (params) => {
-          return params?.row?.["Sales Amount"]-params?.row.Cost ;
-        },
+        // valueGetter: (params) => {
+        //   return params?.row?.["Sales Amount"]-params?.row.Cost ;
+        // },
 
       }
 
@@ -967,7 +967,7 @@ const Upload = () => {
                   }}
                 />
               </Box>
-              <div className="btns"><button onClick={profitLoss} className="btn v2">View as</button></div>
+              <div className="btns"><button onClick={profitLoss} className="btn v2">Chart View</button></div>
             </div>
             <div className="got">
               <div className="title">Asset Allocation</div>
@@ -994,7 +994,7 @@ const Upload = () => {
                 <DataGrid
                   rows={assetrows}
                   columns={columns2}
-                  editMode="row"
+                  //editMode="row"
                   rowModesModel={assetrowModesModel}
                   onRowModesModelChange={handleRowModesModelChangeOfAsset}
                   onRowEditStop={handleRowEditStopOfAsset}
@@ -1007,12 +1007,13 @@ const Upload = () => {
                   }}
                   onCellDoubleClick={(params, event) => {
                     if (!event.ctrlKey) {
-                      event.defaultMuiPrevented = true;
+                      //event.defaultMuiPrevented = true;
                     }
                   }}
                 />
               </Box>
-              <div className="btns"><button onClick={pies} className="btn v2">View as</button></div>
+              <div className="btns"><button onClick={pies} className="btn v2">Chart View</button></div>
+
             </div>
           </> ):!show&&<div className="loader-container">
           <l-bouncy
