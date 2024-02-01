@@ -46,13 +46,19 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
 import {
   randomCreatedDate,
   randomTraderName,
   randomId,
   randomArrayItem,
 } from "@mui/x-data-grid-generator";
+import { bouncy } from "ldrs"
+
+
+
+// Default values shown
+
+
 const roles = ["Market", "Finance", "Development"];
 const randomRole = () => {
   return randomArrayItem(roles);
@@ -61,6 +67,8 @@ const randomRole = () => {
 
 const Upload = () => {
   const [show,setShow] = useState(true)
+  const [loading,setLoading] = useState()
+  bouncy.register()
   // useEffect(() => {
   //   console.log("inside store effect")
   //   if(store!==undefined&&store?.excelData){
@@ -103,7 +111,6 @@ const Upload = () => {
     console.log("reload")
     getReloadData()
   }, []);
-  
   
   // useEffect(() => {
   //   if(store!==undefined&&store?.excelData){
@@ -661,89 +668,96 @@ const Upload = () => {
         </Button>
       </div>}
       
-      {salesProfit &&
-       (
-         <>
+      {(salesProfit)?
+        (
+          <>
       
-           <div>
-             <div className="title">Sales&Profit</div>
-             <Box
-               sx={{
-                 height: 500,
-                 width: "100%",
-                 "& .actions": {
-                   color: "text.secondary",
-                 },
-                 "& .textPrimary": {
-                   color: "text.primary",
-                 },
-                 backgroundColor:"white",
-                 "& .super-app-theme--header": {
-                   //backgroundColor: "#e5e5e5",
-                   fontSize:20
+            <div>
+              <div className="title">Sales&Profit</div>
+              <Box
+                sx={{
+                  height: 500,
+                  width: "100%",
+                  "& .actions": {
+                    color: "text.secondary",
+                  },
+                  "& .textPrimary": {
+                    color: "text.primary",
+                  },
+                  backgroundColor:"white",
+                  "& .super-app-theme--header": {
+                    //backgroundColor: "#e5e5e5",
+                    fontSize:20
 
-                 },
+                  },
                 
-               }}
-             >
-               <DataGrid
-                 rows={rows}
-                 columns={columns1}
-                 editMode="row"
-                 rowModesModel={rowModesModel}
-                 onRowModesModelChange={handleRowModesModelChange}
-                 onRowEditStop={handleRowEditStop}
-                 processRowUpdate={processRowUpdate}
-                 slots={{
-                   toolbar: CustomToolbar,
-                 }
-                 }
+                }}
+              >
+                <DataGrid
+                  rows={rows}
+                  columns={columns1}
+                  editMode="row"
+                  rowModesModel={rowModesModel}
+                  onRowModesModelChange={handleRowModesModelChange}
+                  onRowEditStop={handleRowEditStop}
+                  processRowUpdate={processRowUpdate}
+                  slots={{
+                    toolbar: CustomToolbar,
+                  }
+                  }
                 
-                 slotProps={{
-                   toolbar: { setRows, setRowModesModel },
-                 }}
-               />
-             </Box>
-           </div>
-           <div>
-             <div className="title">Asset Allocation</div>
-             <Box
-               sx={{
-                 height: 500,
-                 width: "100%",
-                 "& .actions": {
-                   color: "text.secondary",
-                 },
-                 "& .textPrimary": {
-                   color: "text.primary",
-                 },
+                  slotProps={{
+                    toolbar: { setRows, setRowModesModel },
+                  }}
+                  loading = {show&&!salesProfit}
+                />
+              </Box>
+            </div>
+            <div>
+              <div className="title">Asset Allocation</div>
+              <Box
+                sx={{
+                  height: 500,
+                  width: "100%",
+                  "& .actions": {
+                    color: "text.secondary",
+                  },
+                  "& .textPrimary": {
+                    color: "text.primary " 
+                  },
 
-                 backgroundColor:"white",
-                 "& .super-app-theme--header": {
-                   fontSize:20
+                  backgroundColor:"white",
+                  "& .super-app-theme--header": {
+                    fontSize:20
 
-                 },
+                  },
 
-               }}
-             >
-               <DataGrid
-                 rows={assetrows}
-                 columns={columns2}
-                 editMode="row"
-                 rowModesModel={assetrowModesModel}
-                 onRowModesModelChange={handleRowModesModelChangeOfAsset}
-                 onRowEditStop={handleRowEditStopOfAsset}
-                 processRowUpdate={processRowUpdateOfAsset}
-                 slots={{
-                   toolbar: assetCustomToolbar,
-                 }}
-                 slotProps={{
-                   toolbar: { setAssetRows, setAssetRowModesModel },
-                 }}
-               />
-             </Box>
-           </div>
-         </> )
+                }}
+              >
+
+                <DataGrid
+                  rows={assetrows}
+                  columns={columns2}
+                  editMode="row"
+                  rowModesModel={assetrowModesModel}
+                  onRowModesModelChange={handleRowModesModelChangeOfAsset}
+                  onRowEditStop={handleRowEditStopOfAsset}
+                  processRowUpdate={processRowUpdateOfAsset}
+                  slots={{
+                    toolbar: assetCustomToolbar,
+                  }}
+                  slotProps={{
+                    toolbar: { setAssetRows, setAssetRowModesModel },
+                  }}
+                  loading = {show&&!salesProfit}
+                />
+              </Box>
+            </div>
+          </> ):!show&&<l-bouncy
+          size="45"
+          speed="1.75" 
+          color="#615d6e"
+        ></l-bouncy>
       }
     </>
     
