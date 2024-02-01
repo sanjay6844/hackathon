@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React ,{useState,useEffect,useContext} from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts";

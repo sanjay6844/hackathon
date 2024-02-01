@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
@@ -5,9 +6,9 @@ import {  useNavigate } from "react-router-dom"
 import Button from "@mui/material/Button";
 import { useCookies } from "react-cookie"
 // import MenuIcon from "@mui/icons-material/Menu";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
+// import Menu from "@mui/material/Menu";
+// import MenuItem from "@mui/material/MenuItem";
+// import Fade from "@mui/material/Fade";
 
 import "./header.css"
 const Header=()=>{
@@ -56,14 +57,16 @@ const Header=()=>{
           </div>
         } */}
         {window.location.pathname==="/home" && 
-          <><Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button>
-            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Profit & Loss</Button></>}
+          <>
+            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Sales & Profit</Button>
+            <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button>
+          </>}
         {window.location.pathname==="/barchart" && 
         <><Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
           <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button></>}
         {window.location.pathname==="/piechart" && 
           <><Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
-            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Profit & Loss</Button></>}
+            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Sales & Profit</Button></>}
         <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
       </div>
     </div>

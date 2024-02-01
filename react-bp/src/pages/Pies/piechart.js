@@ -10,7 +10,6 @@ import PieChart, {
   Series,
   Label,
   Connector,
-  Tooltip,
   Size,
   Export,
   Legend,
@@ -123,7 +122,8 @@ const Pie=()=>{
         </Series>
         <Size width={1100} height={750} />
         <Export enabled={true} />
-      </PieChart></div>
+      </PieChart>
+    </div>
 
   )
 }
