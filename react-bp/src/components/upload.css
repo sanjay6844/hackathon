@@ -1,3 +1,4 @@
+
 .diff{
     width: 50%;
     height: 50%;
@@ -12,6 +13,71 @@
 
 .title{
     text-align: center;
-    font-size: larger;
-    padding: 10px;
+    font-size: 36px;
+    padding: 19px;
+}
+.got{
+	display: flex;
+	gap:10px;
+	flex-direction: column;
+}
+.btn.v2 {
+	padding: 10px 50px 10px 20px;
+	transition: color 0.2s ease;
+	
+	&::before {
+		background: linear-gradient(90deg, darken($navy, 5%) 50%, $navy 50%);
+		content: '';
+		height: 100%;
+		right: 0;
+		position: absolute;
+		top: 0;
+		transition: transform 0.2s ease;
+		width: 150%;
+		z-index: -1;
+	}
+	
+	&::after {
+		background: url("Assets/white-arrow-icon-5.png") center/contain no-repeat;
+		content: '';
+		display: block;
+		height: 12px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 40px;
+		z-index: 1;
+	}
+	
+	&::after {
+		right: 10px;
+		transition: transform 0.2s ease;
+	}
+	
+	&:hover {
+		color: lighten($gold, 10%);
+		
+		&::before {
+			transform: translateX(50%);
+		}
+		
+		&::after {
+			transform: translate(10px, -50%);
+		}
+	}
+}
+.btn {
+	color: white;
+	cursor: pointer;
+	background-color: #615d6e;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	text-transform: uppercase;
+	z-index: 1;
+}
+.btns{
+	width:100%;
+	justify-content: flex-end;
+	display: flex;
 }
