@@ -113,14 +113,14 @@ const Pie=()=>{
           itemTextPosition="right"
           horizontalAlignment="center"
           verticalAlignment="bottom"
-          columnCount={6} />
+          columnCount={5} />
         <SmallValuesGrouping threshold={4.5} mode="smallValueThreshold" />
         <Series argumentField={"Companies"} valueField={"Shares ( % )"}>
           <Label visible={true}  >
             <Connector visible={true} width={0.5} />
           </Label>
         </Series>
-        <Size width={2200} height={1000} />
+        <Size width={1100} height={750} />
         <Export enabled={true} />
       </PieChart>
     </div>
