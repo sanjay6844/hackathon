@@ -10,7 +10,6 @@ import PieChart, {
   Series,
   Label,
   Connector,
-  Tooltip,
   Size,
   Export,
   Legend,
@@ -43,6 +42,10 @@ const Pie=()=>{
 
  
   useEffect(()=>{
+    console.log(excelData,"exceldata")
+    if(excelData===undefined){
+      return
+    }
     if(excelData[0]===undefined){
       console.log("exceldata is undefined ")
       return 
@@ -119,7 +122,8 @@ const Pie=()=>{
         </Series>
         <Size width={1100} height={750} />
         <Export enabled={true} />
-      </PieChart></div>
+      </PieChart>
+    </div>
 
   )
 }

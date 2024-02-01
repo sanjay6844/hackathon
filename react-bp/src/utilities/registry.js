@@ -6,7 +6,7 @@ import Home from "Pages/Home";
 import Charts from "Pages/Chart";
 import SignIn from "Pages/SignIn";
 import Header from "../components/piechart/Header/header";
-import Barchart from "../components/barchart/barchart";
+import BarCharts from "Pages/Barchart";
 import SignUp from "Pages/SignUp"
 import PieCharts from "Pages/Pies";
 
@@ -21,7 +21,7 @@ export default {
   Home: Injector(Home, "Home"),
   Chart: Injector(Charts, "Chart"),
   SignIn: Injector(SignIn, "SignIn"),
-  Barchart: Injector(Barchart, "Barchart"),
+  BarCharts: Injector(BarCharts, "BarCharts"),
   SignUp:Injector(SignUp,"SignUP"),
   Header:Injector(Header,"Header"),
   Piechart: Injector(PieCharts, "Piechart"),

@@ -442,8 +442,6 @@ const Upload = () => {
       editable: true,
     },
     
-    
-
     {
       field: "actions",
       type: "actions",
@@ -513,7 +511,10 @@ const Upload = () => {
   const pies=()=>{
     navigate("/piechart")
   }
-  
+  const profitLoss = ()=>{
+    navigate("/barchart")
+ 
+  }
   
   useEffect(()=>{
     if(assets){
@@ -523,7 +524,6 @@ const Upload = () => {
       setShow(true)
     }
   },[assets])
-
 
   return (
     
@@ -539,73 +539,75 @@ const Upload = () => {
         </Button>
       </div>}
       
-      {salesProfit && (
-        <>
+      {salesProfit &&
+       (
+         <>
       
-          <div>
-            <div className="title">Sales&Profit</div>
-            <Box
-              sx={{
-                height: 500,
-                width: "100%",
-                "& .actions": {
-                  color: "text.secondary",
-                },
-                "& .textPrimary": {
-                  color: "text.primary",
-                },
-              }}
-            >
-              <DataGrid
-                rows={rows}
-                columns={columns1}
-                editMode="row"
-                rowModesModel={rowModesModel}
-                onRowModesModelChange={handleRowModesModelChange}
-                onRowEditStop={handleRowEditStop}
-                processRowUpdate={processRowUpdate}
-                slots={{
-                  toolbar: EditToolbar,
-                }}
-                slotProps={{
-                  toolbar: { setRows, setRowModesModel },
-                }}
-              />
-            </Box>
-          </div>
-          <div>
-            <div className="title">Asset Allocation</div>
-            <Box
-              sx={{
-                height: 500,
-                width: "100%",
-                "& .actions": {
-                  color: "text.secondary",
-                },
-                "& .textPrimary": {
-                  color: "text.primary",
-                },
-              }}
-            >
-              <DataGrid
-                rows={assetrows}
-                columns={columns2}
-                editMode="row"
-                rowModesModel={assetrowModesModel}
-                onRowModesModelChange={handleRowModesModelChangeOfAsset}
-                onRowEditStop={handleRowEditStopOfAsset}
-                processRowUpdate={processRowUpdateOfAsset}
-                slots={{
-                  toolbar: assetEditToolbar,
-                }}
-                slotProps={{
-                  toolbar: { setAssetRows, setAssetRowModesModel },
-                }}
-              />
-            </Box>
-          </div>
-          <div><button onClick={pies} className="btn v2">View as</button></div>
-        </> )
+           <div>
+             <div className="title">Sales&Profit</div>
+             <Box
+               sx={{
+                 height: 500,
+                 width: "100%",
+                 "& .actions": {
+                   color: "text.secondary",
+                 },
+                 "& .textPrimary": {
+                   color: "text.primary",
+                 },
+               }}
+             >
+               <DataGrid
+                 rows={rows}
+                 columns={columns1}
+                 editMode="row"
+                 rowModesModel={rowModesModel}
+                 onRowModesModelChange={handleRowModesModelChange}
+                 onRowEditStop={handleRowEditStop}
+                 processRowUpdate={processRowUpdate}
+                 slots={{
+                   toolbar: EditToolbar,
+                 }}
+                 slotProps={{
+                   toolbar: { setRows, setRowModesModel },
+                 }}
+               />
+             </Box>
+             <div className="btns"><button onClick={profitLoss} className="btn v2">View as</button></div>
+           </div>
+           <div>
+             <div className="title">Asset Allocation</div>
+             <Box
+               sx={{
+                 height: 500,
+                 width: "100%",
+                 "& .actions": {
+                   color: "text.secondary",
+                 },
+                 "& .textPrimary": {
+                   color: "text.primary",
+                 },
+               }}
+             >
+               <DataGrid
+                 rows={assetrows}
+                 columns={columns2}
+                 editMode="row"
+                 rowModesModel={assetrowModesModel}
+                 onRowModesModelChange={handleRowModesModelChangeOfAsset}
+                 onRowEditStop={handleRowEditStopOfAsset}
+                 processRowUpdate={processRowUpdateOfAsset}
+                 slots={{
+                   toolbar: assetEditToolbar,
+                 }}
+                 slotProps={{
+                   toolbar: { setAssetRows, setAssetRowModesModel },
+                 }}
+               />
+             </Box>
+             <div className="btns"><button onClick={pies} className="btn v2">View as</button></div>
+           </div>
+         </> )
       }
     </>
     
