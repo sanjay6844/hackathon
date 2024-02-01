@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import {  useNavigate } from "react-router-dom"
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
-import { cloneDeep } from "lodash";
+import { cloneDeep, isNumber } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
 import Button from "@mui/material/Button";
@@ -34,7 +34,21 @@ import {
   GridToolbarContainer,
   GridActionsCellItem,
   GridRowEditStopReasons,
+  GridToolbarExport,
+  GridToolbar,
+  GridToolbarDensitySelector,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  
 } from "@mui/x-data-grid";
+//modal
+//import Button from '@mui/material/Button';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 import {
   randomCreatedDate,
   randomTraderName,
@@ -206,6 +220,11 @@ const Upload = () => {
       }));
     };
 
+
+    
+
+    
+    
     return (
       <GridToolbarContainer>
         <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
@@ -276,16 +295,44 @@ const Upload = () => {
 
   const handleSaveClick = (id) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+    toast.success("Record saved successfully")
   };
   const handleSaveClickOfAsset = (id) => () => {
     setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
+    toast.success("Record saved successfully")
+
   };
 
-  const handleDeleteClick = (id) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+  const [open, setOpen] = React.useState(false);
+  const [deleteId,setDeleteId]=useState();
+  const [isSalesProfitDelete,setSalesProfitDelete]=useState(true);
+
+
+  const handleClickOpen = (id,value) => () =>{
+    setOpen(true);
+    setDeleteId(id);
+    setSalesProfitDelete(value);
   };
-  const handleDeleteClickOfAsset = (id) => () => {
-    setAssetRows(assetrows.filter((row) => row.id !== id));
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+
+
+
+
+
+  const handleDeleteClick = () => {
+    setRows(rows.filter((row) => row.id !== deleteId));
+    handleClose();
+    toast.success("Record deleted successfully");
+  };
+  const handleDeleteClickOfAsset = () => {
+    setAssetRows(assetrows.filter((row) => row.id !== deleteId));
+    handleClose();
+    toast.success("Record deleted successfully");
   };
   
 
@@ -332,14 +379,115 @@ const Upload = () => {
   const handleRowModesModelChangeOfAsset = (newRowModesModel) => {
     setAssetRowModesModel(newRowModesModel);
   };
+  console.log(salesProfit[0],"today sales");
+  const objectKeys = Object.keys(salesProfit[0] || []);
+  function isNumber(value) {
+    return typeof value === "number";
+  }
+  const columns1 = objectKeys?.map((key) =>
+  {
+    
+    if
+    (key=="P/L")
+    {
+      return{ field: "P/L", 
+        headerName: "P/L", 
+        type: "number",
+        width: 180, 
+        editable: false ,
+        align: "left",
+        headerAlign: "left",
+        headerClassName: "super-app-theme--header",
+        valueGetter: (params) => {
+          return params?.row?.["Sales Amount"]-params?.row.Cost ;
+        },
 
-  const columns1 = [
+      }
+
+
+    }
+    else if(key!="id")
+    {
+      return{
+        field: key,
+        headerName:key,
+        width:180,
+        align:"left",
+        headerAlign:"left",
+        editable:true,
+        headerClassName: "super-app-theme--header",
+        type:isNumber(salesProfit[0][key]) ? "number" :"string"
+      };
+    }
+    else
+      return null;
+  }
+  ).filter(Boolean);
+
+  columns1.push({
+    headerClassName: "super-app-theme--header",
+
+    field: "actions",
+    type: "actions",
+    headerName: "Actions",
+    width: 100,
+    cellClassName: "actions",
+    getActions: ({ id }) => {
+      const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+
+      if (isInEditMode) {
+        return [
+          // eslint-disable-next-line react/jsx-key
+          <GridActionsCellItem
+            icon={<SaveIcon />}
+            label="Save"
+            sx={{
+              color: "primary.main",
+            }}
+            onClick={handleSaveClick(id)}
+          />,
+          <GridActionsCellItem
+            icon={<CancelIcon />}
+            label="Cancel"
+            className="textPrimary"
+            onClick={handleCancelClick(id)}
+            color="inherit"
+          />,
+        ];
+      }
+
+      return [
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          label="Edit"
+          className="textPrimary"
+          onClick={handleEditClick(id)}
+          color="inherit"
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={handleClickOpen(id,true)}
+
+          color="inherit"
+        />,
+      ];
+    },
+  })
+  //setCol1(c1);
+
+  //console.log("c1",c1);
+
+  const c1 = [
     { field: "Product ID",
       headerName: "Product ID", 
       type: "number",width: 180,
       align: "left",     
       headerAlign: "left",
-      editable: true },
+      editable: true ,
+      headerClassName: "super-app-theme--header",
+
+    },
     {
       field: "Product Name",
       headerName: "Product Name",
@@ -347,6 +495,8 @@ const Upload = () => {
       align: "left",
       headerAlign: "left",
       editable: true,
+      headerClassName: "super-app-theme--header",
+
     },
     {
       field: "Sales Amount",
@@ -356,6 +506,9 @@ const Upload = () => {
       headerAlign: "left",
       width: 180,
       editable: true,
+      headerClassName: "super-app-theme--header",
+
+
     },
     {
       field: "Cost",
@@ -365,18 +518,27 @@ const Upload = () => {
       type: "number",
       align: "left",
       headerAlign: "left",
+      headerClassName: "super-app-theme--header",
+
     },
     { field: "P/L", 
       headerName: "P/L", 
       type: "number",
       width: 180, 
-      editable: true ,
+      editable: false ,
       align: "left",
       headerAlign: "left",
+      headerClassName: "super-app-theme--header",
+      valueGetter: (params) => {
+        return params?.row?.["Sales Amount"]-params?.row.Cost ;
+      },
+
     },
       
 
     {
+      headerClassName: "super-app-theme--header",
+
       field: "actions",
       type: "actions",
       headerName: "Actions",
@@ -417,7 +579,8 @@ const Upload = () => {
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={handleDeleteClick(id)}
+            onClick={handleClickOpen(id,true)}
+
             color="inherit"
           />,
         ];
@@ -425,24 +588,96 @@ const Upload = () => {
     },
   ];
 
-  const columns2 = [
+  const Keys = Object.keys(assets[0] || []);
+  const columns2 = Keys.map((key) => {
+    if(key!="id" && key!="isNew")
+    {
+      return{ field: key,
+        headerName: key, 
+        width: 180,
+        align: "left",     
+        headerAlign: "left",
+        editable: true ,
+        headerClassName: "super-app-theme--header",
+      }
+    }
+  }).filter(Boolean);
+  //console.log(newArray,"new array assets")
+  columns2.push({
+    headerClassName: "super-app-theme--header",
+
+    field: "actions",
+    type: "actions",
+    headerName: "Actions",
+    width: 100,
+    cellClassName: "actions",
+    getActions: ({ id }) => {
+      const isInEditMode = assetrowModesModel[id]?.mode === GridRowModes.Edit;
+
+      if (isInEditMode) {
+        return [
+          // eslint-disable-next-line react/jsx-key
+          <GridActionsCellItem
+            icon={<SaveIcon />}
+            label="Save"
+            sx={{
+              color: "primary.main",
+            }}
+            onClick={handleSaveClickOfAsset(id)}
+          />,
+          <GridActionsCellItem
+            icon={<CancelIcon />}
+            label="Cancel"
+            className="textPrimary"
+            onClick={handleCancelClickOfAsset(id)}
+            color="inherit"
+          />,
+        ];
+      }
+
+      return [
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          label="Edit"
+          className="textPrimary"
+          onClick={handleEditClickOfAsset(id)}
+          color="inherit"
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={handleClickOpen(id,false)}
+
+          color="inherit"
+        />,
+      ];
+    },
+  })
+
+
+  const c2 = [
     { field: "Companies",
       headerName: "Companies", 
       width: 180,
       align: "left",     
       headerAlign: "left",
-      editable: true },
+      editable: true ,
+      headerClassName: "super-app-theme--header",
+    },
     {
       field: "Shares ( % )",
       headerName: "Shares ( % )",
       width: 280,
       align: "left",
-      
+      headerClassName: "super-app-theme--header",
+
       headerAlign: "left",
       editable: true,
     },
     
     {
+      headerClassName: "super-app-theme--header",
+
       field: "actions",
       type: "actions",
       headerName: "Actions",
@@ -483,7 +718,8 @@ const Upload = () => {
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={handleDeleteClickOfAsset(id)}
+            onClick={handleClickOpen(id,false)}
+
             color="inherit"
           />,
         ];
@@ -525,10 +761,69 @@ const Upload = () => {
     }
   },[assets])
 
+
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+        <EditToolbar setRows={setRows} setRowModesModel={setRowModesModel} />
+        
+        <GridToolbarDensitySelector />
+      </GridToolbarContainer>
+    );
+  }
+
+  const handleClickOfAsset = () => {
+    const id = randomId();
+    setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
+    setAssetRowModesModel((oldModel) => ({
+      ...oldModel,
+      [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
+    }));
+  };
+
+  function assetCustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+        <assetEditToolbar />
+        <Button color="primary" startIcon={<AddIcon />} onClick={handleClickOfAsset}>
+        Add record
+        </Button>
+        <GridToolbarDensitySelector />
+
+      </GridToolbarContainer>
+      
+    );
+  }
+
+
   return (
     
     
     <>
+      
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Do you really  want to delete this record?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={isSalesProfitDelete ? handleDeleteClick : handleDeleteClickOfAsset} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
       <ToastContainer />
       {show && 
       <div>
@@ -555,6 +850,13 @@ const Upload = () => {
                  "& .textPrimary": {
                    color: "text.primary",
                  },
+                 backgroundColor:"white",
+                 "& .super-app-theme--header": {
+                   //backgroundColor: "#e5e5e5",
+                   fontSize:20
+
+                 },
+                
                }}
              >
                <DataGrid
@@ -566,8 +868,10 @@ const Upload = () => {
                  onRowEditStop={handleRowEditStop}
                  processRowUpdate={processRowUpdate}
                  slots={{
-                   toolbar: EditToolbar,
-                 }}
+                   toolbar: CustomToolbar,
+                 }
+                 }
+                
                  slotProps={{
                    toolbar: { setRows, setRowModesModel },
                  }}
@@ -587,6 +891,13 @@ const Upload = () => {
                  "& .textPrimary": {
                    color: "text.primary",
                  },
+
+                 backgroundColor:"white",
+                 "& .super-app-theme--header": {
+                   fontSize:20
+
+                 },
+
                }}
              >
                <DataGrid
@@ -598,7 +909,7 @@ const Upload = () => {
                  onRowEditStop={handleRowEditStopOfAsset}
                  processRowUpdate={processRowUpdateOfAsset}
                  slots={{
-                   toolbar: assetEditToolbar,
+                   toolbar: assetCustomToolbar,
                  }}
                  slotProps={{
                    toolbar: { setAssetRows, setAssetRowModesModel },
