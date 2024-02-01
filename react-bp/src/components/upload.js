@@ -838,7 +838,7 @@ const Upload = () => {
        (
          <>
       
-           <div>
+           <div className="got">
              <div className="title">Sales&Profit</div>
              <Box
                sx={{
@@ -879,7 +879,7 @@ const Upload = () => {
              </Box>
              <div className="btns"><button onClick={profitLoss} className="btn v2">View as</button></div>
            </div>
-           <div>
+           <div className="got">
              <div className="title">Asset Allocation</div>
              <Box
                sx={{
