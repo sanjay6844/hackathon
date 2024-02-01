@@ -206,15 +206,29 @@ const Upload = () => {
 
   //const initialRows = salesProfit;
 
+  const[addOn,setAddOn]=useState(false);
+
   function EditToolbar(props) {
     const { setRows, setRowModesModel } = props;
     const handleClick = () => {
-      const id = randomId();
-      setRows((oldRows) => [...oldRows, { id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true }]);
-      setRowModesModel((oldModel) => ({
-        ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Product ID" },
-      }));
+      if(!editOn && !addOn)
+      {
+        const id = randomId();
+        setRows((oldRows) => [...oldRows, { id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true }]);
+        setRowModesModel((oldModel) => ({
+          ...oldModel,
+          [id]: { mode: GridRowModes.Edit, fieldToFocus: "Product ID" },
+        }));
+        setAddOn(true)
+      }
+      else if(editOn){
+        toast.warn("Edit action is running,Please save or close it")
+      }
+      else{
+        toast.warn("Already add action is running,Please save or close it")
+
+
+      }
     };
 
 
@@ -234,12 +248,24 @@ const Upload = () => {
     const { setAssetRows, setAssetRowModesModel } = props;
 
     const handleClickOfAsset = () => {
-      const id = randomId();
-      setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
-      setAssetRowModesModel((oldModel) => ({
-        ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
-      }));
+      if(!editOn && !addOn){
+        const id = randomId();
+        setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
+        setAssetRowModesModel((oldModel) => ({
+          ...oldModel,
+          [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
+        }));
+        setAddOn(true)
+
+      }
+      else if(editOn){
+        toast.warn("Edit action is running,Please save or close it")
+      }
+      else{
+        toast.warn("Already add action is running,Please save or close it")
+
+
+      }
     };
 
     return (
@@ -283,19 +309,46 @@ const Upload = () => {
       event.defaultMuiPrevented = true;
     }
   };
+  const [editOn,setEditOn]=useState(false);
   const handleEditClick = (id) => () => {
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
+    if(!editOn && !addOn)
+    {
+      setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
+      setEditOn(true);
+    }
+    else if(editOn){
+      toast.warn("Already another edit action is running")
+    }
+    else{
+      toast.warn("Add action is running,please save or close it");
+
+    }
   };
   const handleEditClickOfAsset = (id) => () => {
-    setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
+    if(!editOn && !addOn)
+    {
+      setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.Edit } });
+      setEditOn(true);
+    }
+    else if(editOn){
+      toast.warn("Already another edit action is running")
+    }
+    else{
+      toast.warn("Add action is running,please save or close it");
+
+    }
   };
 
   const handleSaveClick = (id) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+    setEditOn(false);
+    setAddOn(false);
     toast.success("Record saved successfully")
   };
   const handleSaveClickOfAsset = (id) => () => {
     setAssetRowModesModel({ ...assetrowModesModel, [id]: { mode: GridRowModes.View } });
+    setEditOn(false);
+    setAddOn(false);
     toast.success("Record saved successfully")
 
   };
@@ -304,11 +357,21 @@ const Upload = () => {
   const [deleteId,setDeleteId]=useState();
   const [isSalesProfitDelete,setSalesProfitDelete]=useState(true);
 
-
   const handleClickOpen = (id,value) => () =>{
-    setOpen(true);
-    setDeleteId(id);
-    setSalesProfitDelete(value);
+    if(!editOn && !addOn)
+    {
+      setOpen(true);
+      setDeleteId(id);
+      setSalesProfitDelete(value);
+    }
+    else if(editOn)
+    {
+      toast.warn("Edit action is running,Please save or close it")
+    }
+    else{
+      toast.warn("Add action is running,Please save or close it")
+
+    }
   };
 
   const handleClose = () => {
@@ -334,6 +397,7 @@ const Upload = () => {
   
 
   const handleCancelClick = (id) => () => {
+   
     setRowModesModel({
       ...rowModesModel,
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
@@ -346,6 +410,8 @@ const Upload = () => {
   };
 
   const handleCancelClickOfAsset = (id) => () => {
+    setEditOn(false);
+    setAddOn(false);
     setAssetRowModesModel({
       ...assetrowModesModel,
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
@@ -403,7 +469,7 @@ const Upload = () => {
 
 
     }
-    else if(key!="id")
+    else if(key!="id" && key!="isNew")
     {
       return{
         field: key,
@@ -766,12 +832,24 @@ const Upload = () => {
   }
 
   const handleClickOfAsset = () => {
-    const id = randomId();
-    setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
-    setAssetRowModesModel((oldModel) => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
-    }));
+    if(!editOn && !addOn){
+      const id = randomId();
+      setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
+      setAssetRowModesModel((oldModel) => ({
+        ...oldModel,
+        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
+      }));
+      setAddOn(true)
+
+    }
+    else if(editOn){
+      toast.warn("Edit action is running,Please save or close it")
+    }
+    else{
+      toast.warn("Already add action is running,Please save or close it")
+
+
+    }
   };
 
   function assetCustomToolbar() {
