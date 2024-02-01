@@ -19,7 +19,8 @@
           "Product Name": "LED TV",
           "Sales Amount": 82721,
           "Cost": 41180,
-          "P/L": 41541
+          "P/L": 41541,
+          "isNew": false
         },
         {
           "id": "5ea1c38a-e4c5-5863-bd7d-490203817b99",
@@ -42,8 +43,9 @@
           "Product ID": 104,
           "Product Name": "Smartphone",
           "Sales Amount": 33708,
-          "Cost": 91589,
-          "P/L": -57881
+          "Cost": 12321323,
+          "P/L": -57881,
+          "isNew": false
         },
         {
           "id": "f92f9a13-7e72-5d6a-9dc1-ea6507408cd1",
@@ -51,7 +53,8 @@
           "Product Name": "Coffee Maker",
           "Sales Amount": 40560,
           "Cost": 16065,
-          "P/L": 24495
+          "P/L": 24495,
+          "isNew": false
         },
         {
           "id": "0bef8aff-b857-510b-a507-dcabf4ce795c",
@@ -59,7 +62,8 @@
           "Product Name": "Office Chair",
           "Sales Amount": 74594,
           "Cost": 72796,
-          "P/L": 1798
+          "P/L": 1798,
+          "isNew": false
         },
         {
           "id": "a8709888-de25-5ea7-b64f-ae6f968f3089",
@@ -67,7 +71,8 @@
           "Product Name": "Headphones",
           "Sales Amount": 87269,
           "Cost": 57819,
-          "P/L": 29450
+          "P/L": 29450,
+          "isNew": false
         },
         {
           "id": "e2b5ea9f-a710-5163-a2b5-c285f34af08d",
