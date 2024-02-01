@@ -113,7 +113,7 @@ const Pie=()=>{
           itemTextPosition="right"
           horizontalAlignment="center"
           verticalAlignment="bottom"
-          columnCount={4} />
+          columnCount={5} />
         <SmallValuesGrouping threshold={4.5} mode="smallValueThreshold" />
         <Series argumentField={"Companies"} valueField={"Shares ( % )"}>
           <Label visible={true}  >
