@@ -81,3 +81,10 @@
 	justify-content: flex-end;
 	display: flex;
 }
+.loader-container{
+	height: 77vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

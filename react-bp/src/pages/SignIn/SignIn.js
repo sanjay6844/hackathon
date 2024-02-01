@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie"
 import Snackbar from "@mui/material/Snackbar";
 import { TextField } from "@mui/material";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const SignInPage = ()=>{
   const ctx = useContext(RefContext);
   const { store,actions } = ctx;
@@ -14,6 +15,7 @@ const SignInPage = ()=>{
   const {fetchLoginData,} = actions
   const [cookies, setCookies] = useCookies(["user"])
   const [open,setOpen] = useState(false)
+  const [showPassword,setShowPassword] = useState(false)
 
   useEffect(()=>{
     if(cookies.user){
@@ -107,38 +109,43 @@ const SignInPage = ()=>{
             "user not found")
           }
           />
-   
-          <TextField label="Password" type="password" {...register("password",{required:true,validate: {
-            checkPassword: isPasswordValid,
-          },
-          })}
-          placeholder="Aa@1sdfwh"
-          onCut={(e)=>e.preventDefault()}
-          onCopy={(e)=>e.preventDefault()}
-          error={
-            (errors.password &&
+          <div className="password-field">
+            <TextField label="Password" type={showPassword?"text":"password"} {...register("password",{required:true,validate: {
+              checkPassword: isPasswordValid,
+            },
+            })}
+            placeholder="Aa@1sdfwh"
+            autoComplete="off"
+            onCut={(e)=>e.preventDefault()}
+            onCopy={(e)=>e.preventDefault()}
+            error={
+              (errors.password &&
            errors.password.type === "required" &&
            "this field is required") ||
            (errors.password &&
             errors.password.type === "checkPassword" &&
             "wrong password")
-          }
-          helperText={
-            (errors.password &&
+            }
+            helperText={
+              (errors.password &&
            errors.password.type === "required" &&
            "this field is required") ||
            (errors.password &&
             errors.password.type === "checkPassword" &&
             "wrong password")
-          }
-          />
+            }
+            />
+            <div onClick={()=>setShowPassword(!showPassword)} aria-hidden className="eye-icon">
+              {showPassword?< VisibilityIcon/>:<VisibilityOffIcon/>}
+            </div>
+          </div>
           {console.log(errors)}
           <div className="btn-container">
             <input className="submit-btn" type="submit" value="SignIn" onClick={handleSubmit} />
           </div>
         </form>
       </div>
-      <div className="link">Don&apos;t hava an account? <a href="/">Signup</a></div>
+      <div className="link">Don&apos;t have an account? <a href="/">Signup</a></div>
       <Snackbar
         open={open}
         autoHideDuration={5000}
