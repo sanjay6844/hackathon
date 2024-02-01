@@ -64,6 +64,23 @@
   align-items: center;
 }
 
+.eye-icon{
+  display: flex;
+  position: absolute;
+top: 30%;
+right:10px;
+&:hover{
+  cursor:pointer;
+}
+}
+.password-field{
+  width: 100%;
+  position: relative;
+}
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+  width: 100%;
+}
+
 @media only screen and (max-width: 768px) {
   .card{
     width:60%;

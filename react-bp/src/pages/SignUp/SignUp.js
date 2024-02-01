@@ -10,6 +10,8 @@ import RefContext from "Utilities/refContext";
 import { useCookies } from "react-cookie"
 import Snackbar from "@mui/material/Snackbar";
 import { TextField } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const SignUpPage = ()=>{
 
@@ -21,7 +23,8 @@ const SignUpPage = ()=>{
   // const [users,setUsers] = useState(null)
   const [cookies, setCookies] = useCookies(["user"])
   const [open,setOpen] = useState(false)
-
+  const [showPassword,setShowPassword] = useState(false)
+  const [showConfPassword,setShowConfPassword] = useState(false)
   useEffect(()=>{
     fetchLoginData()
     console.log(users)
@@ -189,13 +192,16 @@ const SignUpPage = ()=>{
             "Enter valid phone number"
             }
 
-          />     
-          <TextField label="Password" type="password" {...register("password",{required:true,pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/})}
-            placeholder="Aa@1sdfwh"
-            onCut={(e)=>e.preventDefault()}
-            onCopy={(e)=>e.preventDefault()}
-            error={
-              (errors.password &&
+          />    
+          <div className="password-field">
+            
+            <TextField label="Password" type={showPassword?"text":"password"} {...register("password",{required:true,pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/})}
+              placeholder="Aa@1sdfwh"
+              onCut={(e)=>e.preventDefault()}
+              onCopy={(e)=>e.preventDefault()}
+              autoComplete="off"
+              error={
+                (errors.password &&
                errors.password.type === "required" &&
                "this field is required") ||
              (errors.password &&
@@ -204,36 +210,44 @@ const SignUpPage = ()=>{
              (errors.password &&
                errors.password.type === "pattern" &&
                "must be alhpa numeric and contain atleast one special character")
+              }
+              helperText={
+                (errors.password &&
+               errors.password.type === "required" &&
+               "this field is required") ||
+             (errors.password &&
+               errors.password.type === "minLength" &&
+               "password must be more than 8 characters") ||
+             (errors.password &&
+               errors.password.type === "pattern" &&
+               "must be alhpa numeric and contain atleast one special character")
+              }
+              
+            />
+            <div onClick={()=>setShowPassword(!showPassword)} aria-hidden className="eye-icon">
+              {showPassword?< VisibilityIcon/>:<VisibilityOffIcon/>}
+            </div>
+          </div> 
+          <div className="password-field">
+            <TextField label="Confirm Password" autoComplete="off" type={showConfPassword?"text":"password"} {...register("confirmPassword",{validate: {
+              checkPassword: isConPassword,
+            },
+            })}
+            error={
+              errors.confirmPassword &&
+            errors.confirmPassword.type === "checkPassword" &&
+            "does'nt match with the password"
             }
             helperText={
-              (errors.password &&
-               errors.password.type === "required" &&
-               "this field is required") ||
-             (errors.password &&
-               errors.password.type === "minLength" &&
-               "password must be more than 8 characters") ||
-             (errors.password &&
-               errors.password.type === "pattern" &&
-               "must be alhpa numeric and contain atleast one special character")
+              errors.confirmPassword &&
+            errors.confirmPassword.type === "checkPassword" &&
+            "does'nt match with the password"
             }
-
-          />
-          <TextField label="Confirm Password" type="password" {...register("confirmPassword",{validate: {
-            checkPassword: isConPassword,
-          },
-          })}
-          error={
-            errors.confirmPassword &&
-            errors.confirmPassword.type === "checkPassword" &&
-            "does'nt match with the password"
-          }
-          helperText={
-            errors.confirmPassword &&
-            errors.confirmPassword.type === "checkPassword" &&
-            "does'nt match with the password"
-          }
-
-          />
+            />
+            <div onClick={()=>setShowConfPassword(!showConfPassword)} aria-hidden className="eye-icon">
+              {showConfPassword?< VisibilityIcon/>:<VisibilityOffIcon/>}
+            </div>
+          </div>
           <div className="btn-container">
             <input className="submit-btn" type="submit" value="SignUp" onClick={handleSubmit} />
           </div>
