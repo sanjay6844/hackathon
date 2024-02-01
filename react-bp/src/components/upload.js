@@ -998,17 +998,17 @@ const Upload = () => {
                   slotProps={{
                     toolbar: { setAssetRows, setAssetRowModesModel },
                   }}
-                 
                 />
               </Box>
               <div className="btns"><button onClick={pies} className="btn v2">View as</button></div>
-
             </div>
-          </> ):!show&&<l-bouncy
-          size="45"
-          speed="1.75" 
-          color="#615d6e"
-        ></l-bouncy>
+          </> ):!show&&<div className="loader-container">
+          <l-bouncy
+            size="45"
+            speed="1.75" 
+            color="#615d6e"
+          ></l-bouncy>
+        </div>
       }
     </>
     
