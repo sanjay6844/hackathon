@@ -4,7 +4,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
-import { cloneDeep } from "lodash";
+import { cloneDeep, isNumber } from "lodash";
 import React, { useContext, useEffect ,useState} from "react";
 import RefContext from "Utilities/refContext";
 import Button from "@mui/material/Button";
@@ -376,8 +376,106 @@ const Upload = () => {
   const handleRowModesModelChangeOfAsset = (newRowModesModel) => {
     setAssetRowModesModel(newRowModesModel);
   };
+  console.log(salesProfit[0],"today sales");
+  const objectKeys = Object.keys(salesProfit[0] || []);
+  function isNumber(value) {
+    return typeof value === "number";
+  }
+  const columns1 = objectKeys?.map((key) =>
+  {
+    
+    if
+    (key=="P/L")
+    {
+      return{ field: "P/L", 
+        headerName: "P/L", 
+        type: "number",
+        width: 180, 
+        editable: false ,
+        align: "left",
+        headerAlign: "left",
+        headerClassName: "super-app-theme--header",
+        valueGetter: (params) => {
+          return params?.row?.["Sales Amount"]-params?.row.Cost ;
+        },
 
-  const columns1 = [
+      }
+
+
+    }
+    else if(key!="id")
+    {
+      return{
+        field: key,
+        headerName:key,
+        width:180,
+        align:"left",
+        headerAlign:"left",
+        editable:true,
+        headerClassName: "super-app-theme--header",
+        type:isNumber(salesProfit[0][key]) ? "number" :"string"
+      };
+    }
+    else
+      return null;
+  }
+  ).filter(Boolean);
+
+  columns1.push({
+    headerClassName: "super-app-theme--header",
+
+    field: "actions",
+    type: "actions",
+    headerName: "Actions",
+    width: 100,
+    cellClassName: "actions",
+    getActions: ({ id }) => {
+      const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+
+      if (isInEditMode) {
+        return [
+          // eslint-disable-next-line react/jsx-key
+          <GridActionsCellItem
+            icon={<SaveIcon />}
+            label="Save"
+            sx={{
+              color: "primary.main",
+            }}
+            onClick={handleSaveClick(id)}
+          />,
+          <GridActionsCellItem
+            icon={<CancelIcon />}
+            label="Cancel"
+            className="textPrimary"
+            onClick={handleCancelClick(id)}
+            color="inherit"
+          />,
+        ];
+      }
+
+      return [
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          label="Edit"
+          className="textPrimary"
+          onClick={handleEditClick(id)}
+          color="inherit"
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={handleClickOpen(id,true)}
+
+          color="inherit"
+        />,
+      ];
+    },
+  })
+  //setCol1(c1);
+
+  //console.log("c1",c1);
+
+  const c1 = [
     { field: "Product ID",
       headerName: "Product ID", 
       type: "number",width: 180,
@@ -487,7 +585,74 @@ const Upload = () => {
     },
   ];
 
-  const columns2 = [
+  const Keys = Object.keys(assets[0] || []);
+  const columns2 = Keys.map((key) => {
+    if(key!="id" && key!="isNew")
+    {
+      return{ field: key,
+        headerName: key, 
+        width: 180,
+        align: "left",     
+        headerAlign: "left",
+        editable: true ,
+        headerClassName: "super-app-theme--header",
+      }
+    }
+  }).filter(Boolean);
+  //console.log(newArray,"new array assets")
+  columns2.push({
+    headerClassName: "super-app-theme--header",
+
+    field: "actions",
+    type: "actions",
+    headerName: "Actions",
+    width: 100,
+    cellClassName: "actions",
+    getActions: ({ id }) => {
+      const isInEditMode = assetrowModesModel[id]?.mode === GridRowModes.Edit;
+
+      if (isInEditMode) {
+        return [
+          // eslint-disable-next-line react/jsx-key
+          <GridActionsCellItem
+            icon={<SaveIcon />}
+            label="Save"
+            sx={{
+              color: "primary.main",
+            }}
+            onClick={handleSaveClickOfAsset(id)}
+          />,
+          <GridActionsCellItem
+            icon={<CancelIcon />}
+            label="Cancel"
+            className="textPrimary"
+            onClick={handleCancelClickOfAsset(id)}
+            color="inherit"
+          />,
+        ];
+      }
+
+      return [
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          label="Edit"
+          className="textPrimary"
+          onClick={handleEditClickOfAsset(id)}
+          color="inherit"
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={handleClickOpen(id,false)}
+
+          color="inherit"
+        />,
+      ];
+    },
+  })
+
+
+  const c2 = [
     { field: "Companies",
       headerName: "Companies", 
       width: 180,
