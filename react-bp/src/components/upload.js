@@ -994,7 +994,7 @@ const Upload = () => {
                 <DataGrid
                   rows={assetrows}
                   columns={columns2}
-                  //editMode="row"
+                  editMode="row"
                   rowModesModel={assetrowModesModel}
                   onRowModesModelChange={handleRowModesModelChangeOfAsset}
                   onRowEditStop={handleRowEditStopOfAsset}
@@ -1007,7 +1007,7 @@ const Upload = () => {
                   }}
                   onCellDoubleClick={(params, event) => {
                     if (!event.ctrlKey) {
-                      //event.defaultMuiPrevented = true;
+                      event.defaultMuiPrevented = true;
                     }
                   }}
                 />

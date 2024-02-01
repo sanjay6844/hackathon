@@ -576,7 +576,8 @@
         {
           "id": "146916ac-7e8b-5161-966b-98df6510f4e0",
           "Companies": "Cipla Ltd",
-          "Shares ( % )": 68
+          "Shares ( % )": 68,
+          "isNew": false
         },
         {
           "id": "34133128-b606-57b8-ac3f-c42e5216dee6",
