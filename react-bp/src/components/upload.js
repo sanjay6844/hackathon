@@ -408,7 +408,8 @@ const Upload = () => {
   
 
   const handleCancelClick = (id) => () => {
-   
+    setEditOn(false);
+    setAddOn(false);
     setRowModesModel({
       ...rowModesModel,
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
