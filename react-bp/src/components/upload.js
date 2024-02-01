@@ -960,7 +960,7 @@ const Upload = () => {
                   }}
                 />
               </Box>
-              <div className="btns"><button onClick={profitLoss} className="btn v2">View as</button></div>
+              <div className="btns"><button onClick={profitLoss} className="btn v2">Chart View</button></div>
             </div>
             <div className="got">
               <div className="title">Asset Allocation</div>
@@ -1001,7 +1001,7 @@ const Upload = () => {
                  
                 />
               </Box>
-              <div className="btns"><button onClick={pies} className="btn v2">View as</button></div>
+              <div className="btns"><button onClick={pies} className="btn v2">Chart View</button></div>
 
             </div>
           </> ):!show&&<l-bouncy
