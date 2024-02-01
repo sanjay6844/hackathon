@@ -468,13 +468,13 @@ const Upload = () => {
         headerName: "P/L", 
         type: "number",
         width: 180, 
-        editable: false ,
+        editable: true ,
         align: "left",
         headerAlign: "left",
         headerClassName: "super-app-theme--header",
-        valueGetter: (params) => {
-          return params?.row?.["Sales Amount"]-params?.row.Cost ;
-        },
+        // valueGetter: (params) => {
+        //   return params?.row?.["Sales Amount"]-params?.row.Cost ;
+        // },
 
       }
 
@@ -958,6 +958,12 @@ const Upload = () => {
                   slotProps={{
                     toolbar: { setRows, setRowModesModel },
                   }}
+
+                  onCellDoubleClick={(params, event) => {
+                    if (!event.ctrlKey) {
+                      event.defaultMuiPrevented = true;
+                    }
+                  }}
                 />
               </Box>
               <div className="btns"><button onClick={profitLoss} className="btn v2">Chart View</button></div>
@@ -997,6 +1003,11 @@ const Upload = () => {
                   }}
                   slotProps={{
                     toolbar: { setAssetRows, setAssetRowModesModel },
+                  }}
+                  onCellDoubleClick={(params, event) => {
+                    if (!event.ctrlKey) {
+                      event.defaultMuiPrevented = true;
+                    }
                   }}
                 />
               </Box>
