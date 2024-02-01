@@ -94,11 +94,11 @@ export default Piechart;
 
 
 
-/*
- *
- * Highcarts Pie Chart
- *
- */
+// /*
+//  *
+//  * Highcarts Pie Chart
+//  *
+//  */
 
 // import React, { useState, useEffect, forwardRef, memo,useContext } from "react";
 // import styled from "styled-components";
@@ -390,17 +390,7 @@ export default Piechart;
 // const PieChart = forwardRef((props, ref) => {
 //   const [options, setOptions] = useState(makeChartOptions(props, ref));
   
-//   const [pieDatas,setPieDatas] = useState(null);
-//   const ctx = useContext(RefContext);
-//   const { store } = ctx;
-//   useEffect(()=>{
-//     if(excelData[0]===undefined){
-//       console.log("exceldata is undefined ")
-//       return 
-//     }
-
-//     setPieDatas(excelData[0].Asset_allocation)
-//     ,[store]})
+ 
 
   
 //   useEffect(() => {}, [options]);
@@ -425,7 +415,6 @@ export default Piechart;
 
 
 // PieChart.defaultProps={
-
 //   defaultConfig: {
 //     chartType: "pie",
 //     name: "",
