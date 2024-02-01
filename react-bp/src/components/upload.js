@@ -959,6 +959,12 @@ const Upload = () => {
                   slotProps={{
                     toolbar: { setRows, setRowModesModel },
                   }}
+
+                  onCellDoubleClick={(params, event) => {
+                    if (!event.ctrlKey) {
+                      event.defaultMuiPrevented = true;
+                    }
+                  }}
                 />
               </Box>
               <div className="btns"><button onClick={profitLoss} className="btn v2">View as</button></div>
@@ -998,6 +1004,11 @@ const Upload = () => {
                   }}
                   slotProps={{
                     toolbar: { setAssetRows, setAssetRowModesModel },
+                  }}
+                  onCellDoubleClick={(params, event) => {
+                    if (!event.ctrlKey) {
+                      event.defaultMuiPrevented = true;
+                    }
                   }}
                 />
               </Box>
