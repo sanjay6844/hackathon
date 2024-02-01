@@ -390,11 +390,6 @@ const Upload = () => {
   };
 
 
-
-
-
-
-
   const handleDeleteClick = () => {
     setRows(rows.filter((row) => row.id !== deleteId));
     handleClose();
@@ -408,7 +403,8 @@ const Upload = () => {
   
 
   const handleCancelClick = (id) => () => {
-   
+    setEditOn(false);
+    setAddOn(false);
     setRowModesModel({
       ...rowModesModel,
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
@@ -728,7 +724,6 @@ const Upload = () => {
     },
   })
 
-
   const c2 = [
     { field: "Companies",
       headerName: "Companies", 
@@ -793,7 +788,6 @@ const Upload = () => {
             icon={<DeleteIcon />}
             label="Delete"
             onClick={handleClickOpen(id,false)}
-
             color="inherit"
           />,
         ];
