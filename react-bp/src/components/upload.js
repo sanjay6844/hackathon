@@ -474,9 +474,7 @@ const Upload = () => {
         align: "left",
         headerAlign: "left",
         headerClassName: "super-app-theme--header",
-        // valueGetter: (params) => {
-        //   return params?.row?.["Sales Amount"]-params?.row.Cost ;
-        // },
+       
         cellClassName: (params) => {
           if (params.value == null) {
             return "";
@@ -487,6 +485,20 @@ const Upload = () => {
             positive: params.value > 0,
           });
         },
+        // valueGetter: (params) => {
+        //   let numberString = params.value.toString();
+        //   numberString = numberString.substring(numberString.length);
+        //   let result = parseFloat(numberString);
+
+
+
+
+        //   if(params.value<0)
+        //     return result;
+            
+
+        //   else return params.value
+        // },
         
 
 
