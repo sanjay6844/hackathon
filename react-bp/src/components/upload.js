@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
+import clsx from "clsx";
 
 import { ToastContainer, toast } from "react-toastify";
 
@@ -471,6 +472,18 @@ const Upload = () => {
         // valueGetter: (params) => {
         //   return params?.row?.["Sales Amount"]-params?.row.Cost ;
         // },
+        cellClassName: (params) => {
+          if (params.value == null) {
+            return "";
+          }
+
+          return clsx("super-app", {
+            negative: params.value < 0,
+            positive: params.value > 0,
+          });
+        },
+        
+
 
       }
 
@@ -538,8 +551,10 @@ const Upload = () => {
           icon={<DeleteIcon sx={{color:"red"}}/>}
           label="Delete"
           onClick={handleClickOpen(id,true)}
-          sx={{color:"red"}}
-      
+          sx={{
+            color: "red",
+          }}
+          color="inherit"
         />,
       ];
     },
@@ -602,6 +617,17 @@ const Upload = () => {
       valueGetter: (params) => {
         return params?.row?.["Sales Amount"]-params?.row.Cost ;
       },
+      cellClassName: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        return clsx("super-app", {
+          negative: params.value < 0,
+          positive: params.value > 0,
+        });
+      },
+
 
     },
       
@@ -717,7 +743,7 @@ const Upload = () => {
           icon={<DeleteIcon sx={{color:"red"}}/>}
           label="Delete"
           onClick={handleClickOpen(id,false)}
-
+          sx={{color:"red"}}
           color="inherit"
         />,
       ];
@@ -929,10 +955,21 @@ const Upload = () => {
                   },
                   backgroundColor:"white",
                   "& .super-app-theme--header": {
-                    //backgroundColor: "#e5e5e5",
+                    backgroundColor: "#e5e5e5",
                     fontSize:20
 
                   },
+                  "& .super-app.negative": {
+                    //backgroundColor: "rgba(157, 255, 118, 0.49)",
+                    color: "red",
+                    fontWeight: "600",
+                  },
+                  "& .super-app.positive": {
+                    // backgroundColor: "#d47483",
+                    color: "green",
+                    fontWeight: "600",
+                  },
+               
                 
                 }}
               >
@@ -958,6 +995,7 @@ const Upload = () => {
                       event.defaultMuiPrevented = true;
                     }
                   }}
+
                 />
               </Box>
               <div className="btns"><button onClick={profitLoss} className="btn v2">Chart View</button></div>
@@ -977,7 +1015,9 @@ const Upload = () => {
 
                   backgroundColor:"white",
                   "& .super-app-theme--header": {
-                    fontSize:20
+                    fontSize:20,
+                    backgroundColor: "#e5e5e5",
+
 
                   },
 
