@@ -1,7 +1,7 @@
 
 .header{
     width: calc(100% - 340px);
-    height: 104px;
+    height: 88px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -24,7 +24,7 @@
 
 .header{
     width: calc(100% - 542px);
-    height: 142px;
+    height: 159px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -84,7 +84,7 @@
 
 .header{
     width: calc(100% - 340px);
-    height: 104px;
+    height: 88px;
     position: sticky;
     top: 0;
     z-index: 100;

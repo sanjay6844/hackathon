@@ -146,7 +146,9 @@ const postData = (data)=> (dispatch)=>{
 }
 
 const deleteAllData = ()=>()=>{
+  // if(initialState.excelData!==null){
   axios.delete("http://localhost:3000/excelData/1")
+  // }
 }
 
 
