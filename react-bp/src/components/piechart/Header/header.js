@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
+import React,{useContext} from "react";
 import {  useNavigate } from "react-router-dom"
 import Button from "@mui/material/Button";
 import { useCookies } from "react-cookie"
@@ -9,13 +9,20 @@ import { useCookies } from "react-cookie"
 // import Menu from "@mui/material/Menu";
 // import MenuItem from "@mui/material/MenuItem";
 // import Fade from "@mui/material/Fade";
+import RefContext from "Utilities/refContext";
+
 
 import "./header.css"
-const Header=()=>{
+const Header=(data)=>{
+  // const ctx = useContext(RefContext);
+  // const {  actions } = ctx;
+  // const { deleteAllData} = actions;
+  console.log(data)
   const [, , removeCookie] = useCookies(["user"])
   const navigate = useNavigate()
   const logout=()=>{
     removeCookie("user", ["user"], { path: "/" })
+    data.actions.dashboardActions.deleteAllData()
     navigate("/signin")
   }
   const next =()=>{

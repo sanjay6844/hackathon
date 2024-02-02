@@ -145,16 +145,8 @@ const postData = (data)=> (dispatch)=>{
     });
 }
 
-const postExcelData = (data)=>(dispatch)=>{
-  return nw
-    .api("get_excelData")
-    .put(data)
-    .then((response)=>{
-      dispatch(postToDashboardStore("excelData",response?.data));
-    })
-    .catch((error) => {
-      setApiError(dispatch, postToDashboardStore, error);
-    });
+const deleteAllData = ()=>()=>{
+  axios.delete("http://localhost:3000/excelData/1")
 }
 
 
@@ -202,9 +194,9 @@ export default {
     getAllData,
     fetchLoginData,
     postData,
-    postExcelData,
     getReloadData,
-    updateToStore
+    updateToStore,
+    deleteAllData
     
   },
 };
