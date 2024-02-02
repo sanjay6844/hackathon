@@ -197,6 +197,5 @@ export default {
     getReloadData,
     updateToStore,
     deleteAllData
-    
   },
 };
