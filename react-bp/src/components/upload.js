@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
@@ -9,7 +10,7 @@ import {  useNavigate } from "react-router-dom"
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
 import { cloneDeep, isNumber } from "lodash";
-import React, { useContext, useEffect ,useState} from "react";
+import React, { useContext, useEffect ,useState,useRef} from "react";
 import RefContext from "Utilities/refContext";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -245,15 +246,14 @@ const Upload = () => {
 
 
     
-
-    
+   
     
     return (
-      <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+   
+      <Button sx={{color:"#615d6e"}} startIcon={<AddIcon />} onClick={handleClick}>
         Add record
-        </Button>
-      </GridToolbarContainer>
+      </Button>
+    
     );
   }
   function assetEditToolbar(props) {
@@ -282,7 +282,7 @@ const Upload = () => {
 
     return (
       <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} onClick={handleClickOfAsset}>
+        <Button sx={{color:"#615d6e"}} startIcon={<AddIcon />} onClick={handleClickOfAsset}>
         Add record
         </Button>
       </GridToolbarContainer>
@@ -527,7 +527,7 @@ const Upload = () => {
         return [
           // eslint-disable-next-line react/jsx-key
           <GridActionsCellItem
-            icon={<SaveIcon />}
+            icon={<SaveIcon sx={{color:"green"}}/>}
             label="Save"
             sx={{
               color: "primary.main",
@@ -553,7 +553,7 @@ const Upload = () => {
           color="inherit"
         />,
         <GridActionsCellItem
-          icon={<DeleteIcon />}
+          icon={<DeleteIcon sx={{color:"red"}}/>}
           label="Delete"
           onClick={handleClickOpen(id,true)}
           sx={{
@@ -652,7 +652,7 @@ const Upload = () => {
           return [
             // eslint-disable-next-line react/jsx-key
             <GridActionsCellItem
-              icon={<SaveIcon />}
+              icon={<SaveIcon sx={{color:"green"}} />}
               label="Save"
               sx={{
                 color: "primary.main",
@@ -678,7 +678,7 @@ const Upload = () => {
             color="inherit"
           />,
           <GridActionsCellItem
-            icon={<DeleteIcon />}
+            icon={<DeleteIcon sx={{color:"red"}}/>}
             label="Delete"
             onClick={handleClickOpen(id,true)}
 
@@ -719,7 +719,7 @@ const Upload = () => {
         return [
           // eslint-disable-next-line react/jsx-key
           <GridActionsCellItem
-            icon={<SaveIcon />}
+            icon={<SaveIcon sx={{color:"green"}}/>}
             label="Save"
             sx={{
               color: "primary.main",
@@ -745,7 +745,7 @@ const Upload = () => {
           color="inherit"
         />,
         <GridActionsCellItem
-          icon={<DeleteIcon />}
+          icon={<DeleteIcon sx={{color:"red"}}/>}
           label="Delete"
           onClick={handleClickOpen(id,false)}
           sx={{color:"red"}}
@@ -791,7 +791,7 @@ const Upload = () => {
           return [
             // eslint-disable-next-line react/jsx-key
             <GridActionsCellItem
-              icon={<SaveIcon />}
+              icon={<SaveIcon sx={{color:"green"}}/>}
               label="Save"
               sx={{
                 color: "primary.main",
@@ -817,7 +817,7 @@ const Upload = () => {
             color="inherit"
           />,
           <GridActionsCellItem
-            icon={<DeleteIcon />}
+            icon={<DeleteIcon sx={{color:"red"}}/>}
             label="Delete"
             onClick={handleClickOpen(id,false)}
 
@@ -866,10 +866,10 @@ const Upload = () => {
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
-        <GridToolbarExport />
-        <EditToolbar setRows={setRows} setRowModesModel={setRowModesModel} />
+        <GridToolbarExport sx={{color:"#615d6e",}}/>
+        <EditToolbar sx={{color:"#615d6e",backgroundColor:"#615d6ed4"}}setRows={setRows} setRowModesModel={setRowModesModel} />
         
-        <GridToolbarDensitySelector />
+        <GridToolbarDensitySelector sx={{color:"#615d6e"}}/>
       </GridToolbarContainer>
     );
   }
@@ -897,13 +897,13 @@ const Upload = () => {
 
   function assetCustomToolbar() {
     return (
-      <GridToolbarContainer>
-        <GridToolbarExport />
-        <assetEditToolbar />
-        <Button color="primary" startIcon={<AddIcon />} onClick={handleClickOfAsset}>
+      <GridToolbarContainer sx={{color:"#615d6e"}}>
+        <GridToolbarExport sx={{color:"#615d6e"}}/>
+        <assetEditToolbar/>
+        <Button  sx={{color:"#615d6e"}} startIcon={<AddIcon />} onClick={handleClickOfAsset}>
         Add record
         </Button>
-        <GridToolbarDensitySelector />
+        <GridToolbarDensitySelector sx={{color:"#615d6e"}}/>
 
       </GridToolbarContainer>
       
