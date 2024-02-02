@@ -168,7 +168,6 @@ const deleteAllData = ()=>()=>{
 // Reducers
 const dashboardReducer = (state = initialState, action) => {
   const localState = cloneDeep(state);
-
   switch (action.type) {
   case ASSIGN_TO_DASHBOARD_STORE:
     localState[action.meta.type] = action.meta.payload;
@@ -196,7 +195,6 @@ export default {
     postData,
     getReloadData,
     updateToStore,
-    deleteAllData
-    
+    deleteAllData   
   },
 };

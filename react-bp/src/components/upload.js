@@ -105,8 +105,9 @@ const Upload = () => {
   const [assets,setAssets]=useState("");
   console.log(assets,"assets in use sate")
   
-  
+  console.log(RefContext,"refcontext")
   const ctx = useContext(RefContext);
+  console.log(ctx,"ctx value")
   const { store, actions } = ctx;
   const { getAllData,getReloadData,updateToStore} = actions;
   const { testData } = store;
@@ -843,7 +844,6 @@ const Upload = () => {
           "Asset_allocation":assetrows
         }
       
-      // setExcelData(tempdata);
       updateToStore(tempdata)
     }
     
