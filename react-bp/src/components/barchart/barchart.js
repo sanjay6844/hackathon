@@ -7,6 +7,7 @@ import RefContext from "Utilities/refContext";
 
 
 import Chart from "react-apexcharts";
+import { green } from "@mui/material/colors";
 
 const Barchart = ({excelData})=>{
   const ctx = useContext(RefContext);
@@ -24,17 +25,27 @@ const Barchart = ({excelData})=>{
     setBarData(excelData[0]["Sales&Profit"])
     ,[]})
   const xAxis = barData?.map((data)=>data["Product Name"])
-  let profitLoss =[]
+  let profit =[]
+  let loss = []
   let salesAmount = []
   let cost = []
   barData?.map((data)=>{
-    profitLoss.push(data["P/L"])
+    if(data["P/L"]>0){
+      profit.push(data["P/L"])
+      loss.push(null)
+    }
+    else{
+      loss.push(data["P/L"]*-1)
+      profit.push(null)
+    }
+    
     salesAmount.push(data["Sales Amount"])
     cost.push(data["Cost"])
   })
-  console.log(profitLoss)
   const values = {
     optionsMixedChart: {
+      // colors: ["green", "blue","yellow","red"],
+      colors: ["#0D9276", "#0B60B0", "#FEB019","#F28585"],
       chart: {
         id: "basic-bar",
         toolbar: {
@@ -47,14 +58,14 @@ const Barchart = ({excelData})=>{
         },
       },
       stroke: {
-        width: [4, 0, 0],
+        width: [0, 0, 0],
       },
       xaxis: {
         categories: xAxis,
       },
       markers: {
         size: 6,
-        strokeWidth: 3,
+        strokeWidth: 0,
         fillOpacity: 0,
         strokeOpacity: 0,
         hover: {
@@ -67,9 +78,9 @@ const Barchart = ({excelData})=>{
     },
     seriesMixedChart: [
       {
-        name: "P/L",
+        name: "Profit",
         type: "column",
-        data: profitLoss,
+        data: profit,
       },
       {
         name: "Cost",
@@ -81,6 +92,11 @@ const Barchart = ({excelData})=>{
         type: "column",
         data: salesAmount,
       },
+      {
+        name: "Loss",
+        type: "column",
+        data: loss,
+      },
     ],
   };
 
@@ -90,7 +106,6 @@ const Barchart = ({excelData})=>{
         className = "bar-chart"
         options={values.optionsMixedChart}
         series={values.seriesMixedChart}
-        // type="line"
         width="95%"
         height="610px"
       />

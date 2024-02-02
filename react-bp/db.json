@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "name": "sanjay",
+      "email": "sanjayram.a@sudoboat.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "confirmPassword": "as12AS!@",
+      "dob": "2021-12-31T18:30:00.000Z",
+      "id": 1
+    },
+    {
+      "name": "sanjayram",
+      "email": "dfds@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "confirmPassword": "as12AS!@",
+      "dob": "2024-01-30T18:30:00.000Z",
+      "id": 2
+    }
+  ],
+  "excelData": [
+    
+  ]
+}

@@ -10,6 +10,7 @@
 .css-128fb87-MuiDataGrid-toolbarContainer {
 	padding: 0px 0px 0px ;
 }
+
 .css-y8ay40-MuiTableCell-root {
     background-color: #615d6e;
 }
@@ -29,7 +30,6 @@
 	transition: color 0.2s ease;
 	
 	&::before {
-		background: linear-gradient(90deg, darken($navy, 5%) 50%, $navy 50%);
 		content: '';
 		height: 100%;
 		right: 0;
@@ -78,6 +78,7 @@
 	position: relative;
 	text-transform: uppercase;
 	z-index: 1;
+	border:none;
 }
 .btns{
 	width:100%;
