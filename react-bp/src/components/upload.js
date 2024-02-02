@@ -25,6 +25,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import "./upload.css"
 // GRID
 import Box from "@mui/material/Box";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 //import Button from '@mui/material/Button';
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -975,6 +976,7 @@ const Upload = () => {
                   },
                   "& .super-app.negative": {
                     //backgroundColor: "rgba(157, 255, 118, 0.49)",
+                
                     color: "red",
                     fontWeight: "600",
                   },
