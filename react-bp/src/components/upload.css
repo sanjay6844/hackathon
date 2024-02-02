@@ -29,7 +29,6 @@
 	transition: color 0.2s ease;
 	
 	&::before {
-		background: linear-gradient(90deg, darken($navy, 5%) 50%, $navy 50%);
 		content: '';
 		height: 100%;
 		right: 0;
