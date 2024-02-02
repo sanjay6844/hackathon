@@ -392,11 +392,6 @@ const Upload = () => {
   };
 
 
-
-
-
-
-
   const handleDeleteClick = () => {
     setRows(rows.filter((row) => row.id !== deleteId));
     handleClose();
@@ -763,7 +758,6 @@ const Upload = () => {
     },
   })
 
-
   const c2 = [
     { field: "Companies",
       headerName: "Companies", 
@@ -828,7 +822,6 @@ const Upload = () => {
             icon={<DeleteIcon sx={{color:"red"}}/>}
             label="Delete"
             onClick={handleClickOpen(id,false)}
-
             color="inherit"
           />,
         ];
