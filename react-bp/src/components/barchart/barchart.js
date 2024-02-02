@@ -45,7 +45,7 @@ const Barchart = ({excelData})=>{
   const values = {
     optionsMixedChart: {
       // colors: ["green", "blue","yellow","red"],
-      colors: ["#0D9276", "#0B60B0", "#FAEF5D","#F28585"],
+      colors: ["#0D9276", "#0B60B0", "#FEB019","#F28585"],
       chart: {
         id: "basic-bar",
         toolbar: {
