@@ -92,3 +92,13 @@
 	justify-content: center;
 	align-items: center;
 }
+.super-app-theme--header{
+	background-color: #615d6e !important;
+	color:white;
+}
+.css-1iyq7zh-MuiDataGrid-columnHeaders{
+	background-color:#615d6e;
+}
+.css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root{
+	color: white !important;
+}
