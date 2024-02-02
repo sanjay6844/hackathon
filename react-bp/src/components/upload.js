@@ -5,7 +5,7 @@
 import clsx from "clsx";
 
 import { ToastContainer, toast } from "react-toastify";
-
+import Tooltip from "@mui/material/Tooltip";
 import {  useNavigate } from "react-router-dom"
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
@@ -25,6 +25,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import "./upload.css"
 // GRID
 import Box from "@mui/material/Box";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 //import Button from '@mui/material/Button';
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -521,41 +522,44 @@ const Upload = () => {
       if (isInEditMode) {
         return [
           // eslint-disable-next-line react/jsx-key
-          <GridActionsCellItem
+          <Tooltip title="save"><GridActionsCellItem
             icon={<SaveIcon sx={{color:"green"}}/>}
             label="Save"
             sx={{
               color: "primary.main",
             }}
             onClick={handleSaveClick(id)}
-          />,
-          <GridActionsCellItem
+          /></Tooltip>,
+          <Tooltip title="cancel"><GridActionsCellItem
             icon={<CancelIcon />}
             label="Cancel"
             className="textPrimary"
             onClick={handleCancelClick(id)}
             color="inherit"
-          />,
+          /></Tooltip>,
         ];
       }
 
       return [
-        <GridActionsCellItem
-          icon={<EditIcon />}
-          label="Edit"
-          className="textPrimary"
-          onClick={handleEditClick(id)}
-          color="inherit"
-        />,
-        <GridActionsCellItem
-          icon={<DeleteIcon sx={{color:"red"}}/>}
-          label="Delete"
-          onClick={handleClickOpen(id,true)}
-          sx={{
-            color: "red",
-          }}
-          color="inherit"
-        />,
+        <Tooltip title="Edit">
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            className="textPrimary"
+            onClick={handleEditClick(id)}
+            color="inherit"
+          /></Tooltip>,
+        <Tooltip title="Delete">
+          <GridActionsCellItem
+            icon={<DeleteIcon sx={{color:"red"}}/>}
+            label="Delete"
+            onClick={handleClickOpen(id,true)}
+            sx={{
+              color: "red",
+            }}
+            color="inherit"
+          /> 
+        </Tooltip>
       ];
     },
   })
@@ -646,39 +650,41 @@ const Upload = () => {
         if (isInEditMode) {
           return [
             // eslint-disable-next-line react/jsx-key
-            <GridActionsCellItem
+            <Tooltip title="save"><GridActionsCellItem
               icon={<SaveIcon sx={{color:"green"}} />}
               label="Save"
               sx={{
                 color: "primary.main",
               }}
               onClick={handleSaveClick(id)}
-            />,
-            <GridActionsCellItem
+            /></Tooltip>,
+            <Tooltip title="cancel"><GridActionsCellItem
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
               onClick={handleCancelClick(id)}
               color="inherit"
-            />,
+            /></Tooltip>,
           ];
         }
 
         return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<DeleteIcon sx={{color:"red"}}/>}
-            label="Delete"
-            onClick={handleClickOpen(id,true)}
+          <Tooltip title="Edit">
+            <GridActionsCellItem
+              icon={<EditIcon />}
+              label="Edit"
+              className="textPrimary"
+              onClick={handleEditClick(id)}
+              color="inherit"
+            /></Tooltip>,
+          <Tooltip title="Delete">
+            <GridActionsCellItem
+              icon={<DeleteIcon sx={{color:"red"}}/>}
+              label="Delete"
+              onClick={handleClickOpen(id,true)}
 
-            color="inherit"
-          />,
+              color="inherit"
+            /></Tooltip>,
         ];
       },
     },
@@ -713,39 +719,41 @@ const Upload = () => {
       if (isInEditMode) {
         return [
           // eslint-disable-next-line react/jsx-key
-          <GridActionsCellItem
+          <Tooltip title="save"><GridActionsCellItem
             icon={<SaveIcon sx={{color:"green"}}/>}
             label="Save"
             sx={{
               color: "primary.main",
             }}
             onClick={handleSaveClickOfAsset(id)}
-          />,
-          <GridActionsCellItem
+          /></Tooltip>,
+          <Tooltip title="cancel"><GridActionsCellItem
             icon={<CancelIcon />}
             label="Cancel"
             className="textPrimary"
             onClick={handleCancelClickOfAsset(id)}
             color="inherit"
-          />,
+          /></Tooltip>,
         ];
       }
 
       return [
-        <GridActionsCellItem
-          icon={<EditIcon />}
-          label="Edit"
-          className="textPrimary"
-          onClick={handleEditClickOfAsset(id)}
-          color="inherit"
-        />,
-        <GridActionsCellItem
-          icon={<DeleteIcon sx={{color:"red"}}/>}
-          label="Delete"
-          onClick={handleClickOpen(id,false)}
-          sx={{color:"red"}}
-          color="inherit"
-        />,
+        <Tooltip title="Edit">
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            className="textPrimary"
+            onClick={handleEditClickOfAsset(id)}
+            color="inherit"
+          /></Tooltip>,
+        <Tooltip title="Delete">
+          <GridActionsCellItem
+            icon={<DeleteIcon sx={{color:"red"}}/>}
+            label="Delete"
+            onClick={handleClickOpen(id,false)}
+            sx={{color:"red"}}
+            color="inherit"
+          /></Tooltip>,
       ];
     },
   })
@@ -784,21 +792,21 @@ const Upload = () => {
         if (isInEditMode) {
           return [
             // eslint-disable-next-line react/jsx-key
-            <GridActionsCellItem
+            <Tooltip title="save"><GridActionsCellItem
               icon={<SaveIcon sx={{color:"green"}}/>}
               label="Save"
               sx={{
                 color: "primary.main",
               }}
               onClick={handleSaveClickOfAsset(id)}
-            />,
-            <GridActionsCellItem
+            /></Tooltip>,
+            <Tooltip title="cancel"><GridActionsCellItem
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
               onClick={handleCancelClickOfAsset(id)}
               color="inherit"
-            />,
+            /></Tooltip>,
           ];
         }
 
@@ -961,6 +969,7 @@ const Upload = () => {
                   },
                   "& .super-app.negative": {
                     //backgroundColor: "rgba(157, 255, 118, 0.49)",
+                
                     color: "red",
                     fontWeight: "600",
                   },

@@ -52,7 +52,8 @@
           "Product Name": "Smartphone",
           "Sales Amount": 33708,
           "Cost": 91589,
-          "P/L": -57881
+          "P/L": 57881,
+          "isNew": false
         },
         {
           "id": "db353ef3-d6e0-5627-8adf-5938b0c7d28d",
@@ -540,7 +541,8 @@
           "Product Name": "TVS Motor Company",
           "Sales Amount": 85346,
           "Cost": 66710,
-          "P/L": 18636
+          "P/L": 18636,
+          "isNew": false
         },
         {
           "id": "2d7d1dd3-1e3f-514c-aa16-98e015f673ea",
