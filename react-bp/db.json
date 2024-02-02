@@ -27,7 +27,8 @@
           "Product Name": "Refrigerator",
           "Sales Amount": 37613,
           "Cost": 24267,
-          "P/L": 13346
+          "P/L": 13346,
+          "isNew": false
         },
         {
           "id": "239c0e0a-4323-5ebe-8815-f0f0baef1df2",
