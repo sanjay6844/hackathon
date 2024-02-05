@@ -5,7 +5,7 @@
 import clsx from "clsx";
 
 import { ToastContainer, toast } from "react-toastify";
-
+import Tooltip from "@mui/material/Tooltip";
 import {  useNavigate } from "react-router-dom"
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
@@ -25,6 +25,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import "./upload.css"
 // GRID
 import Box from "@mui/material/Box";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 //import Button from '@mui/material/Button';
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -44,6 +45,8 @@ import {
   GridToolbarFilterButton,
   
 } from "@mui/x-data-grid";
+import {  GridColumnVisibilityModel } from "@mui/x-data-grid";
+
 //modal
 //import Button from '@mui/material/Button';
 import Dialog from "@mui/material/Dialog";
@@ -58,19 +61,27 @@ import {
   randomArrayItem,
 } from "@mui/x-data-grid-generator";
 import { bouncy } from "ldrs"
+import {  useCookies } from "react-cookie";
+import { Details } from "@material-ui/icons";
 
 
 
-// Default values shown
 
 
-const roles = ["Market", "Finance", "Development"];
-const randomRole = () => {
-  return randomArrayItem(roles);
-};
+
 
 
 const Upload = () => {
+  const [cookies] = useCookies(["user"])
+
+ 
+
+
+
+
+
+
+
   const navigate = useNavigate()
   const [show,setShow] = useState(true)
   const [loading,setLoading] = useState()
@@ -109,14 +120,27 @@ const Upload = () => {
   const ctx = useContext(RefContext);
   console.log(ctx,"ctx value")
   const { store, actions } = ctx;
-  const { getAllData,getReloadData,updateToStore} = actions;
+  const { getAllData,getReloadData,updateToStore,updateUserToStore,getReloadDataOfUsers,updateUserToStoreForAssets} = actions;
   const { testData } = store;
   const [salesProfit,setSalesProfit]=useState("");
+
+
+  const [currentUser,setCurrentUser]=useState();
+  const currentUserEmail=cookies.user;
+
+  
+
+
+
+
+
+
 
   useEffect(() => {
     // getAllRequetUser();
     console.log("reload")
     getReloadData()
+    getReloadDataOfUsers()
   }, []);
   
   // useEffect(() => {
@@ -129,9 +153,54 @@ const Upload = () => {
   //   }    
   // }, [store]);
 
+  const [columnVisibilityModel, setColumnVisibilityModel] =
+    React.useState();
+
+  const [hasPageRendered,setPageRendered]=useState(false)
+  useEffect(()=>{
+    if(hasPageRendered)
+    {
+      console.log("inside if")
+      updateUserToStore(columnVisibilityModel,currentUser.id)
+    }
+    setPageRendered(true);
+  },[columnVisibilityModel])
+
+  const [assetsColumnVisibilityModel, setAssetsColumnVisibilityModel] =
+    React.useState(
+
+    );
+  const [hasPageRenderedAssets,setPageRenderedAssets]=useState(false)
+
+
+  useEffect(()=>{
+    if(hasPageRenderedAssets)
+    {
+      updateUserToStoreForAssets(assetsColumnVisibilityModel,currentUser.id)
+    }
+    setPageRenderedAssets(true);
+  },[assetsColumnVisibilityModel])
+
+
+
+
+
+
+
   useEffect(() => {
-    console.log("inside store effect")
+    console.log("current user details",store.currentUser);
     if(store!==undefined&&store?.excelData){
+
+      const user=store?.users?.find(user=>user.email==currentUserEmail)
+      console.log("current user detailssssssssssssssssssssssssss",user);
+      setCurrentUser(user);
+      setColumnVisibilityModel(user?.columnVisibility)
+      setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
+
+
+
+
+
       console.log("inside store effect")
       if(store!==undefined&&store?.excelData){
         console.log(store,"store")
@@ -481,20 +550,10 @@ const Upload = () => {
             positive: params.value > 0,
           });
         },
-        // valueGetter: (params) => {
-        //   let numberString = params.value.toString();
-        //   numberString = numberString.substring(numberString.length);
-        //   let result = parseFloat(numberString);
-
-
-
-
-        //   if(params.value<0)
-        //     return result;
-            
-
-        //   else return params.value
-        // },
+        valueFormatter: (params) => {
+          return Math.abs(params.value)
+         
+        },
         
 
 
@@ -534,41 +593,44 @@ const Upload = () => {
       if (isInEditMode) {
         return [
           // eslint-disable-next-line react/jsx-key
-          <GridActionsCellItem
+          <Tooltip title="save"><GridActionsCellItem
             icon={<SaveIcon sx={{color:"green"}}/>}
             label="Save"
             sx={{
               color: "primary.main",
             }}
             onClick={handleSaveClick(id)}
-          />,
-          <GridActionsCellItem
+          /></Tooltip>,
+          <Tooltip title="cancel"><GridActionsCellItem
             icon={<CancelIcon />}
             label="Cancel"
             className="textPrimary"
             onClick={handleCancelClick(id)}
             color="inherit"
-          />,
+          /></Tooltip>,
         ];
       }
 
       return [
-        <GridActionsCellItem
-          icon={<EditIcon />}
-          label="Edit"
-          className="textPrimary"
-          onClick={handleEditClick(id)}
-          color="inherit"
-        />,
-        <GridActionsCellItem
-          icon={<DeleteIcon sx={{color:"red"}}/>}
-          label="Delete"
-          onClick={handleClickOpen(id,true)}
-          sx={{
-            color: "red",
-          }}
-          color="inherit"
-        />,
+        <Tooltip title="Edit">
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            className="textPrimary"
+            onClick={handleEditClick(id)}
+            color="inherit"
+          /></Tooltip>,
+        <Tooltip title="Delete">
+          <GridActionsCellItem
+            icon={<DeleteIcon sx={{color:"red"}}/>}
+            label="Delete"
+            onClick={handleClickOpen(id,true)}
+            sx={{
+              color: "red",
+            }}
+            color="inherit"
+          /> 
+        </Tooltip>
       ];
     },
   })
@@ -659,39 +721,41 @@ const Upload = () => {
         if (isInEditMode) {
           return [
             // eslint-disable-next-line react/jsx-key
-            <GridActionsCellItem
+            <Tooltip title="save"><GridActionsCellItem
               icon={<SaveIcon sx={{color:"green"}} />}
               label="Save"
               sx={{
                 color: "primary.main",
               }}
               onClick={handleSaveClick(id)}
-            />,
-            <GridActionsCellItem
+            /></Tooltip>,
+            <Tooltip title="cancel"><GridActionsCellItem
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
               onClick={handleCancelClick(id)}
               color="inherit"
-            />,
+            /></Tooltip>,
           ];
         }
 
         return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<DeleteIcon sx={{color:"red"}}/>}
-            label="Delete"
-            onClick={handleClickOpen(id,true)}
+          <Tooltip title="Edit">
+            <GridActionsCellItem
+              icon={<EditIcon />}
+              label="Edit"
+              className="textPrimary"
+              onClick={handleEditClick(id)}
+              color="inherit"
+            /></Tooltip>,
+          <Tooltip title="Delete">
+            <GridActionsCellItem
+              icon={<DeleteIcon sx={{color:"red"}}/>}
+              label="Delete"
+              onClick={handleClickOpen(id,true)}
 
-            color="inherit"
-          />,
+              color="inherit"
+            /></Tooltip>,
         ];
       },
     },
@@ -726,39 +790,41 @@ const Upload = () => {
       if (isInEditMode) {
         return [
           // eslint-disable-next-line react/jsx-key
-          <GridActionsCellItem
+          <Tooltip title="save"><GridActionsCellItem
             icon={<SaveIcon sx={{color:"green"}}/>}
             label="Save"
             sx={{
               color: "primary.main",
             }}
             onClick={handleSaveClickOfAsset(id)}
-          />,
-          <GridActionsCellItem
+          /></Tooltip>,
+          <Tooltip title="cancel"><GridActionsCellItem
             icon={<CancelIcon />}
             label="Cancel"
             className="textPrimary"
             onClick={handleCancelClickOfAsset(id)}
             color="inherit"
-          />,
+          /></Tooltip>,
         ];
       }
 
       return [
-        <GridActionsCellItem
-          icon={<EditIcon />}
-          label="Edit"
-          className="textPrimary"
-          onClick={handleEditClickOfAsset(id)}
-          color="inherit"
-        />,
-        <GridActionsCellItem
-          icon={<DeleteIcon sx={{color:"red"}}/>}
-          label="Delete"
-          onClick={handleClickOpen(id,false)}
-          sx={{color:"red"}}
-          color="inherit"
-        />,
+        <Tooltip title="Edit">
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            className="textPrimary"
+            onClick={handleEditClickOfAsset(id)}
+            color="inherit"
+          /></Tooltip>,
+        <Tooltip title="Delete">
+          <GridActionsCellItem
+            icon={<DeleteIcon sx={{color:"red"}}/>}
+            label="Delete"
+            onClick={handleClickOpen(id,false)}
+            sx={{color:"red"}}
+            color="inherit"
+          /></Tooltip>,
       ];
     },
   })
@@ -797,21 +863,21 @@ const Upload = () => {
         if (isInEditMode) {
           return [
             // eslint-disable-next-line react/jsx-key
-            <GridActionsCellItem
+            <Tooltip title="save"><GridActionsCellItem
               icon={<SaveIcon sx={{color:"green"}}/>}
               label="Save"
               sx={{
                 color: "primary.main",
               }}
               onClick={handleSaveClickOfAsset(id)}
-            />,
-            <GridActionsCellItem
+            /></Tooltip>,
+            <Tooltip title="cancel"><GridActionsCellItem
               icon={<CancelIcon />}
               label="Cancel"
               className="textPrimary"
               onClick={handleCancelClickOfAsset(id)}
               color="inherit"
-            />,
+            /></Tooltip>,
           ];
         }
 
@@ -871,6 +937,8 @@ const Upload = () => {
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
+        <GridToolbarColumnsButton  sx={{color:"#615d6e"}} />
+
         <GridToolbarExport sx={{color:"#615d6e",}}/>
         <EditToolbar sx={{color:"#615d6e",backgroundColor:"#615d6ed4"}}setRows={setRows} setRowModesModel={setRowModesModel} />
         
@@ -903,6 +971,8 @@ const Upload = () => {
   function assetCustomToolbar() {
     return (
       <GridToolbarContainer sx={{color:"#615d6e"}}>
+        <GridToolbarColumnsButton sx={{color:"#615d6e"}} />
+
         <GridToolbarExport sx={{color:"#615d6e"}}/>
         <assetEditToolbar/>
         <Button  sx={{color:"#615d6e"}} startIcon={<AddIcon />} onClick={handleClickOfAsset}>
@@ -915,6 +985,7 @@ const Upload = () => {
     );
   }
 
+  
 
   return (  
     <> 
@@ -973,6 +1044,7 @@ const Upload = () => {
                   },
                   "& .super-app.negative": {
                     //backgroundColor: "rgba(157, 255, 118, 0.49)",
+                
                     color: "red",
                     fontWeight: "600",
                   },
@@ -1007,6 +1079,11 @@ const Upload = () => {
                       event.defaultMuiPrevented = true;
                     }
                   }}
+
+                  columnVisibilityModel={columnVisibilityModel}
+                  onColumnVisibilityModelChange={(newModel) =>
+                    setColumnVisibilityModel(newModel)
+                  }
 
                 />
               </Box>
@@ -1055,6 +1132,12 @@ const Upload = () => {
                       event.defaultMuiPrevented = true;
                     }
                   }}
+
+                  columnVisibilityModel={assetsColumnVisibilityModel}
+                  onColumnVisibilityModelChange={(newModel) =>
+                    setAssetsColumnVisibilityModel(newModel)
+                  }
+
                 />
               </Box>
               <div className="btns"><button onClick={pies} className="btn v2">Chart View</button></div>

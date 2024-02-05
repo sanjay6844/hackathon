@@ -3,6 +3,7 @@ import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {  useCookies } from "react-cookie";
 
 
 const namespace = "dashboard";
@@ -15,6 +16,7 @@ const initialState = {
   testData: null,
   excelData:null,
   users:null,
+  currentUser:null
 };
 
 // ACTIONS
@@ -73,6 +75,54 @@ const updateToStore = (data) => (dispatch) => {
       console.error("Error uploading file: ", error);
     });
 };
+
+
+
+
+const updateUserToStore = (data,user) => (dispatch) => {
+  axios.patch(`http://localhost:3000/users/${user}`,
+    {
+      "columnVisibility": data,
+      
+    }
+  )
+    .then(response => {
+      console.log(response.data,"responese of patch ");
+      dispatch(assignToDashboardStore("currentUser", response?.data));
+      console.log("after ")
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
+
+const updateUserToStoreForAssets = (data,user) => (dispatch) => {
+  axios.patch(`http://localhost:3000/users/${user}`,
+    {
+      "assetsColumnVisibility": data,
+      
+    }
+  )
+    .then(response => {
+      console.log(response.data,"responese of patch ");
+      dispatch(assignToDashboardStore("currentUser", response?.data));
+      console.log("after ")
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
+
+
+
+
+
+
+
+
+
 const getReloadData = () => (dispatch) => {
   return nw
     .api("get_excelData")
@@ -80,6 +130,21 @@ const getReloadData = () => (dispatch) => {
     .then(response => {
       console.log(response.data,"responese data get api");
       dispatch(assignToDashboardStore("excelData", response?.data));
+    })
+    // .catch(error => {
+    //   console.error("Error uploading file: ", error);
+    // });
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+};
+const getReloadDataOfUsers = () => (dispatch) => {
+  return nw
+    .api("get_users")
+    .get()
+    .then(response => {
+      console.log(response.data,"responese data get api  fore usersssssssssssssssssssss");
+      dispatch(assignToDashboardStore("users", response?.data));
     })
     // .catch(error => {
     //   console.error("Error uploading file: ", error);
@@ -195,6 +260,7 @@ export default {
     postData,
     getReloadData,
     updateToStore,
-    deleteAllData   
+    deleteAllData ,updateUserToStore ,getReloadDataOfUsers ,
+    updateUserToStoreForAssets
   },
 };

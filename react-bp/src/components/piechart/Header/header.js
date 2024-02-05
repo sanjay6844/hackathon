@@ -22,7 +22,7 @@ const Header=(data)=>{
   const navigate = useNavigate()
   const logout=()=>{
     removeCookie("user", ["user"], { path: "/" })
-    data.actions.dashboardActions.deleteAllData()
+    //data.actions.dashboardActions.deleteAllData()
     navigate("/signin")
   }
   const next =()=>{
