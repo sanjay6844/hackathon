@@ -52,6 +52,7 @@
 		"react-scripts": "5.0.1",
 		"react-spreadsheet-import": "^4.6.1",
 		"react-toastify": "^10.0.4",
+		"reactjs-popup": "^2.0.6",
 		"redux": "^5.0.1",
 		"redux-promise": "^0.6.0",
 		"redux-thunk": "^3.1.0",
