@@ -28,8 +28,8 @@ const Forgotpassword=()=>{
     if(errors){
       setShow(true)
     }
-    console.log(data.passwords,data.confirmspassword,"sssss")
-    if(data.passwords && data.confirmspassword){
+    console.log(data.password,data.confirmPassword,"sssss")
+    if(data.password && data.confirmPassword){
       users?.forEach((user)=>{
         if(user.email===data.email){
           console.log("done")
@@ -37,8 +37,8 @@ const Forgotpassword=()=>{
             "name":user.name,
             "email":user.email,
             "contactNumber":user.contactNumber,
-            "password":data.passwords,
-            "confirmpassword":data.confirmspassword,
+            "password":data.password,
+            "confirmpassword":data.confirmPassword,
             "dob":user.dob,
             "id":user.id
           }
@@ -115,7 +115,7 @@ const Forgotpassword=()=>{
 
           {show &&  <>
             <div className="password-field"><TextField label="New Password" type={showPass?"text":"password"}
-              {...register("passwords",{required:true,pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/})}
+              {...register("password",{required:true,pattern:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/})}
               onCut={(e)=>e.preventDefault()}
               onCopy={(e)=>e.preventDefault()}
               placeholder="Aa@1sdfwh"
@@ -141,7 +141,7 @@ const Forgotpassword=()=>{
               {showPass?< VisibilityIcon/>:<VisibilityOffIcon/>}
             </div></div>
             <div className="password-field"><TextField label="Retype Password" type={showPassword?"text":"password"}  required 
-              {...register("confirmspassword",{validate: {
+              {...register("confirmPassword",{validate: {
                 checkPassword: isConPassword,
               }})}
               error={
@@ -160,7 +160,8 @@ const Forgotpassword=()=>{
           </>}
           <div className="btn-container">
             <input className="submit-btn" type="submit" value="Submit" onClick={handleSubmit} />
-          </div>        </form>
+          </div>       
+        </form>
       </div>
     </div>
     
