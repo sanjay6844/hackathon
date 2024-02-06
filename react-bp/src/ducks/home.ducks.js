@@ -2,8 +2,6 @@ import cloneDeep from "lodash/cloneDeep";
 import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
-import { toast } from "react-toastify";
-import {  useCookies } from "react-cookie";
 
 
 const namespace = "dashboard";

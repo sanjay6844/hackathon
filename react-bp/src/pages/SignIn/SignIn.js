@@ -65,9 +65,6 @@ const SignInPage = ()=>{
     }
     return false
   }
-  const forgot=()=>{
-    navigateTo("/forgotpassword")
-  }
 
   
   const onSubmit = (data)=>{
