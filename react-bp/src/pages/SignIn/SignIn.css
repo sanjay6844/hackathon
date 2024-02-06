@@ -12,7 +12,11 @@
 .MuiTextField-root{
   width:100% important;
 }
+.forgot{
+  width: 100%;
+    display: flex;
 
+}
 .card{
   margin-top:20px;
   width:30%;

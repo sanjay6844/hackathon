@@ -78,6 +78,18 @@ const updateToStore = (data) => (dispatch) => {
       console.error("Error uploading file: ", error);
     });
 };
+const updateLogindata =(data)=>(dispatch)=>{
+
+  axios.put(`http://localhost:3000/users/${data.id}`, data)
+    .then(response=>{
+      dispatch(assignToDashboardStore("users", response?.data));
+      console.log(response?.data?.password,"xord")
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+
+}
 
 
 
@@ -272,6 +284,7 @@ export default {
     postData,
     getReloadData,
     updateToStore,
+    updateLogindata,
     deleteAllData ,updateUserToStore ,getReloadDataOfUsers ,
     updateUserToStoreForAssets,
     putUser
