@@ -9,6 +9,7 @@ import Header from "../components/piechart/Header/header";
 import BarCharts from "Pages/Barchart";
 import SignUp from "Pages/SignUp"
 import PieCharts from "Pages/Pies";
+import Role from "Pages/role";
 
 function Injector(component, name) {
   const hoc = component;
@@ -25,4 +26,5 @@ export default {
   SignUp:Injector(SignUp,"SignUP"),
   Header:Injector(Header,"Header"),
   Piechart: Injector(PieCharts, "Piechart"),
+  Role:Injector(Role,"Role")
 };

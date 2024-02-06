@@ -1,0 +1,20 @@
+.role-container{
+  background-color: white;
+  height:100%;
+  display: flex;
+  justify-content: center;
+}
+.table-container{
+  height: fit-content;
+  margin-top:30px;
+}
+
+.menu-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul{
+  list-style: none;
+}

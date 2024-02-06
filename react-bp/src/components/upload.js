@@ -584,6 +584,7 @@ const Upload = () => {
       align: "left",
       headerAlign: "left",
       editable: true,
+      hideable:false,
       headerClassName: "super-app-theme--header",
 
     },
@@ -892,7 +893,6 @@ const Upload = () => {
     else{
       toast.warn("Already add action is running,Please save or close it")
 
-
     }
   };
 
@@ -905,9 +905,7 @@ const Upload = () => {
         Add record
         </Button>
         <GridToolbarDensitySelector sx={{color:"#615d6e"}}/>
-
       </GridToolbarContainer>
-      
     );
   }
 

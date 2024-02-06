@@ -21,7 +21,20 @@ const Header=(data)=>{
   const navigate = useNavigate()
   const logout=()=>{
     removeCookie("user", ["user"], { path: "/" })
-    data.actions.dashboardActions.deleteAllData()
+    console.log(data.store.dashboardStore,"store data")
+    if(data.store.dashboardStore.excelData===undefined){
+      data.actions.dashboardActions.deleteAllData()
+      navigate("/signin")
+      return
+    }
+    if(data.store.dashboardStore.excelData===null){
+      data.actions.dashboardActions.deleteAllData()
+      navigate("/signin")
+      return
+    }
+    if(data.store.dashboardStore.excelData.length!==0){
+      data.actions.dashboardActions.deleteAllData()
+    }
     navigate("/signin")
   }
   const next =()=>{
