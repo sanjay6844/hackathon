@@ -20,7 +20,7 @@ import { Button } from "@mui/material";
 const Rolepage = ()=>{
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { fetchLoginData} = actions;
+  const { fetchLoginData,putUser,getReloadData} = actions;
   const { users } = store;
   const navigateTo = useNavigate()
   const [cookies] = useCookies()
@@ -40,7 +40,11 @@ const Rolepage = ()=>{
   };
 
   const handleRole=(changedRole,id)=>{
-    users[id].role = changedRole
+   
+    users[id-1].role = changedRole
+    console.log(users[id],"users")
+    putUser(users[id-1])
+    handleClose()
   }
 
   useEffect(()=>{
@@ -49,6 +53,7 @@ const Rolepage = ()=>{
     }
     if(users===null){
       fetchLoginData()
+      getReloadData()
     }
   },[])
 
@@ -102,9 +107,9 @@ const Rolepage = ()=>{
             >
               {console.log(id)}
               {/* {console.log(anchorEl)} */}
-              <MenuItem disabled={loggedInUser!=="Super Admin"?true:false} onClick={()=>handleRole("Super Admin",id)}>Super Admin</MenuItem>
-              <MenuItem disabled={loggedInUser!=="User"?false:true} onClick={()=>handleRole("Admin",id)}>Admin</MenuItem>
-              <MenuItem disabled={loggedInUser==="User"} onClick={()=>handleRole("User",id)}>User</MenuItem>
+              <MenuItem disabled={loggedInUser!=="Super Admin"||cookies.user===users[id-1].email?true:false} onClick={()=>handleRole("Super Admin",id)}>Super Admin</MenuItem>
+              <MenuItem disabled={loggedInUser!=="User"||cookies.user===users[id-1].email?false:true} onClick={()=>handleRole("Admin",id)}>Admin</MenuItem>
+              <MenuItem disabled={loggedInUser==="User"&&cookies.user===users[id-1].email} onClick={()=>handleRole("User",id)}>User</MenuItem>
             </Menu>
           </div>,
           <Tooltip title="Delete">

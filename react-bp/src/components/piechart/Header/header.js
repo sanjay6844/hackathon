@@ -28,13 +28,17 @@ const Header=(data)=>{
       return
     }
     if(data.store.dashboardStore.excelData===null){
-      // data.actions.dashboardActions.deleteAllData()
       navigate("/signin")
+
       return
     }
-    if(data.store.dashboardStore.excelData.length!==0){
-      data.actions.dashboardActions.deleteAllData()
+    if(data.store.dashboardStore.excelData.length===0){
+      navigate("/signin")
+
+      return
     }
+    data.actions.dashboardActions.deleteAllData()
+    data.store.dashboardStore.excelData=null
     navigate("/signin")
   }
   const next =()=>{
