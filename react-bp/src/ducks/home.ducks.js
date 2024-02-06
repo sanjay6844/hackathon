@@ -3,6 +3,7 @@ import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {  useCookies } from "react-cookie";
 
 
 const namespace = "dashboard";
@@ -15,6 +16,7 @@ const initialState = {
   testData: null,
   excelData:null,
   users:null,
+  currentUser:null
 };
 
 // ACTIONS
@@ -62,7 +64,10 @@ const getAllRequetUser = () => (dispatch) => {
     });
 };
 const updateToStore = (data) => (dispatch) => {
-  axios.put("http://localhost:3000/excelData/1", data)
+  //axios.put("http://localhost:3000/excelData/1", data)
+  return nw 
+    .apiWithPath("get_excelData",[1])
+    .put(data)
     .then(response => {
       console.log(response.data,"responese data today demo");
       dispatch(assignToDashboardStore("excelData", response?.data[0]));
@@ -85,6 +90,54 @@ const updateLogindata =(data)=>(dispatch)=>{
     });
 
 }
+
+
+
+
+const updateUserToStore = (data,user) => (dispatch) => {
+  axios.patch(`http://localhost:3000/users/${user}`,
+    {
+      "columnVisibility": data,
+      
+    }
+  )
+    .then(response => {
+      console.log(response.data,"responese of patch ");
+      dispatch(assignToDashboardStore("currentUser", response?.data));
+      console.log("after ")
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
+
+const updateUserToStoreForAssets = (data,user) => (dispatch) => {
+  axios.patch(`http://localhost:3000/users/${user}`,
+    {
+      "assetsColumnVisibility": data,
+      
+    }
+  )
+    .then(response => {
+      console.log(response.data,"responese of patch ");
+      dispatch(assignToDashboardStore("currentUser", response?.data));
+      console.log("after ")
+
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+};
+
+
+
+
+
+
+
+
+
 const getReloadData = () => (dispatch) => {
   return nw
     .api("get_excelData")
@@ -92,6 +145,21 @@ const getReloadData = () => (dispatch) => {
     .then(response => {
       console.log(response.data,"responese data get api");
       dispatch(assignToDashboardStore("excelData", response?.data));
+    })
+    // .catch(error => {
+    //   console.error("Error uploading file: ", error);
+    // });
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+};
+const getReloadDataOfUsers = () => (dispatch) => {
+  return nw
+    .api("get_users")
+    .get()
+    .then(response => {
+      console.log(response.data,"responese data get api  fore usersssssssssssssssssssss");
+      dispatch(assignToDashboardStore("users", response?.data));
     })
     // .catch(error => {
     //   console.error("Error uploading file: ", error);
@@ -111,7 +179,7 @@ const getAllData = (data) => (dispatch) => {
       console.log(response.data.data,"responese data");
       dispatch(assignToDashboardStore("excelData", response?.data.data));
 
-      axios.post("http://localhost:3000/excelData", response.data.data)
+      //axios.post("http://localhost:3000/excelData", response.data.data)
       // .then(response => {
       //   console.log(response.data.data,"responese data");
       //   dispatch(assignToDashboardStore("excelData", response?.data.data));
@@ -121,9 +189,11 @@ const getAllData = (data) => (dispatch) => {
       // .catch(error => {
       //   console.error("Error uploading file: ", error);
       // });
+      return nw
+        .api("get_excelData")
+        .post(response.data.data)
 
-      console.log("after ")
-      toast.success("File uploaded successfully");
+     
 
     })
     .catch(error => {
@@ -158,7 +228,11 @@ const postData = (data)=> (dispatch)=>{
 }
 
 const deleteAllData = ()=>()=>{
-  axios.delete("http://localhost:3000/excelData/1")
+  //axios.delete("http://localhost:3000/excelData/1")
+  return nw 
+    .apiWithPath("get_excelData",[1])
+    .delete()
+  
 }
 
 
@@ -180,7 +254,6 @@ const deleteAllData = ()=>()=>{
 // Reducers
 const dashboardReducer = (state = initialState, action) => {
   const localState = cloneDeep(state);
-
   switch (action.type) {
   case ASSIGN_TO_DASHBOARD_STORE:
     localState[action.meta.type] = action.meta.payload;
@@ -209,7 +282,7 @@ export default {
     getReloadData,
     updateToStore,
     updateLogindata,
-    deleteAllData
-    
+    deleteAllData ,updateUserToStore ,getReloadDataOfUsers ,
+    updateUserToStoreForAssets
   },
 };

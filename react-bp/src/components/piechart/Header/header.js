@@ -9,7 +9,6 @@ import { useCookies } from "react-cookie"
 // import Menu from "@mui/material/Menu";
 // import MenuItem from "@mui/material/MenuItem";
 // import Fade from "@mui/material/Fade";
-import RefContext from "Utilities/refContext";
 
 
 import "./header.css"
@@ -22,7 +21,20 @@ const Header=(data)=>{
   const navigate = useNavigate()
   const logout=()=>{
     removeCookie("user", ["user"], { path: "/" })
-    data.actions.dashboardActions.deleteAllData()
+    console.log(data.store.dashboardStore,"store data")
+    if(data.store.dashboardStore.excelData===undefined){
+      data.actions.dashboardActions.deleteAllData()
+      navigate("/signin")
+      return
+    }
+    if(data.store.dashboardStore.excelData===null){
+      // data.actions.dashboardActions.deleteAllData()
+      navigate("/signin")
+      return
+    }
+    if(data.store.dashboardStore.excelData.length!==0){
+      data.actions.dashboardActions.deleteAllData()
+    }
     navigate("/signin")
   }
   const next =()=>{

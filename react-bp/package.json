@@ -28,6 +28,7 @@
 		"chartjs-plugin-zoom": "^2.0.1",
 		"connected-react-router": "^6.9.3",
 		"dayjs": "^1.11.10",
+		"devextreme": "^23.2.4",
 		"devextreme-react": "^23.2.4",
 		"dompurify": "^3.0.6",
 		"dotenv-flow-webpack": "^2.0.0",

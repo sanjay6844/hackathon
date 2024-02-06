@@ -10,6 +10,7 @@ import BarCharts from "Pages/Barchart";
 import SignUp from "Pages/SignUp"
 import Forgotpasswords from "../pages/Forgotpassword";
 import PieCharts from "Pages/Pies";
+import Role from "Pages/role";
 
 function Injector(component, name) {
   const hoc = component;
@@ -27,4 +28,5 @@ export default {
   Header:Injector(Header,"Header"),
   Forgotpassword:Injector(Forgotpasswords,"Forgotpassword"),
   Piechart: Injector(PieCharts, "Piechart"),
+  Role:Injector(Role,"Role")
 };

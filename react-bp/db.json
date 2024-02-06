@@ -1,9 +1,10 @@
 {
   "users": [
     {
-      "name": "sanjay",
+      "name": "sanjayram",
       "email": "sanjayram.a@sudoboat.com",
       "contactNumber": "1234567890",
+<<<<<<< HEAD
       "password": "AS!@as12",
       "confirmpassword": "AS!@as12",
       "dob": "2021-12-31T18:30:00.000Z",
@@ -17,6 +18,93 @@
       "confirmpassword": "Ranj@1234",
       "dob": "2003-02-01T18:30:00.000Z",
       "id": 2
+=======
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "Super Admin",
+      "id": 1
+    },
+    {
+      "name": "sanjay",
+      "email": "sanjayram.a@sudoboat.comsdfsdf",
+      "contactNumber": "1234568907",
+      "password": "as12AS!@",
+      "dob": "2023-01-29T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "Admin",
+      "id": 2
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsflksdjf@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 3
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsflksdjfhgj@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 4
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsflksdlkjjf@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 5
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsfltyksdioujf@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 6
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsflktysdioujf@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 7
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsflksdioytujf@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 8
+    },
+    {
+      "name": "sanjayram",
+      "email": "dsflksdiouerjf@gmail.com",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {},
+      "role": "User",
+      "id": 9
+>>>>>>> c283035453564a8c2b69b797c21284de43827c59
     }
   ],
   "excelData": []

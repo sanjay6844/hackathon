@@ -63,7 +63,9 @@ const SignUpPage = ()=>{
   } = useForm()
 
   const onSubmit = (data)=>{
-    postData(data)
+    delete data["confirmPassword"]
+    let newData = {...data,columnVisibility:{},role:"user"}
+    postData(newData)
     setCookies("user",data.email)
     setOpen(true)
     setTimeout(()=>{
