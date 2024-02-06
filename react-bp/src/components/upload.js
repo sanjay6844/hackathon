@@ -143,22 +143,14 @@ const Upload = () => {
     getReloadDataOfUsers()
   }, []);
   
-  // useEffect(() => {
-  //   if(store!==undefined&&store?.excelData){
-  //    
-  //     console.log(store.excelData)
-  //     setSalesProfit(store?.excelData["Sales&Profit"]);
-  //     setAssets(store?.excelData["Asset_allocation"]);
-  //     // console.log(sp, "store values in update page");
-  //   }    
-  // }, [store]);
+  
 
   const [columnVisibilityModel, setColumnVisibilityModel] =
     React.useState();
 
   const [hasPageRendered,setPageRendered]=useState(false)
   useEffect(()=>{
-    if(hasPageRendered)
+    if(hasPageRendered && store!==undefined && store?.users!=null)
     {
       console.log("inside if")
       updateUserToStore(columnVisibilityModel,currentUser.id)
@@ -174,12 +166,28 @@ const Upload = () => {
 
 
   useEffect(()=>{
-    if(hasPageRenderedAssets)
+    if(hasPageRenderedAssets && store!==undefined && store?.users!=null)
     {
       updateUserToStoreForAssets(assetsColumnVisibilityModel,currentUser.id)
     }
     setPageRenderedAssets(true);
   },[assetsColumnVisibilityModel])
+  const [allow,SetAllow]=useState(true)
+
+
+  useEffect(() => {
+
+    if(store!=undefined && store.users!=null && allow)
+    {
+      const user=store?.users?.find(user=>user.email==currentUserEmail)
+      console.log("current user detailssssssssssssssssssssssssss",user);
+      setCurrentUser(user);
+      setColumnVisibilityModel(user?.columnVisibility)
+      setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
+      SetAllow(false)
+    }
+   
+  }, [store]);
 
 
 
@@ -189,13 +197,13 @@ const Upload = () => {
 
   useEffect(() => {
     console.log("current user details",store.currentUser);
-    if(store!==undefined&&store?.excelData){
+    if(store!=undefined && store?.excelData!=null){
 
-      const user=store?.users?.find(user=>user.email==currentUserEmail)
-      console.log("current user detailssssssssssssssssssssssssss",user);
-      setCurrentUser(user);
-      setColumnVisibilityModel(user?.columnVisibility)
-      setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
+      // const user=store?.users?.find(user=>user.email==currentUserEmail)
+      // console.log("current user detailssssssssssssssssssssssssss",user);
+      // setCurrentUser(user);
+      // setColumnVisibilityModel(user?.columnVisibility)
+      // setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
 
 
 
