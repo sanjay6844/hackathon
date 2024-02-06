@@ -45,6 +45,8 @@ import {
   GridToolbarFilterButton,
   
 } from "@mui/x-data-grid";
+import {  GridColumnVisibilityModel } from "@mui/x-data-grid";
+
 //modal
 //import Button from '@mui/material/Button';
 import Dialog from "@mui/material/Dialog";
@@ -59,19 +61,27 @@ import {
   randomArrayItem,
 } from "@mui/x-data-grid-generator";
 import { bouncy } from "ldrs"
+import {  useCookies } from "react-cookie";
+import { Details } from "@material-ui/icons";
 
 
 
-// Default values shown
 
 
-const roles = ["Market", "Finance", "Development"];
-const randomRole = () => {
-  return randomArrayItem(roles);
-};
+
 
 
 const Upload = () => {
+  const [cookies] = useCookies(["user"])
+
+ 
+
+
+
+
+
+
+
   const navigate = useNavigate()
   const [show,setShow] = useState(true)
   const [loading,setLoading] = useState()
@@ -106,32 +116,99 @@ const Upload = () => {
   const [assets,setAssets]=useState("");
   console.log(assets,"assets in use sate")
   
-  
+  console.log(RefContext,"refcontext")
   const ctx = useContext(RefContext);
+  console.log(ctx,"ctx value")
   const { store, actions } = ctx;
-  const { getAllData,getReloadData,updateToStore} = actions;
+  const { getAllData,getReloadData,updateToStore,updateUserToStore,getReloadDataOfUsers,updateUserToStoreForAssets} = actions;
   const { testData } = store;
   const [salesProfit,setSalesProfit]=useState("");
+
+
+  const [currentUser,setCurrentUser]=useState();
+  const currentUserEmail=cookies.user;
+
+  
+
+
+
+
+
+
 
   useEffect(() => {
     // getAllRequetUser();
     console.log("reload")
     getReloadData()
+    getReloadDataOfUsers()
   }, []);
   
-  // useEffect(() => {
-  //   if(store!==undefined&&store?.excelData){
-  //    
-  //     console.log(store.excelData)
-  //     setSalesProfit(store?.excelData["Sales&Profit"]);
-  //     setAssets(store?.excelData["Asset_allocation"]);
-  //     // console.log(sp, "store values in update page");
-  //   }    
-  // }, [store]);
+  
+
+  const [columnVisibilityModel, setColumnVisibilityModel] =
+    React.useState();
+
+  const [hasPageRendered,setPageRendered]=useState(false)
+  useEffect(()=>{
+    if(hasPageRendered && store!==undefined && store?.users!=null)
+    {
+      console.log("inside if")
+      updateUserToStore(columnVisibilityModel,currentUser.id)
+    }
+    setPageRendered(true);
+  },[columnVisibilityModel])
+
+  const [assetsColumnVisibilityModel, setAssetsColumnVisibilityModel] =
+    React.useState(
+
+    );
+  const [hasPageRenderedAssets,setPageRenderedAssets]=useState(false)
+
+
+  useEffect(()=>{
+    if(hasPageRenderedAssets && store!==undefined && store?.users!=null)
+    {
+      updateUserToStoreForAssets(assetsColumnVisibilityModel,currentUser.id)
+    }
+    setPageRenderedAssets(true);
+  },[assetsColumnVisibilityModel])
+  const [allow,SetAllow]=useState(true)
+
 
   useEffect(() => {
-    console.log("inside store effect")
-    if(store!==undefined&&store?.excelData){
+
+    if(store!=undefined && store.users!=null && allow)
+    {
+      const user=store?.users?.find(user=>user.email==currentUserEmail)
+      console.log("current user detailssssssssssssssssssssssssss",user);
+      setCurrentUser(user);
+      setColumnVisibilityModel(user?.columnVisibility)
+      setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
+      SetAllow(false)
+    }
+   
+  }, [store]);
+
+
+
+
+
+
+
+  useEffect(() => {
+    console.log("current user details",store.currentUser);
+    if(store!=undefined && store?.excelData!=null){
+
+      // const user=store?.users?.find(user=>user.email==currentUserEmail)
+      // console.log("current user detailssssssssssssssssssssssssss",user);
+      // setCurrentUser(user);
+      // setColumnVisibilityModel(user?.columnVisibility)
+      // setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
+
+
+
+
+
       console.log("inside store effect")
       if(store!==undefined&&store?.excelData){
         console.log(store,"store")
@@ -470,9 +547,7 @@ const Upload = () => {
         align: "left",
         headerAlign: "left",
         headerClassName: "super-app-theme--header",
-        // valueGetter: (params) => {
-        //   return params?.row?.["Sales Amount"]-params?.row.Cost ;
-        // },
+       
         cellClassName: (params) => {
           if (params.value == null) {
             return "";
@@ -482,6 +557,10 @@ const Upload = () => {
             negative: params.value < 0,
             positive: params.value > 0,
           });
+        },
+        valueFormatter: (params) => {
+          return Math.abs(params.value)
+         
         },
         
 
@@ -840,7 +919,6 @@ const Upload = () => {
           "Asset_allocation":assetrows
         }
       
-      // setExcelData(tempdata);
       updateToStore(tempdata)
     }
     
@@ -868,6 +946,8 @@ const Upload = () => {
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
+        <GridToolbarColumnsButton  sx={{color:"#615d6e"}} />
+
         <GridToolbarExport sx={{color:"#615d6e",}}/>
         <EditToolbar sx={{color:"#615d6e",backgroundColor:"#615d6ed4"}}setRows={setRows} setRowModesModel={setRowModesModel} />
         
@@ -899,6 +979,8 @@ const Upload = () => {
   function assetCustomToolbar() {
     return (
       <GridToolbarContainer sx={{color:"#615d6e"}}>
+        <GridToolbarColumnsButton sx={{color:"#615d6e"}} />
+
         <GridToolbarExport sx={{color:"#615d6e"}}/>
         <assetEditToolbar/>
         <Button  sx={{color:"#615d6e"}} startIcon={<AddIcon />} onClick={handleClickOfAsset}>
@@ -909,6 +991,7 @@ const Upload = () => {
     );
   }
 
+  
 
   return (  
     <> 
@@ -1003,6 +1086,11 @@ const Upload = () => {
                     }
                   }}
 
+                  columnVisibilityModel={columnVisibilityModel}
+                  onColumnVisibilityModelChange={(newModel) =>
+                    setColumnVisibilityModel(newModel)
+                  }
+
                 />
               </Box>
               <div className="btns"><button onClick={profitLoss} className="btn v2">Chart View</button></div>
@@ -1050,6 +1138,12 @@ const Upload = () => {
                       event.defaultMuiPrevented = true;
                     }
                   }}
+
+                  columnVisibilityModel={assetsColumnVisibilityModel}
+                  onColumnVisibilityModelChange={(newModel) =>
+                    setAssetsColumnVisibilityModel(newModel)
+                  }
+
                 />
               </Box>
               <div className="btns"><button onClick={pies} className="btn v2">Chart View</button></div>

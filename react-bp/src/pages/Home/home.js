@@ -1,8 +1,8 @@
 import React, {  useEffect } from "react";
-// import RefContext from "Utilities/refContext";
+import RefContext from "Utilities/refContext";
 import Upload from "../../components/upload";
 import "./home.css"
-import {useCookies } from "react-cookie";
+import {useCookies,useContext } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
