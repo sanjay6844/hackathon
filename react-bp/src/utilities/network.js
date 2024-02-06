@@ -121,6 +121,7 @@ Network.prototype.apiWithPathAndQuery = function (
   url,
   pathParams,
   queryParams
+  
 ) {
   this.setBaseURL();
   if (url) {
