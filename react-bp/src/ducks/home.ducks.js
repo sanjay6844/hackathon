@@ -64,7 +64,10 @@ const getAllRequetUser = () => (dispatch) => {
     });
 };
 const updateToStore = (data) => (dispatch) => {
-  axios.put("http://localhost:3000/excelData/1", data)
+  //axios.put("http://localhost:3000/excelData/1", data)
+  return nw 
+    .apiWithPath("get_excelData",[1])
+    .put(data)
     .then(response => {
       console.log(response.data,"responese data today demo");
       dispatch(assignToDashboardStore("excelData", response?.data[0]));
@@ -164,7 +167,7 @@ const getAllData = (data) => (dispatch) => {
       console.log(response.data.data,"responese data");
       dispatch(assignToDashboardStore("excelData", response?.data.data));
 
-      axios.post("http://localhost:3000/excelData", response.data.data)
+      //axios.post("http://localhost:3000/excelData", response.data.data)
       // .then(response => {
       //   console.log(response.data.data,"responese data");
       //   dispatch(assignToDashboardStore("excelData", response?.data.data));
@@ -174,9 +177,11 @@ const getAllData = (data) => (dispatch) => {
       // .catch(error => {
       //   console.error("Error uploading file: ", error);
       // });
+      return nw
+        .api("get_excelData")
+        .post(response.data.data)
 
-      console.log("after ")
-      toast.success("File uploaded successfully");
+     
 
     })
     .catch(error => {
@@ -211,7 +216,11 @@ const postData = (data)=> (dispatch)=>{
 }
 
 const deleteAllData = ()=>()=>{
-  axios.delete("http://localhost:3000/excelData/1")
+  //axios.delete("http://localhost:3000/excelData/1")
+  return nw 
+    .apiWithPath("get_excelData",[1])
+    .delete()
+  
 }
 
 
