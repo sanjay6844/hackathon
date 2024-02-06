@@ -28,7 +28,7 @@ const Header=(data)=>{
       return
     }
     if(data.store.dashboardStore.excelData===null){
-      data.actions.dashboardActions.deleteAllData()
+      // data.actions.dashboardActions.deleteAllData()
       navigate("/signin")
       return
     }
