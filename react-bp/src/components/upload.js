@@ -72,16 +72,8 @@ import { Details } from "@material-ui/icons";
 
 
 const Upload = () => {
+  const [role,setRole]=useState();
   const [cookies] = useCookies(["user"])
-
- 
-
-
-
-
-
-
-
   const navigate = useNavigate()
   const [show,setShow] = useState(true)
   const [loading,setLoading] = useState()
@@ -129,13 +121,6 @@ const Upload = () => {
   const currentUserEmail=cookies.user;
 
   
-
-
-
-
-
-
-
   useEffect(() => {
     // getAllRequetUser();
     console.log("reload")
@@ -145,9 +130,7 @@ const Upload = () => {
   
   
 
-  const [columnVisibilityModel, setColumnVisibilityModel] =
-    React.useState();
-
+  const [columnVisibilityModel, setColumnVisibilityModel] =React.useState();
   const [hasPageRendered,setPageRendered]=useState(false)
   useEffect(()=>{
     if(hasPageRendered && store!==undefined && store?.users!=null)
@@ -158,10 +141,7 @@ const Upload = () => {
     setPageRendered(true);
   },[columnVisibilityModel])
 
-  const [assetsColumnVisibilityModel, setAssetsColumnVisibilityModel] =
-    React.useState(
-
-    );
+  const [assetsColumnVisibilityModel, setAssetsColumnVisibilityModel] =React.useState();
   const [hasPageRenderedAssets,setPageRenderedAssets]=useState(false)
 
 
@@ -182,6 +162,7 @@ const Upload = () => {
       const user=store?.users?.find(user=>user.email==currentUserEmail)
       console.log("current user detailssssssssssssssssssssssssss",user);
       setCurrentUser(user);
+      setRole(user.role);
       setColumnVisibilityModel(user?.columnVisibility)
       setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
       SetAllow(false)
@@ -562,9 +543,6 @@ const Upload = () => {
           return Math.abs(params.value)
          
         },
-        
-
-
       }
 
 
@@ -663,6 +641,7 @@ const Upload = () => {
       align: "left",
       headerAlign: "left",
       editable: true,
+      hideable:false,
       headerClassName: "super-app-theme--header",
 
     },
@@ -972,7 +951,6 @@ const Upload = () => {
     else{
       toast.warn("Already add action is running,Please save or close it")
 
-
     }
   };
 
@@ -987,9 +965,7 @@ const Upload = () => {
         Add record
         </Button>
         <GridToolbarDensitySelector sx={{color:"#615d6e"}}/>
-
       </GridToolbarContainer>
-      
     );
   }
 
