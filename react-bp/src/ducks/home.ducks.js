@@ -3,7 +3,6 @@ import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {  useCookies } from "react-cookie";
 
 
 const namespace = "dashboard";
@@ -78,6 +77,18 @@ const updateToStore = (data) => (dispatch) => {
       console.error("Error uploading file: ", error);
     });
 };
+const updateLogindata =(data)=>(dispatch)=>{
+
+  axios.put(`http://localhost:3000/users/${data.id}`, data)
+    .then(response=>{
+      dispatch(assignToDashboardStore("users", response?.data));
+      console.log(response?.data?.password,"xord")
+    })
+    .catch(error => {
+      console.error("Error uploading file: ", error);
+    });
+
+}
 
 
 
@@ -166,7 +177,7 @@ const getAllData = (data) => (dispatch) => {
     .then(response => {
       console.log(response.data.data,"responese data");
       dispatch(assignToDashboardStore("excelData", response?.data.data));
-
+      toast.success("File upload successfully")
       //axios.post("http://localhost:3000/excelData", response.data.data)
       // .then(response => {
       //   console.log(response.data.data,"responese data");
@@ -269,6 +280,7 @@ export default {
     postData,
     getReloadData,
     updateToStore,
+    updateLogindata,
     deleteAllData ,updateUserToStore ,getReloadDataOfUsers ,
     updateUserToStoreForAssets
   },

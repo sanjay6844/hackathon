@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React ,{useContext, useEffect,useState}from "react";
 import "./SignIn.css"
 import { useForm } from "react-hook-form"
@@ -63,7 +65,6 @@ const SignInPage = ()=>{
     }
     return false
   }
-
 
   
   const onSubmit = (data)=>{
@@ -140,6 +141,7 @@ const SignInPage = ()=>{
             </div>
           </div>
           {console.log(errors)}
+          <div className="forgot"><div className="link"><a href="/forgotpassword">Forgot Password ?</a></div></div>
           <div className="btn-container">
             <input className="submit-btn" type="submit" value="SignIn" onClick={handleSubmit} />
           </div>

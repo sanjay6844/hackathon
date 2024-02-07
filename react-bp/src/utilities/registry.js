@@ -8,6 +8,7 @@ import SignIn from "Pages/SignIn";
 import Header from "../components/piechart/Header/header";
 import BarCharts from "Pages/Barchart";
 import SignUp from "Pages/SignUp"
+import Forgotpasswords from "../pages/Forgotpassword";
 import PieCharts from "Pages/Pies";
 import Role from "Pages/role";
 
@@ -25,6 +26,7 @@ export default {
   BarCharts: Injector(BarCharts, "BarCharts"),
   SignUp:Injector(SignUp,"SignUP"),
   Header:Injector(Header,"Header"),
+  Forgotpassword:Injector(Forgotpasswords,"Forgotpassword"),
   Piechart: Injector(PieCharts, "Piechart"),
   Role:Injector(Role,"Role")
 };
