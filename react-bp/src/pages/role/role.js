@@ -20,7 +20,7 @@ import { Button } from "@mui/material";
 const Rolepage = ()=>{
   const ctx = useContext(RefContext);
   const { store, actions } = ctx;
-  const { fetchLoginData,putUser,getReloadData} = actions;
+  const { fetchLoginData,putUser,getReloadData,deleteUser,assignToDashboardStore} = actions;
   const { users } = store;
   const navigateTo = useNavigate()
   const [cookies] = useCookies()
@@ -40,14 +40,71 @@ const Rolepage = ()=>{
   };
 
   const handleRole=(changedRole,id)=>{
-   
-    users[id-1].role = changedRole
-    console.log(users[id],"users")
-    putUser(users[id-1])
+    let newObj = ""
+    users.forEach(user => {
+      if(user.id===id){
+        console.log(user,"change role")
+        newObj= user
+      }
+    });
+    console.log(newObj,"users")
+    newObj.role = changedRole
+    // console.log(users[id-1])
+    putUser(newObj);
     handleClose()
   }
 
+  const disableSuperAdmin=(id)=>{
+    if(users[id-1].id===loggedInUser.id){
+      return true
+    }
+
+    if(loggedInUser.role!=="Super Admin"){
+      return true
+    }
+    if(users[id-1].role==="Super Admin"){
+      return true
+    }
+    return false
+  }
+  const disableAdmin=(id)=>{
+    if(users[id-1].id===loggedInUser.id){
+      return true
+    }
+    if(loggedInUser.role==="User"){
+      return true
+    }
+    if(users[id-1].role==="Admin"){
+      return true
+    }
+    return false
+
+  }
+  const disableUser=(id)=>{
+    if(users[id-1].id===loggedInUser.id){
+      return true
+    }
+    if(loggedInUser.role==="User"){
+      return true
+    }
+    if(users[id-1].role==="User"){
+      return true
+    }
+    return false
+  }
+
+  const deleteDisable=(id)=>{
+    if(users[id-1].id===loggedInUser.id){
+      return true
+    }
+    if(loggedInUser.role!=="SuperAdmin"){
+      return true
+    }
+    return false
+  }
+
   useEffect(()=>{
+    console.log(users,"useEffect")
     if(!cookies.user){
       navigateTo("/signin")
     }
@@ -58,12 +115,12 @@ const Rolepage = ()=>{
   },[])
 
   useEffect(()=>{
-    console.log(users)
-    if(users!==null){
+    console.log(users,"store users")
+    if(users!==null&&users!=undefined){
       setUsersData(users)
       users.map((user)=>{
         if(user.email===cookies.user){
-          setLoggedInUser(user.role)
+          setLoggedInUser(user)
         }
       })
     }
@@ -72,6 +129,18 @@ const Rolepage = ()=>{
 
   const handleDelete = (id)=>{
     console.log(id)
+    let delId=0
+    users.map((user,key)=>{
+      if(user.id===id){
+        // users.splice(key,0)
+        delId=key
+      }
+    })
+    let changedUsers = [...users]
+    changedUsers.splice(delId,1)
+    // assignToDashboardStore(changedUsers)
+    console.log(changedUsers)
+    deleteUser(id,changedUsers)
   }
 
   const rows = usersData
@@ -105,20 +174,19 @@ const Rolepage = ()=>{
                 horizontal: "left",
               }}
             >
-              {console.log(id)}
-              {/* {console.log(anchorEl)} */}
-              <MenuItem disabled={loggedInUser!=="Super Admin"||cookies.user===users[id-1].email?true:false} onClick={()=>handleRole("Super Admin",id)}>Super Admin</MenuItem>
-              <MenuItem disabled={loggedInUser!=="User"||cookies.user===users[id-1].email?false:true} onClick={()=>handleRole("Admin",id)}>Admin</MenuItem>
-              <MenuItem disabled={loggedInUser==="User"&&cookies.user===users[id-1].email} onClick={()=>handleRole("User",id)}>User</MenuItem>
+              <MenuItem disabled={disableSuperAdmin(id)} onClick={()=>handleRole("Super Admin",id)}>Super Admin</MenuItem>
+              <MenuItem disabled={disableAdmin(id)} onClick={()=>handleRole("Admin",id)}>Admin</MenuItem>
+              <MenuItem disabled={disableUser(id)} onClick={()=>handleRole("User",id)}>User</MenuItem>
             </Menu>
           </div>,
           <Tooltip title="Delete">
             <GridActionsCellItem
-              disabled={loggedInUser!=="Super Admin"?true:false}
-              icon={<DeleteIcon sx={{color:"red"}}/>}
+              className="delete-btn-user"
+              disabled={deleteDisable(id)}
+              icon={<DeleteIcon className="delete-icon"/>}
               label="Delete"
               onClick={()=>handleDelete(id)}
-              sx={{color:"red"}}
+              // sx={{color:"red"}}
             />
           </Tooltip>
         ]

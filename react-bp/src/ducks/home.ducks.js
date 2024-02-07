@@ -217,9 +217,9 @@ const putUser=(data)=>(dispatch)=>{
   return nw
     .apiWithPath("get_users",[data.id])
     .put(data)
-    .then((response) => {
-      dispatch(postToDashboardStore("users", response?.data));
-    })
+    // .then((response) => {
+    //   dispatch(assignToDashboardStore("users", response?.data));
+    // })
     .catch((error) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
@@ -232,6 +232,16 @@ const deleteAllData = ()=>()=>{
     .apiWithPath("get_excelData",[1])
     .delete()
 }
+
+const deleteUser = (data,changedUsers)=>(dispatch)=>{
+  return nw
+    .apiWithPath("get_users",[data])
+    .delete()
+    .then(() => {
+      dispatch(assignToDashboardStore("users", changedUsers));
+    })
+}
+
 
 // const storeData = ()=>()=>{
 //   return nw
@@ -287,6 +297,7 @@ export default {
     updateLogindata,
     deleteAllData ,updateUserToStore ,getReloadDataOfUsers ,
     updateUserToStoreForAssets,
-    putUser
+    putUser,
+    deleteUser
   },
 };

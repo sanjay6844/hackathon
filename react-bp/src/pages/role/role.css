@@ -14,6 +14,14 @@
   justify-content: center;
   align-items: center;
 }
+.delete-btn-user:disabled{
+  .delete-icon{
+    color: grey;
+  }
+}
+.delete-icon{
+  color: red;
+}
 
 ul{
   list-style: none;
