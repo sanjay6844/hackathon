@@ -72,8 +72,7 @@ const SignUpPage = ()=>{
         "Cost": false
       },
       "assetsColumnVisibility": {},
-
-      role:"user"}
+      role:"User"}
     postData(newData)
     setCookies("user",data.email)
     setOpen(true)
