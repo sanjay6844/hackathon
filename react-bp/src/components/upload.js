@@ -1106,7 +1106,6 @@ const Upload = () => {
                   columnVisibilityModel={columnVisibilityModel}
                   onColumnVisibilityModelChange={(newModel) =>
                   {
-                    //setColumnVisibilityModel(newModel);
                     if(role=="Admin")
                     {
                       newModel["Sales Amount"]=false;
@@ -1114,12 +1113,11 @@ const Upload = () => {
                     }
                     else if(role=="User")
                     {
-                      newModel["Sales Amount"]=false;
+                      newModel["Sales Amount"]=false; 
                       newModel["Cost"]=false;
-                      newModel["Product ID"]=false
+                      newModel["Product ID"]=false;
 
                     }
-                    //alert("called")
                     console.log("new modal",newModel,role)
                     setColumnVisibilityModel(newModel);
 

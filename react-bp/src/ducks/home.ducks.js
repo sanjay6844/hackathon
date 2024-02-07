@@ -168,11 +168,22 @@ const getReloadDataOfUsers = () => (dispatch) => {
     });
 };
 
+
 const getAllData = (data) => (dispatch) => {
   axios.post("https://excel-8dyl.onrender.com/upload", data,{
     headers: {
       "content-type": "multipart/form-data"
-    }
+    },
+    
+   
+  
+
+ 
+
+
+
+
+
   })
     .then(response => {
       console.log(response.data.data,"responese data");
@@ -213,6 +224,7 @@ const fetchLoginData = ()=> (dispatch)=>{
       setApiError(dispatch, assignToDashboardStore, error);
     });
 }
+
 
 const postData = (data)=> (dispatch)=>{
   return nw
