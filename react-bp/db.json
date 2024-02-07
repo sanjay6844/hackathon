@@ -1,9 +1,10 @@
 {
   "users": [
     {
-      "name": "sanjay",
+      "name": "sanjayram",
       "email": "sanjayram.a@sudoboat.com",
       "contactNumber": "1234567890",
+<<<<<<< HEAD
       "password": "QW!@qw12",
       "confirmpassword": "QW!@qw12",
       "dob": "2021-12-31T18:30:00.000Z",
@@ -799,4 +800,48 @@
       "id": 1
     }
   ]
+=======
+      "password": "as12AS!@",
+      "dob": "2023-01-30T18:30:00.000Z",
+      "columnVisibility": {
+        "Product ID": false,
+        "Sales Amount": false,
+        "actions": false
+      },
+      "role": "Admin",
+      "id": 1
+    },
+    {
+      "name": "sanjay",
+      "email": "sdfdsf@gmail.comsdfs",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {
+        "Product ID": false,
+        "Sales Amount": false,
+        "Cost": false
+      },
+      "assetsColumnVisibility": {},
+      "role": "Super Admin",
+      "id": 2
+    },
+    {
+      "name": "sanjay",
+      "email": "sanjayram.a@sudoboat.comdsfd",
+      "contactNumber": "1234567890",
+      "password": "as12AS!@",
+      "dob": "2023-12-30T18:30:00.000Z",
+      "columnVisibility": {
+        "Product ID": false,
+        "Sales Amount": false,
+        "Cost": false
+      },
+      "assetsColumnVisibility": {},
+      "role": "User",
+      "id": 3
+    }
+  ],
+  "excelData": []
+>>>>>>> 9fe330a1b04a205957636bf74bf9c3013586f4e2
 }

@@ -42,6 +42,7 @@ const Barchart = ({excelData})=>{
     salesAmount.push(data["Sales Amount"])
     cost.push(data["Cost"])
   })
+  
   const values = {
     optionsMixedChart: {
       // colors: ["green", "blue","yellow","red"],

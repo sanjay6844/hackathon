@@ -2,6 +2,7 @@ import cloneDeep from "lodash/cloneDeep";
 import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 const namespace = "dashboard";
@@ -128,14 +129,6 @@ const updateUserToStoreForAssets = (data,user) => (dispatch) => {
     });
 };
 
-
-
-
-
-
-
-
-
 const getReloadData = () => (dispatch) => {
   return nw
     .api("get_excelData")
@@ -159,9 +152,6 @@ const getReloadDataOfUsers = () => (dispatch) => {
       console.log(response.data,"responese data get api  fore usersssssssssssssssssssss");
       dispatch(assignToDashboardStore("users", response?.data));
     })
-    // .catch(error => {
-    //   console.error("Error uploading file: ", error);
-    // });
     .catch((error) => {
       setApiError(dispatch, assignToDashboardStore, error);
     });
@@ -176,7 +166,7 @@ const getAllData = (data) => (dispatch) => {
     .then(response => {
       console.log(response.data.data,"responese data");
       dispatch(assignToDashboardStore("excelData", response?.data.data));
-
+      toast.success("File upload successfully")
       //axios.post("http://localhost:3000/excelData", response.data.data)
       // .then(response => {
       //   console.log(response.data.data,"responese data");
@@ -190,9 +180,6 @@ const getAllData = (data) => (dispatch) => {
       return nw
         .api("get_excelData")
         .post(response.data.data)
-
-     
-
     })
     .catch(error => {
       console.error("Error uploading file: ", error);
@@ -225,14 +212,42 @@ const postData = (data)=> (dispatch)=>{
     });
 }
 
+const putUser=(data)=>(dispatch)=>{
+  return nw
+    .apiWithPath("get_users",[data.id])
+    .put(data)
+    // .then((response) => {
+    //   dispatch(assignToDashboardStore("users", response?.data));
+    // })
+    .catch((error) => {
+      setApiError(dispatch, assignToDashboardStore, error);
+    });
+}
+  
+
 const deleteAllData = ()=>()=>{
   //axios.delete("http://localhost:3000/excelData/1")
   return nw 
     .apiWithPath("get_excelData",[1])
     .delete()
-  
 }
 
+const deleteUser = (data,changedUsers)=>(dispatch)=>{
+  console.log(data,"home ducks")
+  return nw
+    .apiWithPath("get_users",[data])
+    .delete()
+    .then(() => {
+      dispatch(assignToDashboardStore("users", changedUsers));
+    })
+}
+
+
+// const storeData = ()=>()=>{
+//   return nw
+//     .api("get_excelData")
+    
+// }
 
 //Use If need DB json
 // const getAllRequetUser = () => (dispatch) => {
@@ -281,6 +296,8 @@ export default {
     updateToStore,
     updateLogindata,
     deleteAllData ,updateUserToStore ,getReloadDataOfUsers ,
-    updateUserToStoreForAssets
+    updateUserToStoreForAssets,
+    putUser,
+    deleteUser
   },
 };
