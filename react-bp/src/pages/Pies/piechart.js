@@ -205,6 +205,7 @@
 // /* eslint-disable no-undef */
 import React, { useEffect,useContext,useState } from "react";
 import "./style.css"
+import Typography from "@mui/material/Typography";
 import RefContext from "Utilities/refContext";
 import { PieChart } from "@mui/x-charts/PieChart";
 import {  useCookies } from "react-cookie";
@@ -282,11 +283,13 @@ const Pie=()=>{
     pieData!==null&&pieData!==undefined&&
     <div className="show">
       {/* <div className="none"> */}
+      <div className="barchart-title">Asset Allocation</div>
       <PieChart
       
         series={[
           {
             // eslint-disable-next-line no-unused-vars
+
             data:pieData.map((item,index)=>({value:item?.["Shares ( % )"],label:item?.Companies,color:colours[index]})),
             highlightScope: { faded: "global", highlighted: "item" },
             faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
@@ -294,7 +297,7 @@ const Pie=()=>{
             outerRadius: 200,
             paddingAngle: 0,
             cornerRadius: 0,
-            cx: 100,
+            cx: 200,
             // cy: 300,
           
           },
@@ -308,7 +311,7 @@ const Pie=()=>{
           },
         }}
         height={500}
-        width={1250}
+        width={1350}
       />
       {/* </div> */}
     </div>
