@@ -87,13 +87,10 @@ const Rolepage = ()=>{
     if(loggedInUser.id===undefined||users[id-1]===undefined){
       return
     }
-    if(users[id-1].id===loggedInUser.id){
+    if(users[id-1].id===loggedInUser.id||loggedInUser.role!=="Super Admin"){
       return true
     }
 
-    if(loggedInUser.role!=="Super Admin"){
-      return true
-    }
     return false
   }
   const disableAdmin=(id)=>{
@@ -103,7 +100,16 @@ const Rolepage = ()=>{
     if(users[id-1].id===loggedInUser.id){
       return true
     }
+    if(loggedInUser.role==="Admin"){
+      return true
+    }
+    if(users[id-1].role==="Admin"){
+      return true
+    }
     if(loggedInUser.role==="Admin"&&users[id-1].role==="Super Admin"){
+      return true
+    }
+    if(loggedInUser.role==="User"){
       return true
     }
    
@@ -117,15 +123,16 @@ const Rolepage = ()=>{
     if(users[id-1].id===loggedInUser.id){
       return true
     }
-    if(loggedInUser.role==="User"){
-      return true
-    }
     if(loggedInUser.role==="Admin"&&users[id-1].role==="Super Admin"){
       return true
     }
     if(users[id-1].role==="User"){
       return true
     }
+    if(loggedInUser.role==="User"){
+      return true
+    }
+    
     return false
   }
 
