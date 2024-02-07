@@ -72,16 +72,8 @@ import { Details } from "@material-ui/icons";
 
 
 const Upload = () => {
+  const [role,setRole]=useState();
   const [cookies] = useCookies(["user"])
-
- 
-
-
-
-
-
-
-
   const navigate = useNavigate()
   const [show,setShow] = useState(true)
   const [loading,setLoading] = useState()
@@ -129,13 +121,6 @@ const Upload = () => {
   const currentUserEmail=cookies.user;
 
   
-
-
-
-
-
-
-
   useEffect(() => {
     // getAllRequetUser();
     console.log("reload")
@@ -145,9 +130,7 @@ const Upload = () => {
   
   
 
-  const [columnVisibilityModel, setColumnVisibilityModel] =
-    React.useState();
-
+  const [columnVisibilityModel, setColumnVisibilityModel] =React.useState();
   const [hasPageRendered,setPageRendered]=useState(false)
   useEffect(()=>{
     if(hasPageRendered && store!==undefined && store?.users!=null)
@@ -158,10 +141,7 @@ const Upload = () => {
     setPageRendered(true);
   },[columnVisibilityModel])
 
-  const [assetsColumnVisibilityModel, setAssetsColumnVisibilityModel] =
-    React.useState(
-
-    );
+  const [assetsColumnVisibilityModel, setAssetsColumnVisibilityModel] =React.useState();
   const [hasPageRenderedAssets,setPageRenderedAssets]=useState(false)
 
 
@@ -182,6 +162,7 @@ const Upload = () => {
       const user=store?.users?.find(user=>user.email==currentUserEmail)
       console.log("current user detailssssssssssssssssssssssssss",user);
       setCurrentUser(user);
+      setRole(user.role);
       setColumnVisibilityModel(user?.columnVisibility)
       setAssetsColumnVisibilityModel(user?.assetsColumnVisibility);
       SetAllow(false)
@@ -306,7 +287,7 @@ const Upload = () => {
       if(!editOn && !addOn)
       {
         const id = randomId();
-        setRows((oldRows) => [...oldRows, { id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true }]);
+        setRows((oldRows) => [{ id, "Product ID": "", "Product Name": "","Sales Amount":"" ,"Cost":"","P/L":"", isNew: true },...oldRows]);
         setRowModesModel((oldModel) => ({
           ...oldModel,
           [id]: { mode: GridRowModes.Edit, fieldToFocus: "Product ID" },
@@ -563,9 +544,6 @@ const Upload = () => {
           return Math.abs(params.value)
          
         },
-        
-
-
       }
 
 
@@ -655,7 +633,6 @@ const Upload = () => {
       headerAlign: "left",
       editable: true ,
       headerClassName: "super-app-theme--header",
-
     },
     {
       field: "Product Name",
@@ -781,7 +758,7 @@ const Upload = () => {
         align: "left",     
         headerAlign: "left",
         editable: true ,
-        headerClassName: "super-app-theme--header",
+        headerClassName: "super-app-theme--header"
       }
     }
   }).filter(Boolean);
@@ -960,7 +937,7 @@ const Upload = () => {
   const handleClickOfAsset = () => {
     if(!editOn && !addOn){
       const id = randomId();
-      setAssetRows((oldRows) => [...oldRows, { id, "Companies": "", "Shares ( % )": "",isNew: true }]);
+      setAssetRows((oldRows) => [{ id, "Companies": "", "Shares ( % )": "",isNew: true }, ...oldRows]);
       setAssetRowModesModel((oldModel) => ({
         ...oldModel,
         [id]: { mode: GridRowModes.Edit, fieldToFocus: "Companies" },
@@ -991,6 +968,45 @@ const Upload = () => {
       </GridToolbarContainer>
     );
   }
+
+
+  const columnVisibilityModels = React.useMemo(() => {
+    if (role === "Super Admin") 
+    {
+      return  {
+        // "Product ID": true,
+        // "Product Name": true,
+        // "Sales Amount": true,
+        // "Cost": true,
+        // "P/L": true,
+        // "actions": true
+      };
+    }
+    else if(role =="Admin")
+    {
+
+    
+      return {
+        // "Product ID": true,
+        // "Product Name": true,
+        "Sales Amount": false,
+        "Cost": false,
+        // "P/L": true,
+        // "actions": true
+      };
+    }
+    else{
+      return {
+        "Product ID": false,
+        //"Product Name": true,
+        "Sales Amount": false,
+        "Cost": false,
+        //"P/L": true,
+        //"actions": true
+      };
+
+    }
+  }, [role]);
 
   
 
@@ -1089,8 +1105,28 @@ const Upload = () => {
 
                   columnVisibilityModel={columnVisibilityModel}
                   onColumnVisibilityModelChange={(newModel) =>
-                    setColumnVisibilityModel(newModel)
+                  {
+                    //setColumnVisibilityModel(newModel);
+                    if(role=="Admin")
+                    {
+                      newModel["Sales Amount"]=false;
+                      newModel["Cost"]=false;
+                    }
+                    else if(role=="User")
+                    {
+                      newModel["Sales Amount"]=false;
+                      newModel["Cost"]=false;
+                      newModel["Product ID"]=false
+
+                    }
+                    //alert("called")
+                    console.log("new modal",newModel,role)
+                    setColumnVisibilityModel(newModel);
+
                   }
+                  }
+                  //disableColumnSelector
+
 
                 />
               </Box>
@@ -1140,10 +1176,14 @@ const Upload = () => {
                     }
                   }}
 
+
                   columnVisibilityModel={assetsColumnVisibilityModel}
                   onColumnVisibilityModelChange={(newModel) =>
                     setAssetsColumnVisibilityModel(newModel)
                   }
+
+                  //disableColumnSelector
+                  
 
                 />
               </Box>

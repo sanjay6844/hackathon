@@ -6,35 +6,798 @@
       "contactNumber": "1234567890",
       "password": "as12AS!@",
       "dob": "2023-01-30T18:30:00.000Z",
-      "columnVisibility": {},
+      "columnVisibility": {
+        "Product ID": false,
+        "Sales Amount": false,
+        "actions": false
+      },
       "role": "Super Admin",
       "id": 1
     },
     {
-      "name": "sanjayram",
-      "email": "sanjasdfyram.a@sudoboat.com",
+      "name": "sanjay",
+      "email": "sdfdsf@gmail.comsdfs",
       "contactNumber": "1234567890",
       "password": "as12AS!@",
-      "dob": "2023-01-30T18:30:00.000Z",
+      "dob": "2023-12-30T18:30:00.000Z",
       "columnVisibility": {
         "Product ID": false,
         "Sales Amount": false,
         "Cost": false
       },
-      "role": "User",
-      "id": 2
-    },
-    {
-      "name": "sanjayram",
-      "email": "dsflksdjf@gmail.comsdfsd",
-      "contactNumber": "1234567890",
-      "password": "as12AS!@",
-      "dob": "2023-01-30T18:30:00.000Z",
-      "columnVisibility": {},
-      "role": "User",
       "assetsColumnVisibility": {},
-      "id": 3
+      "role": "user",
+      "id": 2
     }
   ],
-  "excelData": []
+  "excelData": [
+    {
+      "Sales&Profit": [
+        {
+          "id": "d11d9b3e-f51b-5833-85ff-c7e40465d5d6",
+          "Product ID": 101,
+          "Product Name": "LED TV",
+          "Sales Amount": 82721,
+          "Cost": 41180,
+          "P/L": 41541
+        },
+        {
+          "id": "d4bf5458-045d-5769-a1d1-1ee9a6a1a8e8",
+          "Product ID": 102,
+          "Product Name": "Refrigerator",
+          "Sales Amount": 37613,
+          "Cost": 24267,
+          "P/L": 13346
+        },
+        {
+          "id": "95efcd17-e53c-589b-8eca-c9906b316d05",
+          "Product ID": 103,
+          "Product Name": "Running Shoes",
+          "Sales Amount": 72641,
+          "Cost": 3015,
+          "P/L": 69626
+        },
+        {
+          "id": "0ade5da0-ffa6-523b-8c3f-c25c1858f3af",
+          "Product ID": 104,
+          "Product Name": "Smartphone",
+          "Sales Amount": 33708,
+          "Cost": 91589,
+          "P/L": -57881
+        },
+        {
+          "id": "d37175ab-b6fd-58ee-b772-13940b5151ae",
+          "Product ID": 105,
+          "Product Name": "Coffee Maker",
+          "Sales Amount": 40560,
+          "Cost": 16065,
+          "P/L": 24495
+        },
+        {
+          "id": "f932d51a-f436-54b2-8d11-a4abf7cbf9bb",
+          "Product ID": 106,
+          "Product Name": "Office Chair",
+          "Sales Amount": 74594,
+          "Cost": 72796,
+          "P/L": 1798
+        },
+        {
+          "id": "bac07004-32f5-516f-8bb3-b0edc6c626ab",
+          "Product ID": 107,
+          "Product Name": "Headphones",
+          "Sales Amount": 87269,
+          "Cost": 57819,
+          "P/L": 29450
+        },
+        {
+          "id": "b3224c53-c5f5-5d0c-8235-617e2a919aee",
+          "Product ID": 108,
+          "Product Name": "Microwave Oven",
+          "Sales Amount": 64735,
+          "Cost": 89713,
+          "P/L": -24978
+        },
+        {
+          "id": "6533aad0-942d-5fda-9ccc-efc5e9fbafdd",
+          "Product ID": 109,
+          "Product Name": "Laptop",
+          "Sales Amount": 60749,
+          "Cost": 44084,
+          "P/L": 16665
+        },
+        {
+          "id": "dd86923f-5610-57f8-9e15-5caaecfa79f2",
+          "Product ID": 110,
+          "Product Name": "Digital Camera",
+          "Sales Amount": 49067,
+          "Cost": 2782,
+          "P/L": 46285
+        },
+        {
+          "id": "ad08f64c-5030-59d3-9361-0e10f00d5b44",
+          "Product ID": 111,
+          "Product Name": "Dining Table",
+          "Sales Amount": 98502,
+          "Cost": 5035,
+          "P/L": 93467
+        },
+        {
+          "id": "60435fbd-a0bc-561c-84da-25ab183c1010",
+          "Product ID": 112,
+          "Product Name": "Blender",
+          "Sales Amount": 60053,
+          "Cost": 80847,
+          "P/L": -20794
+        },
+        {
+          "id": "42969c3d-2ba2-50f3-a8f4-666093ec6528",
+          "Product ID": 113,
+          "Product Name": "Asian Paints Ltd",
+          "Sales Amount": 90590,
+          "Cost": 39158,
+          "P/L": 51432
+        },
+        {
+          "id": "b3aebda5-3675-5ba2-af40-b24ad6b8a021",
+          "Product ID": 114,
+          "Product Name": "Britannia Industries Ltd",
+          "Sales Amount": 51725,
+          "Cost": 74150,
+          "P/L": -22425
+        },
+        {
+          "id": "8b77620a-2ea1-50d1-b819-04e0da1046fb",
+          "Product ID": 115,
+          "Product Name": "Cipla Ltd",
+          "Sales Amount": 88214,
+          "Cost": 54556,
+          "P/L": 33658
+        },
+        {
+          "id": "f33ba4ec-c0ad-5af4-a003-dbf73bf0facf",
+          "Product ID": 116,
+          "Product Name": "Eicher Motors Ltd",
+          "Sales Amount": 45342,
+          "Cost": 80081,
+          "P/L": -34739
+        },
+        {
+          "id": "e6ac1b49-f328-5e5b-9a28-29b53c645333",
+          "Product ID": 117,
+          "Product Name": "Nestle India Ltd",
+          "Sales Amount": 79391,
+          "Cost": 60967,
+          "P/L": 18424
+        },
+        {
+          "id": "763a3e12-2edd-55aa-a704-73ffaaf31db9",
+          "Product ID": 118,
+          "Product Name": "Grasim Industries Ltd",
+          "Sales Amount": 60828,
+          "Cost": 31149,
+          "P/L": 29679
+        },
+        {
+          "id": "9095d68b-dcc0-5b44-8cca-a075c8b1c780",
+          "Product ID": 119,
+          "Product Name": "Hero MotoCorp Ltd",
+          "Sales Amount": 68355,
+          "Cost": 13940,
+          "P/L": 54415
+        },
+        {
+          "id": "b8613e78-ca14-537f-96a6-dc1509f3e3fd",
+          "Product ID": 120,
+          "Product Name": "Hindalco Industries Ltd",
+          "Sales Amount": 31546,
+          "Cost": 16307,
+          "P/L": 15239
+        },
+        {
+          "id": "5e97b920-d4c9-55d2-bf90-3ccb4336a87d",
+          "Product ID": 121,
+          "Product Name": "Hindustan Unilever Ltd",
+          "Sales Amount": 10415,
+          "Cost": 77636,
+          "P/L": -67221
+        },
+        {
+          "id": "0b050c00-43fd-5a34-8086-57d68b9e6d3b",
+          "Product ID": 122,
+          "Product Name": "ITC Ltd",
+          "Sales Amount": 64839,
+          "Cost": 78121,
+          "P/L": -13282
+        },
+        {
+          "id": "2effa0e0-2a61-5146-aa34-f9fb41484d84",
+          "Product ID": 123,
+          "Product Name": "Larsen & Toubro Ltd",
+          "Sales Amount": 54711,
+          "Cost": 79101,
+          "P/L": -24390
+        },
+        {
+          "id": "221a9149-0623-5a26-b666-9f495823041e",
+          "Product ID": 124,
+          "Product Name": "Mahindra & Mahindra Ltd",
+          "Sales Amount": 17128,
+          "Cost": 52464,
+          "P/L": -35336
+        },
+        {
+          "id": "2eeace1d-1ea0-5909-9e1b-2e325ac98d8b",
+          "Product ID": 125,
+          "Product Name": "Reliance Industries Ltd",
+          "Sales Amount": 75641,
+          "Cost": 54832,
+          "P/L": 20809
+        },
+        {
+          "id": "efe80bed-e24f-5a95-be63-dfc432e53f51",
+          "Product ID": 126,
+          "Product Name": "Tata Consumer Products Ltd",
+          "Sales Amount": 51405,
+          "Cost": 94662,
+          "P/L": -43257
+        },
+        {
+          "id": "5ab7a9d3-93bd-5bbd-b8d7-19638cc42be9",
+          "Product ID": 127,
+          "Product Name": "Tata Motors Ltd",
+          "Sales Amount": 30697,
+          "Cost": 49612,
+          "P/L": -18915
+        },
+        {
+          "id": "21ac4dc1-7c7a-5b5f-8805-875ca1372ed5",
+          "Product ID": 128,
+          "Product Name": "Tata Steel Ltd",
+          "Sales Amount": 86652,
+          "Cost": 40032,
+          "P/L": 46620
+        },
+        {
+          "id": "3fe88176-29ef-5b39-917c-2ce22a59b31d",
+          "Product ID": 129,
+          "Product Name": "Wipro Ltd",
+          "Sales Amount": 80091,
+          "Cost": 34670,
+          "P/L": 45421
+        },
+        {
+          "id": "5ce932da-be9c-5f1f-81d1-f041d498e5fb",
+          "Product ID": 130,
+          "Product Name": "Apollo Hospitals Enterprise Ltd",
+          "Sales Amount": 66348,
+          "Cost": 86819,
+          "P/L": -20471
+        },
+        {
+          "id": "8262ae86-53d4-538a-b757-d2b56717d2e2",
+          "Product ID": 131,
+          "Product Name": "Dr Reddys Laboratories Ltd",
+          "Sales Amount": 56645,
+          "Cost": 65203,
+          "P/L": -8558
+        },
+        {
+          "id": "c6a587fe-80ef-58b3-8dd5-173a9b9f8389",
+          "Product ID": 132,
+          "Product Name": "Titan Company Ltd",
+          "Sales Amount": 61466,
+          "Cost": 70542,
+          "P/L": -9076
+        },
+        {
+          "id": "41394625-d1eb-5891-825f-508a98b98334",
+          "Product ID": 133,
+          "Product Name": "State Bank of India",
+          "Sales Amount": 53084,
+          "Cost": 63468,
+          "P/L": -10384
+        },
+        {
+          "id": "b1c9624b-6393-5d9e-904b-50d51ec3630b",
+          "Product ID": 134,
+          "Product Name": "Bharat Petroleum Corporation Ltd",
+          "Sales Amount": 9827,
+          "Cost": 84817,
+          "P/L": -74990
+        },
+        {
+          "id": "e81fa493-a1d9-55ef-972c-446221190f89",
+          "Product ID": 135,
+          "Product Name": "Kotak Mahindra Bank Ltd",
+          "Sales Amount": 44487,
+          "Cost": 69477,
+          "P/L": -24990
+        },
+        {
+          "id": "57cfa2cd-82ac-51e0-9f3a-7749708eeb82",
+          "Product ID": 136,
+          "Product Name": "UPL Ltd",
+          "Sales Amount": 2292,
+          "Cost": 20297,
+          "P/L": -18005
+        },
+        {
+          "id": "f205b608-3b5a-5c7c-b509-7f6384b1ccc1",
+          "Product ID": 137,
+          "Product Name": "Infosys Ltd",
+          "Sales Amount": 6847,
+          "Cost": 63530,
+          "P/L": -56683
+        },
+        {
+          "id": "0cc3b191-28ab-54aa-a112-962c371e7b29",
+          "Product ID": 138,
+          "Product Name": "Bajaj Finance Ltd",
+          "Sales Amount": 89211,
+          "Cost": 70146,
+          "P/L": 19065
+        },
+        {
+          "id": "7208b5c8-d545-59bc-be26-184ea5603d46",
+          "Product ID": 139,
+          "Product Name": "Adani Enterprises Ltd",
+          "Sales Amount": 95703,
+          "Cost": 96286,
+          "P/L": -583
+        },
+        {
+          "id": "4dd9244c-e780-5079-87ca-1048b754ce9a",
+          "Product ID": 140,
+          "Product Name": "Sun Pharmaceuticals Industries Ltd",
+          "Sales Amount": 52688,
+          "Cost": 25510,
+          "P/L": 27178
+        },
+        {
+          "id": "55f8344b-ea19-5909-ba87-d36643b180d7",
+          "Product ID": 141,
+          "Product Name": "JSW Steel Ltd",
+          "Sales Amount": 4432,
+          "Cost": 20969,
+          "P/L": -16537
+        },
+        {
+          "id": "4ba2b794-5a7c-5815-bded-cb73c65ead2c",
+          "Product ID": 142,
+          "Product Name": "HDFC Bank Ltd",
+          "Sales Amount": 95157,
+          "Cost": 55631,
+          "P/L": 39526
+        },
+        {
+          "id": "ca68f2b5-c221-5317-80a2-b8c0d5c45003",
+          "Product ID": 143,
+          "Product Name": "Tata Consultancy Services Ltd",
+          "Sales Amount": 97674,
+          "Cost": 62414,
+          "P/L": 35260
+        },
+        {
+          "id": "9040a648-7df4-5566-8d10-2841e43884d5",
+          "Product ID": 144,
+          "Product Name": "ICICI Bank Ltd",
+          "Sales Amount": 37533,
+          "Cost": 89407,
+          "P/L": -51874
+        },
+        {
+          "id": "bc2553c0-40b5-5dad-adc3-f6b562fe4da2",
+          "Product ID": 145,
+          "Product Name": "Power Grid Corporation of India Ltd",
+          "Sales Amount": 90819,
+          "Cost": 79992,
+          "P/L": 10827
+        },
+        {
+          "id": "c369ca1e-4ad2-559a-9a7a-5243119c6af1",
+          "Product ID": 146,
+          "Product Name": "Maruti Suzuki India Ltd",
+          "Sales Amount": 97890,
+          "Cost": 48458,
+          "P/L": 49432
+        },
+        {
+          "id": "585d2550-dcaa-5b7f-a72c-2bce8279f1f1",
+          "Product ID": 147,
+          "Product Name": "IndusInd Bank Ltd",
+          "Sales Amount": 81395,
+          "Cost": 23487,
+          "P/L": 57908
+        },
+        {
+          "id": "c2b7296f-b2f6-5c91-8ea9-ce1b52244ebf",
+          "Product ID": 148,
+          "Product Name": "Axis Bank Ltd",
+          "Sales Amount": 97460,
+          "Cost": 96085,
+          "P/L": 1375
+        },
+        {
+          "id": "3bb6623b-724d-5233-bb11-dba749d770ff",
+          "Product ID": 149,
+          "Product Name": "HCL Technologies Ltd",
+          "Sales Amount": 96579,
+          "Cost": 92429,
+          "P/L": 4150
+        },
+        {
+          "id": "879a387b-cd6f-52d0-9009-1ad880ccdb03",
+          "Product ID": 150,
+          "Product Name": "Oil & Natural Gas Corpn Ltd",
+          "Sales Amount": 91161,
+          "Cost": 97234,
+          "P/L": -6073
+        },
+        {
+          "id": "dce1addd-5d9e-56bc-b9d4-35debb5ff78e",
+          "Product ID": 151,
+          "Product Name": "NTPC Ltd",
+          "Sales Amount": 72523,
+          "Cost": 17932,
+          "P/L": 54591
+        },
+        {
+          "id": "c1318082-e5ce-59ff-9cf7-cde4728b2d86",
+          "Product ID": 152,
+          "Product Name": "Coal India Ltd",
+          "Sales Amount": 52069,
+          "Cost": 99174,
+          "P/L": -47105
+        },
+        {
+          "id": "2b7dfef8-1750-56e2-8cea-9e11a3841a19",
+          "Product ID": 153,
+          "Product Name": "Bharti Airtel Ltd",
+          "Sales Amount": 44354,
+          "Cost": 68328,
+          "P/L": -23974
+        },
+        {
+          "id": "f9fa4d7e-2cf7-55c7-abef-83da0fee016c",
+          "Product ID": 154,
+          "Product Name": "Tech Mahindra Ltd",
+          "Sales Amount": 23608,
+          "Cost": 61946,
+          "P/L": -38338
+        },
+        {
+          "id": "241019ea-fdad-568c-b1d8-243ec3d7723d",
+          "Product ID": 155,
+          "Product Name": "LTIMindtree Ltd",
+          "Sales Amount": 7841,
+          "Cost": 79124,
+          "P/L": -71283
+        },
+        {
+          "id": "e4a188e1-05b3-5080-9cb0-5556c3de7305",
+          "Product ID": 156,
+          "Product Name": "Divis Laboratories Ltd",
+          "Sales Amount": 28827,
+          "Cost": 61589,
+          "P/L": -32762
+        },
+        {
+          "id": "b8877531-b1ed-54d0-b46d-0c2060dfae52",
+          "Product ID": 157,
+          "Product Name": "Adani Ports & Special Economic Zone Ltd",
+          "Sales Amount": 77400,
+          "Cost": 15921,
+          "P/L": 61479
+        },
+        {
+          "id": "fefb198b-0ba3-5afd-bf63-68604704315b",
+          "Product ID": 158,
+          "Product Name": "Maruti Suzuki",
+          "Sales Amount": 65580,
+          "Cost": 47190,
+          "P/L": 18390
+        },
+        {
+          "id": "96ab7f41-933f-5fd6-b5a4-9b25106172d3",
+          "Product ID": 159,
+          "Product Name": "Hyundai India",
+          "Sales Amount": 46926,
+          "Cost": 44145,
+          "P/L": 2781
+        },
+        {
+          "id": "dbc75d8b-60e6-5ed9-9233-e447bd99a3ec",
+          "Product ID": 160,
+          "Product Name": "Tata Motors",
+          "Sales Amount": 88905,
+          "Cost": 43973,
+          "P/L": 44932
+        },
+        {
+          "id": "cf09a34f-0181-54a4-86c7-64ea2d699ff7",
+          "Product ID": 161,
+          "Product Name": "Mahindra & Mahindra",
+          "Sales Amount": 81027,
+          "Cost": 37088,
+          "P/L": 43939
+        },
+        {
+          "id": "c38aec9d-cb25-57a6-8fd2-8a0ab2d29f7c",
+          "Product ID": 162,
+          "Product Name": "General Motors India",
+          "Sales Amount": 57693,
+          "Cost": 9948,
+          "P/L": 47745
+        },
+        {
+          "id": "2e4d3802-bf43-5aa1-b544-a28e36214baa",
+          "Product ID": 163,
+          "Product Name": "Honda Motor Company",
+          "Sales Amount": 83511,
+          "Cost": 24363,
+          "P/L": 59148
+        },
+        {
+          "id": "ac06d80d-e897-5a70-a404-56227671bc1f",
+          "Product ID": 164,
+          "Product Name": "Hero MotoCorp",
+          "Sales Amount": 7988,
+          "Cost": 79961,
+          "P/L": -71973
+        },
+        {
+          "id": "bed3fa92-bbfd-5fd0-ba90-67638330b601",
+          "Product ID": 165,
+          "Product Name": "TVS Motor Company",
+          "Sales Amount": 85346,
+          "Cost": 66710,
+          "P/L": 18636
+        },
+        {
+          "id": "891be092-7cff-5dd7-86b3-5cb70fc68386",
+          "Product ID": 166,
+          "Product Name": "Bajaj Auto Limited",
+          "Sales Amount": 72477,
+          "Cost": 84229,
+          "P/L": -11752
+        },
+        {
+          "id": "395e37f8-7549-57ff-8e76-43f19b520641",
+          "Product ID": 167,
+          "Product Name": "Ashok Leyland",
+          "Sales Amount": 47016,
+          "Cost": 33981,
+          "P/L": 13035
+        }
+      ],
+      "Asset_allocation": [
+        {
+          "id": "83f766d5-daa7-598d-a7db-07ed81e3c9b9",
+          "Companies": "Asian Paints Ltd",
+          "Shares ( % )": 29
+        },
+        {
+          "id": "c0bcd8d2-f60e-564a-b15d-2d443f6c4751",
+          "Companies": "Britannia Industries Ltd",
+          "Shares ( % )": 4
+        },
+        {
+          "id": "bb7ab2ab-9071-57c9-9d34-30a73edf20bd",
+          "Companies": "Cipla Ltd",
+          "Shares ( % )": 68
+        },
+        {
+          "id": "3500b934-c9c2-5667-a059-56bf78de6ffa",
+          "Companies": "Eicher Motors Ltd",
+          "Shares ( % )": 90
+        },
+        {
+          "id": "81925bf6-61b0-5cbe-8f83-7484165fae09",
+          "Companies": "Nestle India Ltd",
+          "Shares ( % )": 73
+        },
+        {
+          "id": "13acf341-fd36-56d0-81a5-7239f48acbc6",
+          "Companies": "Grasim Industries Ltd",
+          "Shares ( % )": 90
+        },
+        {
+          "id": "7bad1d97-8b4f-5054-9eb8-2d2c006902a9",
+          "Companies": "Hero MotoCorp Ltd",
+          "Shares ( % )": 77
+        },
+        {
+          "id": "6124c023-853b-5782-ae23-bafa41939852",
+          "Companies": "Hindalco Industries Ltd",
+          "Shares ( % )": 2
+        },
+        {
+          "id": "eb1d44a3-1895-5ece-8c70-6859bafb4fad",
+          "Companies": "Hindustan Unilever Ltd",
+          "Shares ( % )": 91
+        },
+        {
+          "id": "93c4ee7d-a309-5b9e-bc2f-9668a6799cab",
+          "Companies": "ITC Ltd",
+          "Shares ( % )": 17
+        },
+        {
+          "id": "a9e7687d-2407-59de-9506-e655819cc505",
+          "Companies": "Larsen & Toubro Ltd",
+          "Shares ( % )": 15
+        },
+        {
+          "id": "8c4d8527-cd91-5119-a2dd-90deda2228d7",
+          "Companies": "Mahindra & Mahindra Ltd",
+          "Shares ( % )": 95
+        },
+        {
+          "id": "f5d38b1f-e8c5-51c7-93dc-0b2724a7f333",
+          "Companies": "Reliance Industries Ltd",
+          "Shares ( % )": 81
+        },
+        {
+          "id": "78a3ba37-a096-5144-b0d4-35e4dde56eca",
+          "Companies": "Tata Consumer Products Ltd",
+          "Shares ( % )": 65
+        },
+        {
+          "id": "5ffbf5b9-aa37-5c44-8468-f749b048a956",
+          "Companies": "Tata Motors Ltd",
+          "Shares ( % )": 83
+        },
+        {
+          "id": "972a49f7-72af-5b86-bf75-6003a691da74",
+          "Companies": "Tata Steel Ltd",
+          "Shares ( % )": 44
+        },
+        {
+          "id": "807b371d-f77c-5c3a-9f22-f266d9e97fb5",
+          "Companies": "Wipro Ltd",
+          "Shares ( % )": 80
+        },
+        {
+          "id": "580a044c-dff4-56d4-bc3f-7a4417d80e1e",
+          "Companies": "Apollo Hospitals Enterprise Ltd",
+          "Shares ( % )": 38
+        },
+        {
+          "id": "e0a53f07-b158-57d3-8c20-88d1a8fc88f0",
+          "Companies": "Dr Reddys Laboratories Ltd",
+          "Shares ( % )": 35
+        },
+        {
+          "id": "2cfd0270-6aef-5a32-bc5a-5935bf44962c",
+          "Companies": "Titan Company Ltd",
+          "Shares ( % )": 65
+        },
+        {
+          "id": "4e55f977-5c0a-5572-b5ca-eecb49006c08",
+          "Companies": "State Bank of India",
+          "Shares ( % )": 77
+        },
+        {
+          "id": "f53b8096-3d47-54d1-a516-2ce7ef9d9df1",
+          "Companies": "Bharat Petroleum Corporation Ltd",
+          "Shares ( % )": 100
+        },
+        {
+          "id": "be7faf25-41f9-575f-b6e6-db8f7d6b4c98",
+          "Companies": "Kotak Mahindra Bank Ltd",
+          "Shares ( % )": 13
+        },
+        {
+          "id": "7e2a0afd-6e24-5da4-ac17-b383f4bf3432",
+          "Companies": "UPL Ltd",
+          "Shares ( % )": 87
+        },
+        {
+          "id": "d8cfbe8c-8ded-53c3-af92-1b1066ab0492",
+          "Companies": "Infosys Ltd",
+          "Shares ( % )": 86
+        },
+        {
+          "id": "bf890e8d-2177-5c94-830c-0f0d9a645fa2",
+          "Companies": "Bajaj Finance Ltd",
+          "Shares ( % )": 47
+        },
+        {
+          "id": "445767c8-103c-532a-8681-37d51aeada59",
+          "Companies": "Adani Enterprises Ltd",
+          "Shares ( % )": 62
+        },
+        {
+          "id": "5dda9e99-06fc-5eeb-a6e6-33e9691bf326",
+          "Companies": "Sun Pharmaceuticals Industries Ltd",
+          "Shares ( % )": 69
+        },
+        {
+          "id": "8e22b65d-199e-5df2-848d-84ebe65238ec",
+          "Companies": "JSW Steel Ltd",
+          "Shares ( % )": 57
+        },
+        {
+          "id": "b411def7-1304-5abc-ac2b-cf8b5e45b7b6",
+          "Companies": "HDFC Bank Ltd",
+          "Shares ( % )": 64
+        },
+        {
+          "id": "015e1e5e-fd58-500c-b281-872042a06f50",
+          "Companies": "Tata Consultancy Services Ltd",
+          "Shares ( % )": 22
+        },
+        {
+          "id": "a3b79308-4042-5d96-a749-b3cba96d94fb",
+          "Companies": "ICICI Bank Ltd",
+          "Shares ( % )": 34
+        },
+        {
+          "id": "cddfc65b-624a-5abd-86ad-aaa728fbf023",
+          "Companies": "Power Grid Corporation of India Ltd",
+          "Shares ( % )": 54
+        },
+        {
+          "id": "587220a2-be72-59c4-8a11-bf4c6d51c0b3",
+          "Companies": "Maruti Suzuki India Ltd",
+          "Shares ( % )": 44
+        },
+        {
+          "id": "2f956e5b-ce57-5625-be1c-3cda173b116d",
+          "Companies": "IndusInd Bank Ltd",
+          "Shares ( % )": 95
+        },
+        {
+          "id": "7c1f7a10-5349-5d08-99fd-70faf9655f67",
+          "Companies": "Axis Bank Ltd",
+          "Shares ( % )": 51
+        },
+        {
+          "id": "cab815ba-5bdc-503f-9d09-f67d41ac4acb",
+          "Companies": "HCL Technologies Ltd",
+          "Shares ( % )": 41
+        },
+        {
+          "id": "7e7adcfc-73c4-5ca8-a1b8-f26336c94f8d",
+          "Companies": "Oil & Natural Gas Corpn Ltd",
+          "Shares ( % )": 15
+        },
+        {
+          "id": "7c2ad7d2-0855-5f4e-b47c-04ca4f6ba608",
+          "Companies": "NTPC Ltd",
+          "Shares ( % )": 75
+        },
+        {
+          "id": "5707521a-39e4-532a-8f48-9352a9b9d545",
+          "Companies": "Coal India Ltd",
+          "Shares ( % )": 31
+        },
+        {
+          "id": "881bc62b-9c9e-5c47-96a6-4d1e0aeb3e9b",
+          "Companies": "Bharti Airtel Ltd",
+          "Shares ( % )": 12
+        },
+        {
+          "id": "6ac0ceb8-015a-5973-be01-6b21b34b7450",
+          "Companies": "Tech Mahindra Ltd",
+          "Shares ( % )": 65
+        },
+        {
+          "id": "2980af3b-c850-5ce1-a5cc-9c08e10285a3",
+          "Companies": "LTIMindtree Ltd",
+          "Shares ( % )": 2
+        },
+        {
+          "id": "373d7aa9-ebb7-5fef-9669-4f8453d843c0",
+          "Companies": "Divis Laboratories Ltd",
+          "Shares ( % )": 37
+        },
+        {
+          "id": "a9c536d2-4af6-5b08-9e69-2ff4895e4c26",
+          "Companies": "Adani Ports & Special Economic Zone Ltd",
+          "Shares ( % )": 55
+        }
+      ],
+      "id": 1
+    }
+  ]
 }

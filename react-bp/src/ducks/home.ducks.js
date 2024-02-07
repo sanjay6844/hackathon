@@ -3,7 +3,6 @@ import { setNamespace, setApiError } from "Utilities/helpers";
 import Network from "Utilities/network";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {  useCookies } from "react-cookie";
 
 
 const namespace = "dashboard";
@@ -167,7 +166,7 @@ const getAllData = (data) => (dispatch) => {
     .then(response => {
       console.log(response.data.data,"responese data");
       dispatch(assignToDashboardStore("excelData", response?.data.data));
-
+      toast.success("File upload successfully")
       //axios.post("http://localhost:3000/excelData", response.data.data)
       // .then(response => {
       //   console.log(response.data.data,"responese data");
