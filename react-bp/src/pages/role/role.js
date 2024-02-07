@@ -2,7 +2,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
-import React, { useEffect,useContext, useState } from "react";
+import React, { useEffect,useContext, useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./role.css"
 import { useNavigate } from "react-router-dom";
 import {useCookies } from "react-cookie";
@@ -15,6 +17,11 @@ import Menu from "@mui/material/Menu";
 
 import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 
 const Rolepage = ()=>{
@@ -31,6 +38,8 @@ const Rolepage = ()=>{
   const [clickedId,setClickedId] = useState(null)
   // const [open,setOpen] = useState(false)
   const [count,setCount] = useState(null)
+  const [openDialog,setOpenDialog] = useState(false)
+  const [Id,setId] = useState(null)
   const handleClick = (event,id) => {
     setAnchorEl(event.currentTarget);
     setClickedId(id)
@@ -50,11 +59,34 @@ const Rolepage = ()=>{
     console.log(newObj,"users")
     newObj.role = changedRole
     // console.log(users[id-1])
+    if(changedRole==="User"){
+      newObj.columnVisibility = {"Product ID": false,
+        "Sales Amount": false,
+        "Cost": false}
+    }
+    else if(changedRole==="Admin"){
+      newObj.columnVisibility = { "Sales Amount": false,
+        "Cost": false}
+    }
+    else{
+      newObj.columnVisibility = {
+        "Product ID": true,
+        "Product Name": true,
+        "Sales Amount": true,
+        "Cost": true,
+        "P/L": true,
+        "actions": true}
+    }
     putUser(newObj);
+    toast.success("Role changed successfully")
     handleClose()
   }
 
   const disableSuperAdmin=(id)=>{
+    console.log(users[id-1],"users admin")
+    if(loggedInUser.id===undefined||users[id-1]===undefined){
+      return
+    }
     if(users[id-1].id===loggedInUser.id){
       return true
     }
@@ -68,6 +100,9 @@ const Rolepage = ()=>{
     return false
   }
   const disableAdmin=(id)=>{
+    if(loggedInUser.id===undefined||users[id-1]===undefined){
+      return
+    }
     if(users[id-1].id===loggedInUser.id){
       return true
     }
@@ -81,6 +116,9 @@ const Rolepage = ()=>{
 
   }
   const disableUser=(id)=>{
+    if(loggedInUser.id===undefined||users[id-1]===undefined){
+      return
+    }
     if(users[id-1].id===loggedInUser.id){
       return true
     }
@@ -94,12 +132,13 @@ const Rolepage = ()=>{
   }
 
   const deleteDisable=(id)=>{
-    if(users[id-1].id===loggedInUser.id){
+    if(loggedInUser.id===undefined||users[id-1]===undefined){
+      return
+    }
+    if(users[id-1].id===loggedInUser.id||loggedInUser.role!=="Super Admin"){
       return true
     }
-    if(loggedInUser.role!=="SuperAdmin"){
-      return true
-    }
+
     return false
   }
 
@@ -128,10 +167,20 @@ const Rolepage = ()=>{
 
 
   const handleDelete = (id)=>{
-    console.log(id)
+    console.log(id,"id before")
+    setId(id)
+    setOpenDialog(true)
+  }
+
+  const handleCancel = ()=>{
+    setOpenDialog(false)
+  }
+
+  const handleConfirmDelete = ()=>{
+    console.log(Id,"Id")
     let delId=0
     users.map((user,key)=>{
-      if(user.id===id){
+      if(user.id===Id){
         // users.splice(key,0)
         delId=key
       }
@@ -140,7 +189,9 @@ const Rolepage = ()=>{
     changedUsers.splice(delId,1)
     // assignToDashboardStore(changedUsers)
     console.log(changedUsers)
-    deleteUser(id,changedUsers)
+    deleteUser(Id,changedUsers)
+    toast.success("Deleted Successfully")
+    handleCancel()
   }
 
   const rows = usersData
@@ -197,6 +248,28 @@ const Rolepage = ()=>{
   
   return(
     <div className="role-container">
+      <ToastContainer/>
+      <Dialog
+        open={openDialog}
+        onClose={handleCancel}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Do you really  want to delete this record?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button onClick={handleConfirmDelete} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
       <div className="table-container">
         {usersData!==null&&
         <DataGrid

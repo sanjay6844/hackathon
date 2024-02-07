@@ -234,6 +234,7 @@ const deleteAllData = ()=>()=>{
 }
 
 const deleteUser = (data,changedUsers)=>(dispatch)=>{
+  console.log(data,"home ducks")
   return nw
     .apiWithPath("get_users",[data])
     .delete()

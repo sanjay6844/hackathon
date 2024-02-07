@@ -22,6 +22,10 @@
 .delete-icon{
   color: red;
 }
+.css-ptkaw2-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainerContent{
+  color:white;
+  font-size: 20px;
+}
 
 ul{
   list-style: none;

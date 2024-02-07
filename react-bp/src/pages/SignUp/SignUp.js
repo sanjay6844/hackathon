@@ -64,7 +64,9 @@ const SignUpPage = ()=>{
 
   const onSubmit = (data)=>{
     delete data["confirmPassword"]
-    let newData = {...data,columnVisibility:{},role:"user",assetsColumnVisibility:{}}
+    let newData = {...data,columnVisibility:{"Product ID": false,
+      "Sales Amount": false,
+      "Cost": false},role:"User",assetsColumnVisibility:{}}
     postData(newData)
     setCookies("user",data.email)
     setOpen(true)
