@@ -117,7 +117,8 @@
           "Product Name": "Digital Camera",
           "Sales Amount": 49067,
           "Cost": 2782,
-          "P/L": 46285
+          "P/L": 2.122222222222222e+26,
+          "isNew": false
         },
         {
           "id": "700b5229-0b54-5219-b7cc-644b329b803a",
