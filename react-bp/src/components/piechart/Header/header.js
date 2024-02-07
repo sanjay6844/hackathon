@@ -28,13 +28,17 @@ const Header=(data)=>{
       return
     }
     if(data.store.dashboardStore.excelData===null){
-      // data.actions.dashboardActions.deleteAllData()
       navigate("/signin")
+
       return
     }
-    if(data.store.dashboardStore.excelData.length!==0){
-      data.actions.dashboardActions.deleteAllData()
+    if(data.store.dashboardStore.excelData.length===0){
+      navigate("/signin")
+
+      return
     }
+    data.actions.dashboardActions.deleteAllData()
+    data.store.dashboardStore.excelData=null
     navigate("/signin")
   }
   const next =()=>{
@@ -47,6 +51,10 @@ const Header=(data)=>{
   }
   const profitLoss = ()=>{
     navigate("/barchart")
+    setAnchorEl(null)
+  }
+  const roleManagement=()=>{
+    navigate("/roleManagement")
     setAnchorEl(null)
   }
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -79,14 +87,32 @@ const Header=(data)=>{
           <>
             <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Sales & Profit</Button>
             <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button>
+            <Button onClick={roleManagement} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Role Management</Button>
+            <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
           </>}
         {window.location.pathname==="/barchart" && 
-        <><Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
-          <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button></>}
+        <>
+          <Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
+          <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button>
+          <Button onClick={roleManagement} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Role Management</Button>
+          <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
+
+        </>}
         {window.location.pathname==="/piechart" && 
-          <><Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
-            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Sales & Profit</Button></>}
-        <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
+          <>
+            <Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
+            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Sales & Profit</Button>
+            <Button onClick={roleManagement} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Role Management</Button>
+            <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
+          </>}
+        {window.location.pathname==="/roleManagement"&&
+          <>
+            <Button onClick={back} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Home</Button>
+            <Button onClick={next} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Asset Allocation</Button>
+            <Button onClick={profitLoss} variant="contained" sx={{ color: "#615d6e", backgroundColor: "white", "&:hover": { color: "white" } }}>Sales & Profit</Button>
+            <Button onClick={logout} variant="contained"  sx={{color:"#615d6e",backgroundColor:"white","&:hover":{color:"white"}}}>Logout</Button>
+          </>
+        }
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 .role-container{
   background-color: white;
-  height:100%;
+  height:89%;
   display: flex;
   justify-content: center;
 }
@@ -13,6 +13,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.delete-btn-user:disabled{
+  .delete-icon{
+    color: grey;
+  }
+}
+.delete-icon{
+  color: red;
+}
+.css-ptkaw2-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainerContent{
+  color:white;
+  font-size: 20px;
 }
 
 ul{
