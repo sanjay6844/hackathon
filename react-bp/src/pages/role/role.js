@@ -82,7 +82,8 @@ const Rolepage = ()=>{
     handleClose()
   }
 
-  const disableSuperAdmin=(id)=>{
+  
+ const disableSuperAdmin=(id)=>{
     console.log(users[id-1],"users admin")
     if(loggedInUser.id===undefined||users[id-1]===undefined){
       return
@@ -94,9 +95,6 @@ const Rolepage = ()=>{
     if(loggedInUser.role!=="Super Admin"){
       return true
     }
-    if(users[id-1].role==="Super Admin"){
-      return true
-    }
     return false
   }
   const disableAdmin=(id)=>{
@@ -106,12 +104,10 @@ const Rolepage = ()=>{
     if(users[id-1].id===loggedInUser.id){
       return true
     }
-    if(loggedInUser.role==="User"){
+    if(loggedInUser.role==="Admin"&&users[id-1].role==="Super Admin"){
       return true
     }
-    if(users[id-1].role==="Admin"){
-      return true
-    }
+   
     return false
 
   }
@@ -123,6 +119,9 @@ const Rolepage = ()=>{
       return true
     }
     if(loggedInUser.role==="User"){
+      return true
+    }
+    if(loggedInUser.role==="Admin"&&users[id-1].role==="Super Admin"){
       return true
     }
     if(users[id-1].role==="User"){
