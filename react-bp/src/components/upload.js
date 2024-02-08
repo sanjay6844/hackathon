@@ -566,7 +566,7 @@ const Upload = () => {
   }
   ).filter(Boolean);
 
-  columns1.push({
+  { role!="User" && columns1.push({
     headerClassName: "super-app-theme--header",
 
     field: "actions",
@@ -599,6 +599,7 @@ const Upload = () => {
       }
 
       return [
+        
         <Tooltip title="Edit">
           <GridActionsCellItem
             icon={<EditIcon />}
@@ -620,7 +621,7 @@ const Upload = () => {
         </Tooltip>
       ];
     },
-  })
+  })}
   //setCol1(c1);
 
   //console.log("c1",c1);
@@ -869,13 +870,16 @@ const Upload = () => {
         }
 
         return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClickOfAsset(id)}
-            color="inherit"
-          />,
+
+          role==="Super Admin" && (
+            <GridActionsCellItem
+              icon={<EditIcon />}
+              label="Edit"
+              className="textPrimary"
+              onClick={handleEditClickOfAsset(id)}
+              color="inherit"
+            /> ),
+
           <GridActionsCellItem
             icon={<DeleteIcon sx={{color:"red"}}/>}
             label="Delete"
@@ -927,7 +931,7 @@ const Upload = () => {
         <GridToolbarColumnsButton  sx={{color:"#615d6e"}} />
 
         <GridToolbarExport sx={{color:"#615d6e",}}/>
-        <EditToolbar sx={{color:"#615d6e",backgroundColor:"#615d6ed4"}}setRows={setRows} setRowModesModel={setRowModesModel} />
+        { role=="Super Admin" && <EditToolbar sx={{color:"#615d6e",backgroundColor:"#615d6ed4"}}setRows={setRows} setRowModesModel={setRowModesModel} />}
         
         <GridToolbarDensitySelector sx={{color:"#615d6e"}}/>
       </GridToolbarContainer>
